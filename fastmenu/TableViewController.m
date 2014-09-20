@@ -14,6 +14,7 @@
 @interface TableViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
+
 @end
 
 @implementation TableViewController
@@ -30,10 +31,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+
     
-    
-    //get var
+    //get var,create table buttons
     double width = self.scrollView.frame.size.width;
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
