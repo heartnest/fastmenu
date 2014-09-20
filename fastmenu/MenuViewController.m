@@ -23,7 +23,7 @@
 @property (strong, nonatomic) NSArray *pageTitles;
 @property (strong, nonatomic) NSArray *pageImages;
 
-@property (nonatomic) int pageindex;
+@property (nonatomic) int currentPageID;
 
 @property (strong,nonatomic) NSArray *menuArray;
 
@@ -34,6 +34,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
     
 
 }
@@ -51,16 +52,11 @@
     self.menuArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     
     
-    self.categories = @[@"te",@"analcolico",@"alcolico",@"succo",@"dolce",@"altri"];
-    
-    
-    _pageTitles = @[@"Over 200 Tips and Tricks", @"Discover Hidden Features", @"Bookmark Favorite Tip", @"Free Regular Update"];
-    _pageImages = @[@"page1.png", @"page2.png", @"page3.png", @"page4.png"];
-    
     
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
     self.pageViewController.dataSource = self;
+    
     
     // Create page content view controller
     PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
@@ -75,87 +71,97 @@
     [self.pageview addSubview:_pageViewController.view];
     
     //create buttons
-    [self createCategoryButtonsFromArray:self.menuArray];
+    NSMutableArray *marr = [[NSMutableArray alloc]init];
+    [marr addObject:@"Selected"];
+    for (NSDictionary *d in self.menuArray) {
+        NSString *categ = [d objectForKey:@"category"];
+        [marr addObject:categ];
+    }
+    [self createCategoryButtonsFromArray:marr];
     
     self.pageIndex = 0;
-    //button events
-//    [button addTarget:self
-//               action:@selector(didPressButton:)
-//     forControlEvents:UIControlEventTouchUpInside];
-
-    // Do any additional setup after loading the view.
 }
 
--(void) createCategoryButtonsFromArray:(NSArray *) arr{
-    
-    double xcoord = 1;
-    double yheight = 1;
-    for (NSDictionary *categ in arr) {
-        
-        NSString *btn = [categ objectForKey:@"category"];
-        
-//        sizeWithFont:[UIFont systemFontOfSize:14]
-        
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        button.backgroundColor = [UIColor greenColor];
-        [button setTitle:btn forState:UIControlStateNormal];
-        
-        CGSize stringsize = [btn sizeWithAttributes: @{NSFontAttributeName:
-                                                           [UIFont systemFontOfSize:17.0f]}];
-
-    
-        [button setFrame:CGRectMake(xcoord,1,stringsize.width+10, stringsize.height)];
-        
-        yheight = stringsize.height;
-        xcoord += stringsize.width+20;
-        [self.scrollView addSubview:button];
-        
-    }
-    
-    [self.scrollView setScrollEnabled:YES];
-    [self.scrollView setContentSize:CGSizeMake(xcoord, yheight)];
-}
 
 
 - (PageContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
     PageContentViewController *pageContentViewController;
-    if (([self.menuArray count] == 0) || (index >= [self.menuArray count])) {
+    if (([self.menuArray count] == 0) || (index > [self.menuArray count])) {
         return nil;
     }
     if (index == 0) {
          pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageOrderViewController"];
     }
     else{
-    pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
-    pageContentViewController.category = [self.menuArray[index] objectForKey:@"category"];
-    pageContentViewController.list = [self.menuArray[index] objectForKey:@"list"];
-    pageContentViewController.pageIndex = index;
+        pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
+        pageContentViewController.category = [self.menuArray[index-1] objectForKey:@"category"];
+        pageContentViewController.list = [self.menuArray[index-1] objectForKey:@"list"];
+        pageContentViewController.pageIndex = index;
     }
+    
+    //NSLog(@"aaa %i",index);
+
+
+    
+    self.currentPageID = index;
+   
     return pageContentViewController;
+}
+-(void)markCategoryButton:(int) index{
+    [self buttonsBackToColor];
+    UIButton *button = (UIButton *)[self.view viewWithTag:index+1000];
+    button.backgroundColor = [UIColor yellowColor];
+}
+-(void)buttonsBackToColor{
+    for (int i = 0; i<= [self.menuArray count]; i++) {
+        int bid = 1000 + i;
+        UIButton *button = (UIButton *)[self.view viewWithTag:bid];
+        button.backgroundColor = [UIColor greenColor];
+    }
 }
 
 #pragma mark - Page View Controller Data Source
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
+    NSUInteger index;
+    if ([viewController isKindOfClass:[PageContentViewController class]]) {
+        index = ((PageContentViewController*) viewController).pageIndex;
+    }else
+        index = 0;
     
-    self.pageindex--;
     
-    if (self.pageindex < 0) {
-            return nil;
+    if ((index == 0) || (index == NSNotFound)) {
+        return nil;
     }
     
-    return [self viewControllerAtIndex:self.pageindex];
+    [self markCategoryButton:index];
+    
+    index--;
+    return [self viewControllerAtIndex:index];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-    self.pageindex++;
-    if (self.pageindex == [self.menuArray count]) {
+    NSUInteger index;
+    if ([viewController isKindOfClass:[PageContentViewController class]]) {
+        index = ((PageContentViewController*) viewController).pageIndex;
+    }else
+        index = 0;
+    
+    
+    if (index == NSNotFound) {
         return nil;
     }
-    return [self viewControllerAtIndex:self.pageindex];
+    
+    [self markCategoryButton:index];
+    
+    index++;
+    if (index == [self.menuArray count]+1) {
+        return nil;
+    }
+    return [self viewControllerAtIndex:index];
 }
 
 
@@ -170,4 +176,63 @@
 }
 */
 
+
+-(void) createCategoryButtonsFromArray:(NSArray *) arr{
+    
+    int count = 0;
+    double xcoord = 1;
+    double yheight = 1;
+    
+    
+    for (NSString *btn in arr) {
+        
+        //NSString *btn = [categ objectForKey:@"category"];
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        button.backgroundColor = [UIColor greenColor];
+        [button setTitle:btn forState:UIControlStateNormal];
+        
+        CGSize stringsize = [btn sizeWithAttributes: @{NSFontAttributeName:
+                                                           [UIFont systemFontOfSize:17.0f]}];
+        
+        
+        [button setFrame:CGRectMake(xcoord,1,stringsize.width+10, stringsize.height)];
+        
+        yheight = stringsize.height;
+        xcoord += stringsize.width+20;
+        
+        button.tag = 1000+count;
+        [button addTarget:self action:@selector(onButtonPressed:)
+         forControlEvents:UIControlEventTouchUpInside];
+        
+        [self.scrollView addSubview:button];
+        
+        count++;
+        
+    }
+    
+    [self.scrollView setScrollEnabled:YES];
+    [self.scrollView setContentSize:CGSizeMake(xcoord, yheight)];
+}
+
+- (void)onButtonPressed:(UIButton *)button {
+    int pageid = button.tag - 1000;
+
+    if (self.currentPageID > pageid) {
+        PageContentViewController *selectedViewController = [self viewControllerAtIndex:pageid];
+        NSArray *viewControllers = @[selectedViewController];
+        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+    }else if(self.currentPageID < pageid){
+        PageContentViewController *selectedViewController = [self viewControllerAtIndex:pageid];
+        NSArray *viewControllers = @[selectedViewController];
+        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    }
+        
+    [self markCategoryButton:pageid];
+    // "button" is the button which is pressed
+   // NSLog(@"Pressed Button: %@ %i", button, button.tag);
+    
+    // You can still get the tag
+   // int tag = button.tag;
+}
 @end
