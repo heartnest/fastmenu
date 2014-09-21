@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet UIView *pageview;
 
 
-@property NSUInteger pageIndex;
 @property NSString *titleText;
 @property NSString *imageFile;
 @property (strong, nonatomic) UIPageViewController *pageViewController;
@@ -79,7 +78,7 @@
     }
     [self createCategoryButtonsFromArray:marr];
     
-    self.pageIndex = 0;
+    [self markCategoryButton:0];
 }
 
 
@@ -131,13 +130,13 @@
     }else
         index = 0;
     
-    
-    if ((index == 0) || (index == NSNotFound)) {
+    int idx = index;
+    if ((idx < 0) || (index == NSNotFound)) {
         return nil;
     }
     
     [self markCategoryButton:index];
-    
+
     index--;
     return [self viewControllerAtIndex:index];
 }
