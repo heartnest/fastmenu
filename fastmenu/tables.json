@@ -20,6 +20,8 @@
  {
  "tableid": 3,
  "state":"busy",
+ "sum":18.00,
+ "person":3,
  "list": [
           {"name":"Torta alla frutta","price":4},
           {"name":"Torta della nonna","price":4},
@@ -28,7 +30,7 @@
  },
  {
  "tableid": 4,
- "state":"reserved",
+ "state":"free",
  "list": [
           {"name":"Torta alla frutta","price":4},
           {"name":"Torta della nonna","price":4},
@@ -37,7 +39,7 @@
  },
  {
  "tableid": 5,
- "state":"reserved",
+ "state":"free",
  "list": [
           {"name":"Torta alla frutta","price":4},
           {"name":"Torta della nonna","price":4},
@@ -46,7 +48,7 @@
  },
  {
  "tableid": 6,
- "state":"reserved",
+ "state":"free",
  "list": [
           {"name":"Torta alla frutta","price":4},
           {"name":"Torta della nonna","price":4},
@@ -56,6 +58,8 @@
  {
  "tableid": 7,
  "state":"busy",
+ "sum":25.00,
+ "person":2,
  "list": [
           {"name":"Torta alla frutta","price":4},
           {"name":"Torta della nonna","price":4},

@@ -216,15 +216,45 @@
 
 - (void)onButtonPressed:(UIButton *)button {
     int pageid = button.tag - 1000;
+    
+    
 
     if (self.currentPageID > pageid) {
         PageContentViewController *selectedViewController = [self viewControllerAtIndex:pageid];
-        NSArray *viewControllers = @[selectedViewController];
-        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+//        NSArray *viewControllers = @[selectedViewController];
+//        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+        
+        __weak UIPageViewController* pvcw = self.pageViewController;
+        [self.pageViewController setViewControllers:@[selectedViewController]
+                      direction:UIPageViewControllerNavigationDirectionReverse
+                       animated:YES completion:^(BOOL finished) {
+                           UIPageViewController* pvcs = pvcw;
+                           if (!pvcs) return;
+                           dispatch_async(dispatch_get_main_queue(), ^{
+                               [pvcs setViewControllers:@[selectedViewController]
+                                              direction:UIPageViewControllerNavigationDirectionReverse
+                                               animated:NO completion:nil];
+                           });
+                       }];
+        
     }else if(self.currentPageID < pageid){
         PageContentViewController *selectedViewController = [self viewControllerAtIndex:pageid];
-        NSArray *viewControllers = @[selectedViewController];
-        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+//        NSArray *viewControllers = @[selectedViewController];
+//        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        
+        __weak UIPageViewController* pvcw = self.pageViewController;
+        [self.pageViewController setViewControllers:@[selectedViewController]
+                                          direction:UIPageViewControllerNavigationDirectionForward
+                                           animated:YES completion:^(BOOL finished) {
+                                               UIPageViewController* pvcs = pvcw;
+                                               if (!pvcs) return;
+                                               dispatch_async(dispatch_get_main_queue(), ^{
+                                                   [pvcs setViewControllers:@[selectedViewController]
+                                                                  direction:UIPageViewControllerNavigationDirectionForward
+                                                                   animated:NO completion:nil];
+                                               });
+                                           }];
+        
     }
         
     [self markCategoryButton:pageid];
