@@ -9,31 +9,24 @@
 #import "PageOrderViewController.h"
 
 @interface PageOrderViewController ()
-
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong,nonatomic) NSArray *orders;
 @end
 
 @implementation PageOrderViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"tables" ofType:@"json"];
+    NSData *data = [[NSFileManager defaultManager] contentsAtPath:filePath];
+    NSArray *tables = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    NSDictionary *table = [tables objectAtIndex:1];
+    self.orders = [table objectForKey:@"orders"];
+    NSLog(@"%i  aaa",self.tableid);
+
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 /*
 #pragma mark - Navigation

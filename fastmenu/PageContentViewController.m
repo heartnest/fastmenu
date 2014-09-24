@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
+@property (weak,nonatomic) NSArray *orders;
 
 
 @end
@@ -31,6 +31,13 @@
     self.titleLabel.text = self.category;
     [self createMenuItemButtonsFromArray:self.list];
     
+    
+//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"tables" ofType:@"json"];
+//    NSData *data = [[NSFileManager defaultManager] contentsAtPath:filePath];
+//    NSArray *tables = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+//    NSDictionary *table = [tables objectAtIndex:1];
+//    self.orders = [table objectForKey:@"orders"];
+//    NSLog(@"%i",self.tableid);
 }
 
 

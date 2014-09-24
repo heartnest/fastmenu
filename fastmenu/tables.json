@@ -2,7 +2,7 @@
  {
     "tableid": 1,
     "state":"free",
-    "list": [
+    "orders": [
                  {"name":"Anita","price":5},
                  {"name":"Banshee","price":5},
                  {"name":"Bitter Sweet","price":3.5}
@@ -11,7 +11,7 @@
  {
  "tableid": 2,
  "state":"free",
- "list": [
+ "orders": [
           {"name":"Abbey","price":5},
           {"name":"Alexander","price":5},
           {"name":"Americano","price":3.5}
@@ -22,7 +22,7 @@
  "state":"busy",
  "sum":18.00,
  "person":3,
- "list": [
+ "orders": [
           {"name":"Torta alla frutta","price":4},
           {"name":"Torta della nonna","price":4},
           {"name":"Pasticci misti","price":11}
@@ -31,7 +31,7 @@
  {
  "tableid": 4,
  "state":"free",
- "list": [
+ "orders": [
           {"name":"Torta alla frutta","price":4},
           {"name":"Torta della nonna","price":4},
           {"name":"Pasticci misti","price":11}
@@ -40,7 +40,7 @@
  {
  "tableid": 5,
  "state":"free",
- "list": [
+ "orders": [
           {"name":"Torta alla frutta","price":4},
           {"name":"Torta della nonna","price":4},
           {"name":"Pasticci misti","price":11}
@@ -49,7 +49,7 @@
  {
  "tableid": 6,
  "state":"free",
- "list": [
+ "orders": [
           {"name":"Torta alla frutta","price":4},
           {"name":"Torta della nonna","price":4},
           {"name":"Pasticci misti","price":11}
@@ -60,7 +60,7 @@
  "state":"busy",
  "sum":25.00,
  "person":2,
- "list": [
+ "orders": [
           {"name":"Torta alla frutta","price":4},
           {"name":"Torta della nonna","price":4},
           {"name":"Pasticci misti","price":11}
@@ -69,7 +69,7 @@
  {
  "tableid": 8,
  "state":"free",
- "list": [
+ "orders": [
           {"name":"Torta alla frutta","price":4},
           {"name":"Torta della nonna","price":4},
           {"name":"Pasticci misti","price":11}

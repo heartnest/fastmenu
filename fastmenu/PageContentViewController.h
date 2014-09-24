@@ -12,7 +12,7 @@
 @property NSUInteger pageIndex;
 @property NSString *titleText;
 @property NSString *imageFile;
-
+@property (nonatomic) int tableid;
 @property NSString *category;
 @property (nonatomic,strong) NSArray *list;
 @end

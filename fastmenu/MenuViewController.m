@@ -91,12 +91,14 @@
     }
     if (index == 0) {
          pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageOrderViewController"];
+         pageContentViewController.tableid = self.tableid;
     }
     else{
         pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
         pageContentViewController.category = [self.menuArray[index-1] objectForKey:@"category"];
         pageContentViewController.list = [self.menuArray[index-1] objectForKey:@"list"];
         pageContentViewController.pageIndex = index;
+        
     }
     
     //NSLog(@"aaa %i",index);
@@ -185,8 +187,6 @@
     
     for (NSString *btn in arr) {
         
-        //NSString *btn = [categ objectForKey:@"category"];
-        
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         button.backgroundColor = [UIColor greenColor];
         [button setTitle:btn forState:UIControlStateNormal];
@@ -217,13 +217,9 @@
 - (void)onButtonPressed:(UIButton *)button {
     int pageid = button.tag - 1000;
     
-    
-
     if (self.currentPageID > pageid) {
         PageContentViewController *selectedViewController = [self viewControllerAtIndex:pageid];
-//        NSArray *viewControllers = @[selectedViewController];
-//        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
-        
+
         __weak UIPageViewController* pvcw = self.pageViewController;
         [self.pageViewController setViewControllers:@[selectedViewController]
                       direction:UIPageViewControllerNavigationDirectionReverse
@@ -239,8 +235,6 @@
         
     }else if(self.currentPageID < pageid){
         PageContentViewController *selectedViewController = [self viewControllerAtIndex:pageid];
-//        NSArray *viewControllers = @[selectedViewController];
-//        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
         
         __weak UIPageViewController* pvcw = self.pageViewController;
         [self.pageViewController setViewControllers:@[selectedViewController]

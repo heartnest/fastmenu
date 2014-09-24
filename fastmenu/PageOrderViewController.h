@@ -10,4 +10,5 @@
 
 @interface PageOrderViewController : UIViewController
 
+@property (nonatomic) int tableid;
 @end

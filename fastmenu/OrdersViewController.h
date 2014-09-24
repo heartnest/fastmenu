@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface OrdersViewController : UIViewController
-
+@property (nonatomic) int tableid;
 @end

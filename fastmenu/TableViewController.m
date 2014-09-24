@@ -75,19 +75,24 @@
 - (void)didPressTableHasOrder:(UIButton *)sender
 {
  
+    int tid = sender.tag;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 
     OrdersViewController *viewController = (OrdersViewController *)[storyboard instantiateViewControllerWithIdentifier:@"order-story-id"];
     
-//    [self presentViewController:viewController animated:YES completion:nil];
- [self.navigationController pushViewController:viewController animated:YES];
+    viewController.tableid = tid;
+    
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (void)didPressTableNeedsOrder:(UIButton *)sender
 {
+    int tid = sender.tag;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     MenuViewController *viewController = (MenuViewController *)[storyboard instantiateViewControllerWithIdentifier:@"menu-story-id"];
+    
+    viewController.tableid = tid;
     
     [self.navigationController pushViewController:viewController animated:YES];
 }

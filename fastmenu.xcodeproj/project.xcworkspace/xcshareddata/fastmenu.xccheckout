@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A4FCE362-20EC-4936-9EB3-4EE9EEF00EDD</string>
+	<key>IDESourceControlProjectName</key>
+	<string>fastmenu</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8BD2B7ED-22ED-4B51-A2C8-E4ADFD36B860</key>
+		<string>https://github.com/heartnest/fastmenu</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>fastmenu.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8BD2B7ED-22ED-4B51-A2C8-E4ADFD36B860</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/heartnest/fastmenu</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8BD2B7ED-22ED-4B51-A2C8-E4ADFD36B860</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8BD2B7ED-22ED-4B51-A2C8-E4ADFD36B860</string>
+			<key>IDESourceControlWCCName</key>
+			<string>fastmenu</string>
+		</dict>
+	</array>
+</dict>
+</plist>
