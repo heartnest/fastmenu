@@ -14,7 +14,6 @@
 		2E20BC7119B07BEE00540E78 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E20BC7019B07BEE00540E78 /* main.m */; };
 		2E20BC7519B07BEE00540E78 /* FMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E20BC7419B07BEE00540E78 /* FMAppDelegate.m */; };
 		2E20BC7819B07BEE00540E78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E20BC7619B07BEE00540E78 /* Main.storyboard */; };
-		2E20BC7B19B07BEE00540E78 /* FMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E20BC7A19B07BEE00540E78 /* FMViewController.m */; };
 		2E20BC7D19B07BEE00540E78 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E20BC7C19B07BEE00540E78 /* Images.xcassets */; };
 		2E20BC8419B07BEE00540E78 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E20BC8319B07BEE00540E78 /* XCTest.framework */; };
 		2E20BC8519B07BEE00540E78 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E20BC6419B07BEE00540E78 /* Foundation.framework */; };
@@ -58,8 +57,6 @@
 		2E20BC7319B07BEE00540E78 /* FMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMAppDelegate.h; sourceTree = "<group>"; };
 		2E20BC7419B07BEE00540E78 /* FMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMAppDelegate.m; sourceTree = "<group>"; };
 		2E20BC7719B07BEE00540E78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		2E20BC7919B07BEE00540E78 /* FMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMViewController.h; sourceTree = "<group>"; };
-		2E20BC7A19B07BEE00540E78 /* FMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMViewController.m; sourceTree = "<group>"; };
 		2E20BC7C19B07BEE00540E78 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2E20BC8219B07BEE00540E78 /* fastmenuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fastmenuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E20BC8319B07BEE00540E78 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -148,14 +145,12 @@
 				2EA631FE19CC598600C2447A /* TableViewController.m */,
 				2EA6320519CC760900C2447A /* MenuViewController.h */,
 				2EA6320619CC760900C2447A /* MenuViewController.m */,
-				2EA6320019CC65A700C2447A /* OrdersViewController.h */,
-				2EA6320119CC65A700C2447A /* OrdersViewController.m */,
-				2E20BC7919B07BEE00540E78 /* FMViewController.h */,
-				2E20BC7A19B07BEE00540E78 /* FMViewController.m */,
-				2EA6326B19CDA85000C2447A /* PageContentViewController.h */,
-				2EA6326C19CDA85000C2447A /* PageContentViewController.m */,
 				2EA6327219CE1A7700C2447A /* PageOrderViewController.h */,
 				2EA6327319CE1A7700C2447A /* PageOrderViewController.m */,
+				2EA6326B19CDA85000C2447A /* PageContentViewController.h */,
+				2EA6326C19CDA85000C2447A /* PageContentViewController.m */,
+				2EA6320019CC65A700C2447A /* OrdersViewController.h */,
+				2EA6320119CC65A700C2447A /* OrdersViewController.m */,
 				2E20BC7C19B07BEE00540E78 /* Images.xcassets */,
 				2E20BC6B19B07BEE00540E78 /* Supporting Files */,
 			);
@@ -313,7 +308,6 @@
 				2E20BC7519B07BEE00540E78 /* FMAppDelegate.m in Sources */,
 				2EA6327419CE1A7700C2447A /* PageOrderViewController.m in Sources */,
 				2EA6320219CC65A700C2447A /* OrdersViewController.m in Sources */,
-				2E20BC7B19B07BEE00540E78 /* FMViewController.m in Sources */,
 				2EA631FF19CC598600C2447A /* TableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

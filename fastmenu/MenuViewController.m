@@ -33,12 +33,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    
-
 }
-
-
 
 
 - (void)viewDidLoad
@@ -53,23 +48,29 @@
     
     
     // Create page view controller
+    
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
     self.pageViewController.dataSource = self;
     
     
     // Create page content view controller
+    
     PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
     NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     
     // Change the size of page view controller
-    self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 300);
+    
+    self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width*95/100, self.view.frame.size.height *75/100);
     
     //add view
+    
     [self.pageview addSubview:_pageViewController.view];
     
-    //create buttons
+    
+    //create menu buttons
+    
     NSMutableArray *marr = [[NSMutableArray alloc]init];
     [marr addObject:@"Selected"];
     for (NSDictionary *d in self.menuArray) {
@@ -100,10 +101,6 @@
         pageContentViewController.pageIndex = index;
         
     }
-    
-    //NSLog(@"aaa %i",index);
-
-
     
     self.currentPageID = index;
    
@@ -167,16 +164,8 @@
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
+ menu category
 */
-
 
 -(void) createCategoryButtonsFromArray:(NSArray *) arr{
     
@@ -197,7 +186,7 @@
         
         [button setFrame:CGRectMake(xcoord,1,stringsize.width+10, stringsize.height)];
         
-        yheight = stringsize.height;
+        //yheight = stringsize.height;
         xcoord += stringsize.width+20;
         
         button.tag = 1000+count;
@@ -209,10 +198,14 @@
         count++;
         
     }
-    
+//
     [self.scrollView setScrollEnabled:YES];
     [self.scrollView setContentSize:CGSizeMake(xcoord, yheight)];
 }
+
+/**
+ * view a category
+ */
 
 - (void)onButtonPressed:(UIButton *)button {
     int pageid = button.tag - 1000;
@@ -252,10 +245,5 @@
     }
         
     [self markCategoryButton:pageid];
-    // "button" is the button which is pressed
-   // NSLog(@"Pressed Button: %@ %i", button, button.tag);
-    
-    // You can still get the tag
-   // int tag = button.tag;
 }
 @end
