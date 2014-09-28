@@ -43,9 +43,12 @@
 
 -(void) createOrderedButtonsFromArray:(NSArray *) arr{
     
+    //
+    int topspace = 30;
+    
     //get var,create table buttons
-    int margintop = 10;
-    int marginleft = 10;
+    int margintop = 6;
+    int marginleft = 6;
     int count = 0;
     double width = self.scrollView.frame.size.width;
     double ypos = margintop;
@@ -58,7 +61,7 @@
     int functnWidh = boxwidth*23/128;
     
 
-    ypos += boxheight + margintop;
+    ypos += boxheight + margintop + topspace;
     
     // create already ordered
     
@@ -85,11 +88,26 @@
         ypos += boxheight + margintop;
         
     }
+    
+    
    
+    // Coperto button --- start
+    
+    UIButton *platePlusButton = [self createPlusBtnComponentWithQnt:@"✚"];
+    platePlusButton.frame = CGRectMake(marginleft, ypos+topspace, functnWidh, boxheight);
+    [self.scrollView addSubview:platePlusButton];
     
     UIButton *btn = [self createCopertoBtnWithNumPeople:3];
-    btn.frame = CGRectMake(marginleft, ypos+3, boxwidth, boxheight);
+    btn.frame = CGRectMake(marginleft+functnWidh, ypos+topspace, boxwidth, boxheight);
     [self.scrollView addSubview:btn];
+    
+    UIButton *plateMinusButton = [self createPlusBtnComponentWithQnt:@"➖"];
+    plateMinusButton.frame = CGRectMake(marginleft+functnWidh+boxwidth, ypos+topspace, functnWidh, boxheight);
+    [self.scrollView addSubview:plateMinusButton];
+    
+    // Coperto button --- end
+    
+    
     
     [self.scrollView setScrollEnabled:YES];
     [self.scrollView setContentSize:CGSizeMake(width, ypos*2)];
@@ -97,12 +115,9 @@
 
 -(UIButton *)createCopertoBtnWithNumPeople:(int) numPeople{
      UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    //        [button addTarget:self
-    //                       action:@selector(didPressTableNeedsOrder:) forControlEvents:UIControlEventTouchUpInside];
-    
-    //button.tag = 2000;
+
     //move text 10 pixels down and right
-    [button setTitleEdgeInsets:UIEdgeInsetsMake(10.0f, 10.0f, 0.0f, 0.0f)];
+    [button setTitleEdgeInsets:UIEdgeInsetsMake(2.0f, 10.0f, 0.0f, 0.0f)];
     //button layer
     [[button layer] setBorderWidth:1.0f];
     [[button layer] setBorderColor:[UIColor grayColor].CGColor];
@@ -116,7 +131,7 @@
                             NSFontAttributeName:font1,
                             NSParagraphStyleAttributeName:style}; // Added line
 
-    [attString appendAttributedString:[[NSAttributedString alloc] initWithString:[@(numPeople) stringValue]      attributes:dict1]];
+    [attString appendAttributedString:[[NSAttributedString alloc] initWithString:[[NSString alloc] initWithFormat:@"%i ✕ coperto 2,5€",numPeople ]      attributes:dict1]];
     [button setAttributedTitle:attString forState:UIControlStateNormal];
     return button;
     
