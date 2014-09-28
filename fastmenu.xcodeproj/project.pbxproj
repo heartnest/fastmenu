@@ -29,7 +29,6 @@
 		2EA6326919CDA83E00C2447A /* page3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EA6326519CDA83E00C2447A /* page3.png */; };
 		2EA6326A19CDA83E00C2447A /* page4.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EA6326619CDA83E00C2447A /* page4.png */; };
 		2EA6326D19CDA85000C2447A /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA6326C19CDA85000C2447A /* PageContentViewController.m */; };
-		2EA6326F19CDAE5600C2447A /* menu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2EA6326E19CDAE5600C2447A /* menu.plist */; };
 		2EA6327119CDF5BC00C2447A /* menu.json in Resources */ = {isa = PBXBuildFile; fileRef = 2EA6327019CDF5BC00C2447A /* menu.json */; };
 		2EA6327419CE1A7700C2447A /* PageOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA6327319CE1A7700C2447A /* PageOrderViewController.m */; };
 		2EA6327619CEEE4800C2447A /* tables.json in Resources */ = {isa = PBXBuildFile; fileRef = 2EA6327519CEEE4800C2447A /* tables.json */; };
@@ -76,7 +75,6 @@
 		2EA6326619CDA83E00C2447A /* page4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page4.png; sourceTree = "<group>"; };
 		2EA6326B19CDA85000C2447A /* PageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContentViewController.h; sourceTree = "<group>"; };
 		2EA6326C19CDA85000C2447A /* PageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContentViewController.m; sourceTree = "<group>"; };
-		2EA6326E19CDAE5600C2447A /* menu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = menu.plist; sourceTree = "<group>"; };
 		2EA6327019CDF5BC00C2447A /* menu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = menu.json; sourceTree = "<group>"; };
 		2EA6327219CE1A7700C2447A /* PageOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageOrderViewController.h; sourceTree = "<group>"; };
 		2EA6327319CE1A7700C2447A /* PageOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageOrderViewController.m; sourceTree = "<group>"; };
@@ -145,10 +143,10 @@
 				2EA631FE19CC598600C2447A /* TableViewController.m */,
 				2EA6320519CC760900C2447A /* MenuViewController.h */,
 				2EA6320619CC760900C2447A /* MenuViewController.m */,
+				2EA6326C19CDA85000C2447A /* PageContentViewController.m */,
 				2EA6327219CE1A7700C2447A /* PageOrderViewController.h */,
 				2EA6327319CE1A7700C2447A /* PageOrderViewController.m */,
 				2EA6326B19CDA85000C2447A /* PageContentViewController.h */,
-				2EA6326C19CDA85000C2447A /* PageContentViewController.m */,
 				2EA6320019CC65A700C2447A /* OrdersViewController.h */,
 				2EA6320119CC65A700C2447A /* OrdersViewController.m */,
 				2E20BC7C19B07BEE00540E78 /* Images.xcassets */,
@@ -166,7 +164,6 @@
 				2E20BC7319B07BEE00540E78 /* FMAppDelegate.h */,
 				2E20BC7419B07BEE00540E78 /* FMAppDelegate.m */,
 				2E20BC6C19B07BEE00540E78 /* fastmenu-Info.plist */,
-				2EA6326E19CDAE5600C2447A /* menu.plist */,
 				2E20BC6D19B07BEE00540E78 /* InfoPlist.strings */,
 				2E20BC7019B07BEE00540E78 /* main.m */,
 				2E20BC7219B07BEE00540E78 /* fastmenu-Prefix.pch */,
@@ -282,7 +279,6 @@
 				2E20BC7819B07BEE00540E78 /* Main.storyboard in Resources */,
 				2EA6326A19CDA83E00C2447A /* page4.png in Resources */,
 				2EA6326819CDA83E00C2447A /* page2.png in Resources */,
-				2EA6326F19CDAE5600C2447A /* menu.plist in Resources */,
 				2EA6326919CDA83E00C2447A /* page3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

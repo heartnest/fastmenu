@@ -333,29 +333,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WYG-st-TkC">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WYG-st-TkC">
                                 <rect key="frame" x="1" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wGb-Pw-gZZ">
-                                        <rect key="frame" x="8" y="9" width="243" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wGb-Pw-gZZ">
+                                        <rect key="frame" x="12" y="9" width="243" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="243" id="lDO-mZ-rFE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tY6-u6-4a2">
-                                        <rect key="frame" x="264" y="10" width="30" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tY6-u6-4a2">
+                                        <rect key="frame" x="258" y="12" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="+">
+                                        <state key="normal" title="✚">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="tY6-u6-4a2" firstAttribute="bottom" secondItem="wGb-Pw-gZZ" secondAttribute="bottom" constant="-2" id="Fdz-Cz-eCr"/>
+                                    <constraint firstItem="tY6-u6-4a2" firstAttribute="top" secondItem="WYG-st-TkC" secondAttribute="top" constant="12" id="Nl2-v7-0NF"/>
+                                    <constraint firstItem="wGb-Pw-gZZ" firstAttribute="leading" secondItem="WYG-st-TkC" secondAttribute="leading" constant="12" id="Som-mI-dlf"/>
+                                    <constraint firstAttribute="bottom" secondItem="wGb-Pw-gZZ" secondAttribute="bottom" constant="524" id="TJz-ia-IRZ"/>
+                                    <constraint firstItem="tY6-u6-4a2" firstAttribute="leading" secondItem="wGb-Pw-gZZ" secondAttribute="trailing" constant="3" id="Zgk-6w-iiH"/>
+                                    <constraint firstItem="wGb-Pw-gZZ" firstAttribute="top" secondItem="WYG-st-TkC" secondAttribute="top" constant="9" id="rfC-ag-Jw4"/>
+                                    <constraint firstAttribute="trailing" secondItem="tY6-u6-4a2" secondAttribute="trailing" constant="32" id="uWC-HA-8BM"/>
+                                </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.94117653369999998" green="0.9450981021" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="WYG-st-TkC" firstAttribute="top" secondItem="Dah-KC-Gdy" secondAttribute="top" id="5Bq-KO-3bp"/>
+                            <constraint firstAttribute="bottom" secondItem="WYG-st-TkC" secondAttribute="bottom" id="D61-Mb-HdP"/>
+                            <constraint firstItem="WYG-st-TkC" firstAttribute="leading" secondItem="Dah-KC-Gdy" secondAttribute="leading" constant="1" id="LFq-zx-Ogu"/>
+                            <constraint firstAttribute="trailing" secondItem="WYG-st-TkC" secondAttribute="trailing" constant="-1" id="Qnv-80-Egd"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="addPlateBtn" destination="tY6-u6-4a2" id="saV-Al-Otk"/>
                         <outlet property="scrollView" destination="WYG-st-TkC" id="JKv-mb-Zby"/>
                     </connections>
                 </viewController>

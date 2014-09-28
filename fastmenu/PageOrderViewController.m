@@ -8,8 +8,10 @@
 
 #import "PageOrderViewController.h"
 
+
 @interface PageOrderViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIButton *addPlateBtn;
 @property (strong,nonatomic) NSArray *orders;
 @end
 
@@ -24,13 +26,17 @@
 {
     [super viewDidLoad];
     
-    int realtableid = self.tableid - 2000;
+    int realtableid = self.tableid - 2001;
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"tables" ofType:@"json"];
     NSData *data = [[NSFileManager defaultManager] contentsAtPath:filePath];
     NSArray *tables = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     NSDictionary *table = [tables objectAtIndex:realtableid];
     self.orders = [table objectForKey:@"orders"];
+    
+    //add button
+    [[self.addPlateBtn layer] setBorderWidth:1.0f];
+    [[self.addPlateBtn layer] setBorderColor:[UIColor grayColor].CGColor];
 }
 
 
@@ -43,34 +49,37 @@
     int count = 0;
     double width = self.scrollView.frame.size.width;
     double ypos = margintop;
+    
  //   double xpos = marginleft;
-    double boxwidth = width*90/128;
-    double boxheight = 50;
+    double boxwidth = width*85/128;
+    double boxheight = 38;
     
-    // create add button
-    // setup some frames
-    //CGRect *frame = CGRectMake(marginleft, ypos, boxwidth, boxheight);
-//    UITextField* tf = [[UITextField alloc] initWithFrame:CGRectMake(marginleft,ypos,boxheight,boxwidth)];
-//    tf.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
-//    tf.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
-//    tf.backgroundColor=[UIColor whiteColor];
-//    tf.text=@"Hello World";
-//    [self.scrollView addSubview:tf];
+    //foo button
+    int functnWidh = boxwidth*23/128;
+    
+
     ypos += boxheight + margintop;
-    
-    
     
     // create already ordered
     
     for (NSDictionary *item in arr) {
         NSString *name = [item objectForKey:@"name"];
         double price = [[item objectForKey:@"price"] doubleValue];
-        
-        UIButton *button = [self createMenuBtnComponentWithName:name andPrice:price];
+        NSString *quantity = [item objectForKey:@"quantity"];
+        NSString *x = [[NSString alloc] initWithFormat:@"%@",quantity];
 
-        button.frame = CGRectMake(marginleft, ypos, boxwidth, boxheight);
         
-        [self.scrollView addSubview:button];
+        UIButton *platePlusButton = [self createPlusBtnComponentWithQnt:x];
+        platePlusButton.frame = CGRectMake(marginleft, ypos, functnWidh, boxheight);
+        [self.scrollView addSubview:platePlusButton];
+        
+        UIButton *plateContentButton = [self createMenuBtnComponentWithName:name andPrice:price];
+        plateContentButton.frame = CGRectMake(marginleft+functnWidh, ypos, boxwidth, boxheight);
+        [self.scrollView addSubview:plateContentButton];
+        
+        UIButton *plateMinuesButton = [self createPlusBtnComponentWithQnt:@"➖"];
+        plateMinuesButton.frame = CGRectMake(marginleft+functnWidh+boxwidth, ypos, functnWidh, boxheight);
+        [self.scrollView addSubview:plateMinuesButton];
         
         count++;
         ypos += boxheight + margintop;
@@ -116,17 +125,13 @@
 
 -(UIButton *)createMenuBtnComponentWithName:(NSString *)name andPrice:(double)price{
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    //        [button addTarget:self
-    //                       action:@selector(didPressTableNeedsOrder:) forControlEvents:UIControlEventTouchUpInside];
-    
-    //button.tag = 2000;
     
     //make the buttons content appear in the top-left
     [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [button setContentVerticalAlignment:UIControlContentVerticalAlignmentTop];
     
     //move text 10 pixels down and right
-    [button setTitleEdgeInsets:UIEdgeInsetsMake(10.0f, 10.0f, 0.0f, 0.0f)];
+    [button setTitleEdgeInsets:UIEdgeInsetsMake(9.0f, 10.0f, 0.0f, 0.0f)];
     
     //enable line break
     button.titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
@@ -141,21 +146,47 @@
     [style setAlignment:NSTextAlignmentLeft];
     [style setLineBreakMode:NSLineBreakByWordWrapping];
     
-    UIFont *font1 = [UIFont fontWithName:@"HelveticaNeue-Light"  size:14.0f];
-    UIFont *font2 = [UIFont fontWithName:@"HelveticaNeue-Medium" size:20.0f];
+    UIFont *font1 = [UIFont fontWithName:@"HelveticaNeue-bold"  size:16.0f];
     NSDictionary *dict1 = @{NSUnderlineStyleAttributeName:@(NSUnderlineStyleNone),
                             NSFontAttributeName:font1,
                             NSParagraphStyleAttributeName:style}; // Added line
+    
+    UIFont *font2 = [UIFont fontWithName:@"HelveticaNeue-Light"  size:16.0f];
     NSDictionary *dict2 = @{NSUnderlineStyleAttributeName:@(NSUnderlineStyleNone),
                             NSFontAttributeName:font2,
                             NSParagraphStyleAttributeName:style}; // Added line
     
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] init];
-    [attString appendAttributedString:[[NSAttributedString alloc] initWithString:name    attributes:dict1]];
-    [attString appendAttributedString:[[NSAttributedString alloc] initWithString:[@(price) stringValue]      attributes:dict2]];
+    [attString appendAttributedString:[[NSAttributedString alloc] initWithString:[[NSString alloc] initWithFormat:@"%@ ",name]    attributes:dict1]];
+    
+        [attString appendAttributedString:[[NSAttributedString alloc] initWithString:[[NSString alloc] initWithFormat:@"%.02f€",price ]   attributes:dict2]];
+;
     
     
     [button setAttributedTitle:attString forState:UIControlStateNormal];
     return button;
 }
+
+- (UIButton *)createPlusBtnComponentWithQnt:(NSString *)quantity{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    //move text 10 pixels down and right
+    [button setTitleEdgeInsets:UIEdgeInsetsMake(2.0f, 2.0f, 0.0f, 0.0f)];
+    //button layer
+    [[button layer] setBorderWidth:1.0f];
+    [[button layer] setBorderColor:[UIColor grayColor].CGColor];
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] init];
+    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    [style setAlignment:NSTextAlignmentLeft];
+    [style setLineBreakMode:NSLineBreakByWordWrapping];
+    
+    UIFont *font1 = [UIFont fontWithName:@"HelveticaNeue-Light"  size:14.0f];
+    NSDictionary *dict1 = @{NSUnderlineStyleAttributeName:@(NSUnderlineStyleNone),
+                            NSFontAttributeName:font1,
+                            NSParagraphStyleAttributeName:style}; // Added line
+    
+    [attString appendAttributedString:[[NSAttributedString alloc] initWithString:quantity attributes:dict1]];
+    [button setAttributedTitle:attString forState:UIControlStateNormal];
+    return button;
+}
+
 @end
