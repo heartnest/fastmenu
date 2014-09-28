@@ -10,7 +10,7 @@
 
 
 @interface PageOrderViewController ()
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIButton *addPlateBtn;
 @property (strong,nonatomic) NSArray *orders;
 @end
@@ -33,6 +33,12 @@
     NSArray *tables = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     NSDictionary *table = [tables objectAtIndex:realtableid];
     self.orders = [table objectForKey:@"orders"];
+    
+//    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+//    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width*3, self.view.frame.size.height)];
+//    [self.scrollView setShowsVerticalScrollIndicator:NO];
+//    //[self.scrollView setPagingEnabled:YES];
+//    [self.view addSubview:self.scrollView];
     
     //add button
     [[self.addPlateBtn layer] setBorderWidth:1.0f];
@@ -66,12 +72,14 @@
     // create already ordered
     
     for (NSDictionary *item in arr) {
+        
+        //get vals
         NSString *name = [item objectForKey:@"name"];
         double price = [[item objectForKey:@"price"] doubleValue];
         NSString *quantity = [item objectForKey:@"quantity"];
         NSString *x = [[NSString alloc] initWithFormat:@"%@",quantity];
 
-        
+        //create btns
         UIButton *platePlusButton = [self createPlusBtnComponentWithQnt:x];
         platePlusButton.frame = CGRectMake(marginleft, ypos, functnWidh, boxheight);
         [self.scrollView addSubview:platePlusButton];
@@ -107,10 +115,12 @@
     
     // Coperto button --- end
     
-    
-    
-    [self.scrollView setScrollEnabled:YES];
-    [self.scrollView setContentSize:CGSizeMake(width, ypos*2)];
+//    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width,self.scrollView.frame.size.height);
+//      [self.scrollView setShowsHorizontalScrollIndicator:NO];
+//    [self.scrollView setScrollEnabled:YES];
+//    CGSize scrollableSize = CGSizeMake(120, ypos*2);
+//    [self.scrollView setContentSize:scrollableSize];
+    //[self.scrollView setContentSize:CGSizeMake(0, ypos*2)];
 }
 
 -(UIButton *)createCopertoBtnWithNumPeople:(int) numPeople{
