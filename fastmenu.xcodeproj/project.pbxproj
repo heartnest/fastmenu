@@ -32,6 +32,7 @@
 		2EA6327119CDF5BC00C2447A /* menu.json in Resources */ = {isa = PBXBuildFile; fileRef = 2EA6327019CDF5BC00C2447A /* menu.json */; };
 		2EA6327419CE1A7700C2447A /* PageOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA6327319CE1A7700C2447A /* PageOrderViewController.m */; };
 		2EA6327619CEEE4800C2447A /* tables.json in Resources */ = {isa = PBXBuildFile; fileRef = 2EA6327519CEEE4800C2447A /* tables.json */; };
+		2EFF18E819DACCCE005E738A /* TempOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EFF18E719DACCCE005E738A /* TempOrderVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,8 @@
 		2EA6327219CE1A7700C2447A /* PageOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageOrderViewController.h; sourceTree = "<group>"; };
 		2EA6327319CE1A7700C2447A /* PageOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageOrderViewController.m; sourceTree = "<group>"; };
 		2EA6327519CEEE4800C2447A /* tables.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tables.json; sourceTree = "<group>"; };
+		2EFF18E619DACCCE005E738A /* TempOrderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempOrderVC.h; sourceTree = "<group>"; };
+		2EFF18E719DACCCE005E738A /* TempOrderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempOrderVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +146,8 @@
 				2EA631FE19CC598600C2447A /* TableViewController.m */,
 				2EA6320519CC760900C2447A /* MenuViewController.h */,
 				2EA6320619CC760900C2447A /* MenuViewController.m */,
+				2EFF18E619DACCCE005E738A /* TempOrderVC.h */,
+				2EFF18E719DACCCE005E738A /* TempOrderVC.m */,
 				2EA6327219CE1A7700C2447A /* PageOrderViewController.h */,
 				2EA6327319CE1A7700C2447A /* PageOrderViewController.m */,
 				2EA6326B19CDA85000C2447A /* PageContentViewController.h */,
@@ -301,6 +306,7 @@
 				2E20BC7119B07BEE00540E78 /* main.m in Sources */,
 				2EA6320719CC760900C2447A /* MenuViewController.m in Sources */,
 				2EA6326D19CDA85000C2447A /* PageContentViewController.m in Sources */,
+				2EFF18E819DACCCE005E738A /* TempOrderVC.m in Sources */,
 				2E20BC7519B07BEE00540E78 /* FMAppDelegate.m in Sources */,
 				2EA6327419CE1A7700C2447A /* PageOrderViewController.m in Sources */,
 				2EA6320219CC65A700C2447A /* OrdersViewController.m in Sources */,

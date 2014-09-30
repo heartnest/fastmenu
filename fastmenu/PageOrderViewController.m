@@ -60,11 +60,11 @@
     double ypos = margintop;
     
  //   double xpos = marginleft;
-    double boxwidth = width*85/128;
+    double boxwidth = width*80/128;
     double boxheight = 38;
     
     //foo button
-    int functnWidh = boxwidth*23/128;
+    int functnWidh = boxwidth*20/128;
     
 
     ypos += boxheight + margintop + topspace;

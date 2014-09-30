@@ -91,8 +91,15 @@
         return nil;
     }
     if (index == 0) {
-         pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageOrderViewController"];
-         pageContentViewController.tableid = self.tableid;
+//         pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageOrderViewController"];
+//         pageContentViewController.tableid = self.tableid;
+        pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController2"];
+        pageContentViewController.tableid = self.tableid;
+        
+        //can be deleted
+        pageContentViewController.category = [self.menuArray[index] objectForKey:@"category"];
+        pageContentViewController.list = [self.menuArray[index] objectForKey:@"list"];
+        pageContentViewController.pageIndex = index;
     }
     else{
         pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];

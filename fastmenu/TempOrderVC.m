@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 labt. All rights reserved.
 //
 
-#import "PageContentViewController.h"
+#import "TempOrderVC.h"
 
-@interface PageContentViewController () 
+@interface TempOrderVC ()
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -17,26 +17,24 @@
 
 @end
 
-@implementation PageContentViewController
+@implementation TempOrderVC
 
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //self.backgroundImageView.image = [UIImage imageNamed:self.imageFile];
-    
-    
+
     self.titleLabel.text = self.category;
-    [self createMenuItemButtonsFromArray:self.list];
+    int realtableid = self.tableid - 2001;
     
-    
-//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"tables" ofType:@"json"];
-//    NSData *data = [[NSFileManager defaultManager] contentsAtPath:filePath];
-//    NSArray *tables = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-//    NSDictionary *table = [tables objectAtIndex:1];
-//    self.orders = [table objectForKey:@"orders"];
-//    NSLog(@"%i",self.tableid);
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"tables" ofType:@"json"];
+    NSData *data = [[NSFileManager defaultManager] contentsAtPath:filePath];
+    NSArray *tables = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    NSDictionary *table = [tables objectAtIndex:realtableid];
+    self.orders = [table objectForKey:@"orders"];
+
+    [self createMenuItemButtonsFromArray:self.orders];
 }
 
 
@@ -44,11 +42,12 @@
     
 
     //get var,create table buttons
+    int topspace = 30;
     int margintop = 6;
     int marginleft = 6;
 
     double width = self.scrollView.frame.size.width;
-    double ypos = margintop;
+    double ypos = margintop + topspace;
     
     //   double xpos = marginleft;
     double boxwidth = width*85/128;
@@ -63,12 +62,26 @@
     // create already ordered
     
     for (NSDictionary *item in arr) {
+        
+        //get vals
         NSString *platename = [item objectForKey:@"name"];
-        UIButton *platePlusButton = [self createPlusBtnComponentWithQnt:@"+"];
+        double price = [[item objectForKey:@"price"] doubleValue];
+        NSString *quantity = [item objectForKey:@"quantity"];
+        NSString *x = [[NSString alloc] initWithFormat:@"%@",quantity];
+        
+        
+        //NSString *platename = [item objectForKey:@"name"];
+        
+        //plus button
+        UIButton *platePlusButton = [self createPlusBtnComponentWithQnt:x];
         platePlusButton.frame = CGRectMake(marginleft, ypos, functnWidh, boxheight);
+        
+        
+        
+        
         [self.scrollView addSubview:platePlusButton];
         
-        UIButton *plateContentButton = [self createMenuBtnComponentWithName:platename andPrice:3];
+        UIButton *plateContentButton = [self createMenuBtnComponentWithName:platename andPrice:price];
         plateContentButton.frame = CGRectMake(marginleft+functnWidh, ypos, boxwidth, boxheight);
         [self.scrollView addSubview:plateContentButton];
         
@@ -79,27 +92,23 @@
         ypos += boxheight + margintop;
     }
     
-//    double xcoord = 1;
-//    double yheight = 20;
-//    for (NSDictionary *item in arr) {
-//        
-//        NSString *btnname = [item objectForKey:@"name"];
-//
-//        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//        button.backgroundColor = [UIColor greenColor];
-//        [button setTitle:btnname forState:UIControlStateNormal];
-//        
-//        CGSize stringsize = [btnname sizeWithAttributes: @{NSFontAttributeName:
-//                                                           [UIFont systemFontOfSize:17.0f]}];
-//        
-//        
-//        [button setFrame:CGRectMake(1,yheight,stringsize.width+10, stringsize.height)];
-//        
-//        yheight += stringsize.height;
-//        //xcoord += stringsize.width+20;
-//        [self.scrollView addSubview:button];
-//
-//    }
+    
+    // Coperto button --- start
+    
+//    UIButton *platePlusButton = [self createPlusBtnComponentWithQnt:@"✚"];
+//    platePlusButton.frame = CGRectMake(marginleft, ypos+topspace, functnWidh, boxheight);
+//    [self.scrollView addSubview:platePlusButton];
+//    
+//    UIButton *btn = [self createCopertoBtnWithNumPeople:3];
+//    btn.frame = CGRectMake(marginleft+functnWidh, ypos+topspace, boxwidth, boxheight);
+//    [self.scrollView addSubview:btn];
+//    
+//    UIButton *plateMinusButton = [self createPlusBtnComponentWithQnt:@"➖"];
+//    plateMinusButton.frame = CGRectMake(marginleft+functnWidh+boxwidth, ypos+topspace, functnWidh, boxheight);
+//    [self.scrollView addSubview:plateMinusButton];
+//    
+    // Coperto button --- end
+    
     
     [self.scrollView setScrollEnabled:YES];
     [self.scrollView setContentSize:CGSizeMake(0, ypos)];
@@ -171,4 +180,29 @@
     [button setAttributedTitle:attString forState:UIControlStateNormal];
     return button;
 }
+
+-(UIButton *)createCopertoBtnWithNumPeople:(int) numPeople{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    //move text 10 pixels down and right
+    [button setTitleEdgeInsets:UIEdgeInsetsMake(2.0f, 10.0f, 0.0f, 0.0f)];
+    //button layer
+    [[button layer] setBorderWidth:1.0f];
+    [[button layer] setBorderColor:[UIColor grayColor].CGColor];
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] init];
+    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    [style setAlignment:NSTextAlignmentLeft];
+    [style setLineBreakMode:NSLineBreakByWordWrapping];
+    
+    UIFont *font1 = [UIFont fontWithName:@"HelveticaNeue-Light"  size:14.0f];
+    NSDictionary *dict1 = @{NSUnderlineStyleAttributeName:@(NSUnderlineStyleNone),
+                            NSFontAttributeName:font1,
+                            NSParagraphStyleAttributeName:style}; // Added line
+    
+    [attString appendAttributedString:[[NSAttributedString alloc] initWithString:[[NSString alloc] initWithFormat:@"%i ✕ coperto 2,5€",numPeople ]      attributes:dict1]];
+    [button setAttributedTitle:attString forState:UIControlStateNormal];
+    return button;
+    
+}
+
 @end
