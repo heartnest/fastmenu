@@ -25,6 +25,11 @@
 {
     [super viewDidLoad];
 
+    
+//    self.titleLabel.text = self.category;
+//    [self createMenuItemButtonsFromArray:self.list];
+//    
+    
     self.titleLabel.text = self.category;
     int realtableid = self.tableid - 2001;
     
@@ -33,23 +38,23 @@
     NSArray *tables = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     NSDictionary *table = [tables objectAtIndex:realtableid];
     self.orders = [table objectForKey:@"orders"];
-
+    
     [self createMenuItemButtonsFromArray:self.orders];
 }
 
 
 -(void) createMenuItemButtonsFromArray:(NSArray *) arr{
     
-
+    
     //get var,create table buttons
-    int topspace = 30;
+    int topspace = 40;
     int margintop = 6;
     int marginleft = 6;
-
+    
     double width = self.scrollView.frame.size.width;
     double ypos = margintop + topspace;
     
-    //   double xpos = marginleft;
+
     double boxwidth = width*85/128;
     double boxheight = 38;
     
@@ -59,9 +64,13 @@
     
     ypos += margintop;
     
+    
+
+    
     // create already ordered
     
     for (NSDictionary *item in arr) {
+        
         
         //get vals
         NSString *platename = [item objectForKey:@"name"];
@@ -90,25 +99,27 @@
         [self.scrollView addSubview:plateMinuesButton];
         
         ypos += boxheight + margintop;
+        
+        
     }
     
     
     // Coperto button --- start
     
-//    UIButton *platePlusButton = [self createPlusBtnComponentWithQnt:@"✚"];
-//    platePlusButton.frame = CGRectMake(marginleft, ypos+topspace, functnWidh, boxheight);
-//    [self.scrollView addSubview:platePlusButton];
-//    
-//    UIButton *btn = [self createCopertoBtnWithNumPeople:3];
-//    btn.frame = CGRectMake(marginleft+functnWidh, ypos+topspace, boxwidth, boxheight);
-//    [self.scrollView addSubview:btn];
-//    
-//    UIButton *plateMinusButton = [self createPlusBtnComponentWithQnt:@"➖"];
-//    plateMinusButton.frame = CGRectMake(marginleft+functnWidh+boxwidth, ypos+topspace, functnWidh, boxheight);
-//    [self.scrollView addSubview:plateMinusButton];
-//    
-    // Coperto button --- end
+        UIButton *platePlusButton = [self createPlusBtnComponentWithQnt:@"✚"];
+        platePlusButton.frame = CGRectMake(marginleft, ypos+topspace, functnWidh, boxheight);
+        [self.scrollView addSubview:platePlusButton];
     
+        UIButton *btn = [self createCopertoBtnWithNumPeople:3];
+        btn.frame = CGRectMake(marginleft+functnWidh, ypos+topspace, boxwidth, boxheight);
+        [self.scrollView addSubview:btn];
+    
+        UIButton *plateMinusButton = [self createPlusBtnComponentWithQnt:@"➖"];
+        plateMinusButton.frame = CGRectMake(marginleft+functnWidh+boxwidth, ypos+topspace, functnWidh, boxheight);
+        [self.scrollView addSubview:plateMinusButton];
+    
+    // Coperto button --- end
+    ypos += 4*boxheight + margintop;
     
     [self.scrollView setScrollEnabled:YES];
     [self.scrollView setContentSize:CGSizeMake(0, ypos)];
@@ -206,3 +217,4 @@
 }
 
 @end
+
