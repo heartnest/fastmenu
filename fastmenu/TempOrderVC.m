@@ -8,12 +8,12 @@
 
 #import "TempOrderVC.h"
 
-@interface TempOrderVC ()
+@interface TempOrderVC () <UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak,nonatomic) NSArray *orders;
-
+@property  (strong,nonatomic) UITextField *textField;
 
 @end
 
@@ -25,7 +25,8 @@
 {
     [super viewDidLoad];
 
-    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    [self.view addGestureRecognizer:tap];
 //    self.titleLabel.text = self.category;
 //    [self createMenuItemButtonsFromArray:self.list];
 //    
@@ -65,6 +66,30 @@
     ypos += margintop;
     
     
+    //text view
+    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(45, 10, 240, boxheight)];
+    self.textField.borderStyle = UITextBorderStyleBezel;
+    self.textField.font = [UIFont systemFontOfSize:15];
+    self.textField.placeholder = @"cuba libre";
+    self.textField.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.textField.returnKeyType = UIReturnKeyDone;
+    self.textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    
+    [self.scrollView addSubview:self.textField];
+    
+    //button near text view
+    UIButton *addNewPlateBtn = [self createPlusBtnComponentWithQnt:@"+"];
+    //UIButton *addNewPlatebtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [addNewPlateBtn addTarget:self
+               action:@selector(aMethod)
+     forControlEvents:UIControlEventTouchUpInside];
+    addNewPlateBtn.frame = CGRectMake(marginleft, 10.0, functnWidh, boxheight);
+    
+    [self.scrollView addSubview:addNewPlateBtn];
+    
+    
+    ypos += functnWidh;
 
     
     // create already ordered
@@ -106,11 +131,11 @@
     
     // Coperto button --- start
     
-        UIButton *platePlusButton = [self createPlusBtnComponentWithQnt:@"✚"];
+        UIButton *platePlusButton = [self createPlusBtnComponentWithQnt:@"3"];
         platePlusButton.frame = CGRectMake(marginleft, ypos+topspace, functnWidh, boxheight);
         [self.scrollView addSubview:platePlusButton];
     
-        UIButton *btn = [self createCopertoBtnWithNumPeople:3];
+        UIButton *btn = [self createCopertoBtnWithNumPeople:2.5];
         btn.frame = CGRectMake(marginleft+functnWidh, ypos+topspace, boxwidth, boxheight);
         [self.scrollView addSubview:btn];
     
@@ -192,7 +217,7 @@
     return button;
 }
 
--(UIButton *)createCopertoBtnWithNumPeople:(int) numPeople{
+-(UIButton *)createCopertoBtnWithNumPeople:(float) copertoCost{
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
     //move text 10 pixels down and right
@@ -210,10 +235,27 @@
                             NSFontAttributeName:font1,
                             NSParagraphStyleAttributeName:style}; // Added line
     
-    [attString appendAttributedString:[[NSAttributedString alloc] initWithString:[[NSString alloc] initWithFormat:@"%i ✕ coperto 2,5€",numPeople ]      attributes:dict1]];
+    [attString appendAttributedString:[[NSAttributedString alloc] initWithString:[[NSString alloc] initWithFormat:@"coperto %.02f€",copertoCost ]      attributes:dict1]];
     [button setAttributedTitle:attString forState:UIControlStateNormal];
     return button;
     
+}
+
+-(void)aMethod{
+    NSLog(@"aa");
+}
+//
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+//    
+//    NSLog(@"aa");
+//    [self.textField resignFirstResponder];
+//}
+
+- (void)handleTap:(UITapGestureRecognizer *)recognizer
+{
+    
+    NSLog(@"aa");
+    [self.textField resignFirstResponder];
 }
 
 @end
