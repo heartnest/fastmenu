@@ -7,7 +7,6 @@
 //
 
 #import "TableViewController.h"
-#import "OrdersViewController.h"
 #import "MenuViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -78,7 +77,7 @@
     int tid = sender.tag;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 
-    OrdersViewController *viewController = (OrdersViewController *)[storyboard instantiateViewControllerWithIdentifier:@"menu-story-id"];
+    MenuViewController *viewController = (MenuViewController *)[storyboard instantiateViewControllerWithIdentifier:@"menu-story-id"];
     
     viewController.tableid = tid;
     

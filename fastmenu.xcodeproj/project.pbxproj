@@ -21,7 +21,6 @@
 		2E20BC8E19B07BEE00540E78 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2E20BC8C19B07BEE00540E78 /* InfoPlist.strings */; };
 		2E20BC9019B07BEE00540E78 /* fastmenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E20BC8F19B07BEE00540E78 /* fastmenuTests.m */; };
 		2EA631FF19CC598600C2447A /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA631FE19CC598600C2447A /* TableViewController.m */; };
-		2EA6320219CC65A700C2447A /* OrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA6320119CC65A700C2447A /* OrdersViewController.m */; };
 		2EA6320419CC722800C2447A /* tavolo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EA6320319CC722800C2447A /* tavolo.png */; };
 		2EA6320719CC760900C2447A /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA6320619CC760900C2447A /* MenuViewController.m */; };
 		2EA6326719CDA83E00C2447A /* page1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EA6326319CDA83E00C2447A /* page1.png */; };
@@ -67,8 +66,6 @@
 		2E20BC8F19B07BEE00540E78 /* fastmenuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fastmenuTests.m; sourceTree = "<group>"; };
 		2EA631FD19CC598600C2447A /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		2EA631FE19CC598600C2447A /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
-		2EA6320019CC65A700C2447A /* OrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrdersViewController.h; sourceTree = "<group>"; };
-		2EA6320119CC65A700C2447A /* OrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrdersViewController.m; sourceTree = "<group>"; };
 		2EA6320319CC722800C2447A /* tavolo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tavolo.png; path = img/tavolo.png; sourceTree = "<group>"; };
 		2EA6320519CC760900C2447A /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		2EA6320619CC760900C2447A /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
@@ -153,8 +150,6 @@
 				2EFF18E719DACCCE005E738A /* TempOrderVC.m */,
 				2EA6326B19CDA85000C2447A /* PageContentViewController.h */,
 				2EA6326C19CDA85000C2447A /* PageContentViewController.m */,
-				2EA6320019CC65A700C2447A /* OrdersViewController.h */,
-				2EA6320119CC65A700C2447A /* OrdersViewController.m */,
 				2E20BC7C19B07BEE00540E78 /* Images.xcassets */,
 				2E20BC6B19B07BEE00540E78 /* Supporting Files */,
 			);
@@ -315,7 +310,6 @@
 				2EA6326D19CDA85000C2447A /* PageContentViewController.m in Sources */,
 				2EFF18E819DACCCE005E738A /* TempOrderVC.m in Sources */,
 				2E20BC7519B07BEE00540E78 /* FMAppDelegate.m in Sources */,
-				2EA6320219CC65A700C2447A /* OrdersViewController.m in Sources */,
 				2EA631FF19CC598600C2447A /* TableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
