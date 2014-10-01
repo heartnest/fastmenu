@@ -78,7 +78,7 @@
     int tid = sender.tag;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 
-    OrdersViewController *viewController = (OrdersViewController *)[storyboard instantiateViewControllerWithIdentifier:@"order-story-id"];
+    OrdersViewController *viewController = (OrdersViewController *)[storyboard instantiateViewControllerWithIdentifier:@"menu-story-id"];
     
     viewController.tableid = tid;
     
@@ -93,6 +93,7 @@
     MenuViewController *viewController = (MenuViewController *)[storyboard instantiateViewControllerWithIdentifier:@"menu-story-id"];
     
     viewController.tableid = tid;
+    
     
     [self.navigationController pushViewController:viewController animated:YES];
 }
@@ -122,6 +123,7 @@
     double boxwidth = width*57/128;
     double boxheight = 100;
     
+    NSString *numpeople;
     
     for (NSDictionary *table in arr) {
         
@@ -136,6 +138,7 @@
             [button addTarget:self
                        action:@selector(didPressTableNeedsOrder:) forControlEvents:UIControlEventTouchUpInside];
         }else if ([tablestate isEqualToString:@"busy"]) {
+          numpeople = [table objectForKey:@"person"];
           button.backgroundColor = [self colorFromHexString:@"#FFDEAD"];
             [button addTarget:self
                        action:@selector(didPressTableHasOrder:) forControlEvents:UIControlEventTouchUpInside];
@@ -182,7 +185,7 @@
         
         if ([tablestate isEqualToString:@"busy"]) {
             int sum =[[table objectForKey:@"sum"] intValue];
-            [attString appendAttributedString:[[NSAttributedString alloc] initWithString: [[NSString alloc] initWithFormat:@"\nTotal: %d €",sum ]     attributes:dict1]];
+            [attString appendAttributedString:[[NSAttributedString alloc] initWithString: [[NSString alloc] initWithFormat:@"\nPeople:%@\nTotal: %d €",numpeople,sum ]     attributes:dict1]];
         }
         
         

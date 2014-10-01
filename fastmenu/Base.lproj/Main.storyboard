@@ -261,10 +261,19 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </scrollView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eG9-2y-Ws3">
-                                <rect key="frame" x="8" y="92" width="307" height="450"/>
+                                <rect key="frame" x="6" y="92" width="309" height="419"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ai0-1v-YUd">
+                                <rect key="frame" x="-1" y="522" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Total: 12 euro" id="ZpH-Ea-JtE"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="fir-6l-DYL"/>
+                                    <barButtonItem title="SEND" id="AOx-cj-mr8"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>

@@ -80,6 +80,10 @@
     [self createCategoryButtonsFromArray:marr];
     
     [self markCategoryButton:0];
+    
+    self.title = [[NSString alloc]initWithFormat:@"tavolo %i",self.tableid-2000];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"🔔" style:UIBarButtonItemStylePlain  target:self action:@selector(sendOrders)];
 }
 
 
@@ -124,6 +128,10 @@
         UIButton *button = (UIButton *)[self.view viewWithTag:bid];
         button.backgroundColor = [UIColor greenColor];
     }
+}
+
+-(void)sendOrders{
+    NSLog(@"order sent");
 }
 
 #pragma mark - Page View Controller Data Source
