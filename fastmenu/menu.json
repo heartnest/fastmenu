@@ -1,6 +1,6 @@
 [
  {
-    "category": "Analcolico",
+    "category": "Soft Drink",
     "list": [
                  {"name":"Anita","price":5},
                  {"name":"Banshee","price":5},
@@ -28,7 +28,7 @@
              ]
  },
  {
- "category": "Alcolico",
+ "category": "Alcoholic drink",
  "list": [
           {"name":"Abbey","price":5},
           {"name":"B52","price":5},
@@ -47,7 +47,22 @@
           ]
  },
  {
- "category": "Dolce",
+ "category": "Tea",
+ "list": [
+          {"name":"Green Tea","price":4},
+          {"name":"William Prince Tea","price":4},
+          {"name":"Srilanka Tea","price":4},
+          {"name":"Lemon Tea","price":4},
+          {"name":"Red Tea","price":4},
+          {"name":"Chinese Tea","price":4},
+          {"name":"Camo Tea","price":4},
+          {"name":"Earl Grey","price":4},
+          {"name":"Oolong Tea","price":4}
+          ]
+ }
+,
+ {
+ "category": "Sweets",
  "list": [
           {"name":"Torta alla frutta","price":4},
           {"name":"Torta della nonna","price":4},

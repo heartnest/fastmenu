@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller - Tavoli-->
+        <!--Table View Controller - Tables-->
         <scene sceneID="Xam-R0-jom">
             <objects>
                 <viewController id="4iK-AU-xF9" customClass="TableViewController" sceneMemberID="viewController">
@@ -26,13 +26,13 @@
                                 </scopeButtonTitles>
                             </searchBar>
                             <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kCL-zB-zW6">
-                                <rect key="frame" x="-12" y="516" width="322" height="49"/>
+                                <rect key="frame" x="-2" y="517" width="322" height="49"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
-                                    <tabBarItem title="Occupati" image="tavolo.png" id="Pow-8z-jh8"/>
-                                    <tabBarItem title="Liberi" image="tavolo.png" id="AAw-U8-wMh"/>
-                                    <tabBarItem title="Tutti" image="tavolo.png" id="3Xp-pi-h2N"/>
+                                    <tabBarItem title="Busy" image="tavolo.png" id="Pow-8z-jh8"/>
+                                    <tabBarItem title="Free" image="tavolo.png" id="AAw-U8-wMh"/>
+                                    <tabBarItem title="All" image="tavolo.png" id="3Xp-pi-h2N"/>
                                 </items>
                             </tabBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="47r-zP-zG6">
@@ -42,7 +42,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Tavoli" id="LrH-FA-9lD"/>
+                    <navigationItem key="navigationItem" title="Tables" id="LrH-FA-9lD"/>
                     <connections>
                         <outlet property="scrollView" destination="47r-zP-zG6" id="M2e-Oh-2dn"/>
                         <outlet property="tabbar" destination="kCL-zB-zW6" id="qK8-YO-VWC"/>

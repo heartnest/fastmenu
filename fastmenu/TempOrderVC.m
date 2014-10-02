@@ -66,8 +66,9 @@
     ypos += margintop;
     
     
-    //text view
-    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(45, 10, 240, boxheight)];
+    //text field
+    
+    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(marginleft+functnWidh+5, 10, 240, boxheight - 1 )];
     self.textField.borderStyle = UITextBorderStyleBezel;
     self.textField.font = [UIFont systemFontOfSize:15];
     self.textField.placeholder = @"cuba libre";
@@ -78,9 +79,10 @@
     
     [self.scrollView addSubview:self.textField];
     
-    //button near text view
-    UIButton *addNewPlateBtn = [self createPlusBtnComponentWithQnt:@"+"];
-    //UIButton *addNewPlatebtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    //add Plate button
+    
+    UIButton *addNewPlateBtn = [self createPlusBtnComponentWithQnt:@"✚" andColor:nil];
+    
     [addNewPlateBtn addTarget:self
                action:@selector(aMethod)
      forControlEvents:UIControlEventTouchUpInside];
@@ -97,31 +99,51 @@
     for (NSDictionary *item in arr) {
         
         
-        //get vals
+        // VALUES
         NSString *platename = [item objectForKey:@"name"];
         double price = [[item objectForKey:@"price"] doubleValue];
         NSString *quantity = [item objectForKey:@"quantity"];
         NSString *x = [[NSString alloc] initWithFormat:@"%@",quantity];
+        NSString *state = [item objectForKey:@"state"];
+
+        // Buttons declaration
+        UIButton *platePlusButton,*plateMinuesButton,*plateContentButton;
+        
+
+        if ([state isEqualToString:@"new"]) {
+            platePlusButton = [self createPlusBtnComponentWithQnt:x andColor:nil];
+            plateMinuesButton = [self createPlusBtnComponentWithQnt:@"➖" andColor:nil];
+            
+            plateContentButton = [self createMenuBtnComponentWithName:platename price:price color:nil];
+            
+        }else if ([state isEqualToString:@"sent"]) {
+            platePlusButton = [self createPlusBtnComponentWithQnt:x andColor:@"#FFFFF0"];
+            plateMinuesButton = [self createPlusBtnComponentWithQnt:@"📌" andColor:@"#FFFFF0"];
+            plateContentButton = [self createMenuBtnComponentWithName:platename price:price color:nil];
+        }else if ([state isEqualToString:@"cooking"]) {
+            platePlusButton = [self createPlusBtnComponentWithQnt:x andColor:@"#FFFFF0"];
+            plateMinuesButton = [self createPlusBtnComponentWithQnt:@"♨️" andColor:@"#FFFFF0"];
+            plateContentButton = [self createMenuBtnComponentWithName:platename price:price color:@"#FFFFF0"];
+        }else if ([state isEqualToString:@"ready"]) {
+            platePlusButton = [self createPlusBtnComponentWithQnt:x andColor:@"#FFFFF0"];
+            plateMinuesButton = [self createPlusBtnComponentWithQnt:@"🔔" andColor:@"#FFDEAD"];
+            plateContentButton = [self createMenuBtnComponentWithName:platename price:price color:@"#FFFFF0"];
+        }else if ([state isEqualToString:@"served"]) {
+            platePlusButton = [self createPlusBtnComponentWithQnt:x andColor:@"#FFFFF0"];
+            plateMinuesButton = [self createPlusBtnComponentWithQnt:@"👍" andColor:@"#FFFFF0"];
+            plateContentButton = [self createMenuBtnComponentWithName:platename price:price color:@"#FFFFF0"];
+        }
         
         
-        //NSString *platename = [item objectForKey:@"name"];
-        
-        //plus button
-        UIButton *platePlusButton = [self createPlusBtnComponentWithQnt:x];
+        //set buttons positions
+        plateMinuesButton.frame = CGRectMake(marginleft+functnWidh+boxwidth+10, ypos, functnWidh, boxheight);
+        plateContentButton.frame = CGRectMake(marginleft+functnWidh+5, ypos, boxwidth, boxheight );
         platePlusButton.frame = CGRectMake(marginleft, ypos, functnWidh, boxheight);
         
-        
-        
-        
+        //add buttons
         [self.scrollView addSubview:platePlusButton];
-        
-        UIButton *plateContentButton = [self createMenuBtnComponentWithName:platename andPrice:price];
-        plateContentButton.frame = CGRectMake(marginleft+functnWidh, ypos, boxwidth, boxheight);
-        [self.scrollView addSubview:plateContentButton];
-        
-        UIButton *plateMinuesButton = [self createPlusBtnComponentWithQnt:@"➖"];
-        plateMinuesButton.frame = CGRectMake(marginleft+functnWidh+boxwidth, ypos, functnWidh, boxheight);
         [self.scrollView addSubview:plateMinuesButton];
+        [self.scrollView addSubview:plateContentButton];
         
         ypos += boxheight + margintop;
         
@@ -131,19 +153,20 @@
     
     // Coperto button --- start
     
-        UIButton *platePlusButton = [self createPlusBtnComponentWithQnt:@"3"];
+        UIButton *platePlusButton = [self createPlusBtnComponentWithQnt:@"3" andColor:nil];
         platePlusButton.frame = CGRectMake(marginleft, ypos+topspace, functnWidh, boxheight);
         [self.scrollView addSubview:platePlusButton];
     
         UIButton *btn = [self createCopertoBtnWithNumPeople:2.5];
-        btn.frame = CGRectMake(marginleft+functnWidh, ypos+topspace, boxwidth, boxheight);
+        btn.frame = CGRectMake(marginleft+functnWidh+5, ypos+topspace, boxwidth, boxheight);
         [self.scrollView addSubview:btn];
     
-        UIButton *plateMinusButton = [self createPlusBtnComponentWithQnt:@"➖"];
-        plateMinusButton.frame = CGRectMake(marginleft+functnWidh+boxwidth, ypos+topspace, functnWidh, boxheight);
+        UIButton *plateMinusButton = [self createPlusBtnComponentWithQnt:@"➖" andColor:nil];
+        plateMinusButton.frame = CGRectMake(marginleft+functnWidh+boxwidth+10, ypos+topspace, functnWidh, boxheight);
         [self.scrollView addSubview:plateMinusButton];
     
     // Coperto button --- end
+    
     ypos += 4*boxheight + margintop;
     
     [self.scrollView setScrollEnabled:YES];
@@ -151,7 +174,9 @@
 }
 
 
--(UIButton *)createMenuBtnComponentWithName:(NSString *)name andPrice:(double)price{
+#pragma mark - Button Descriptions -
+
+-(UIButton *)createMenuBtnComponentWithName:(NSString *)name price:(double)price color:(NSString *)cl{
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
     //make the buttons content appear in the top-left
@@ -166,7 +191,12 @@
     
     //button layer
     [[button layer] setBorderWidth:1.0f];
-    [[button layer] setBorderColor:[UIColor grayColor].CGColor];
+    [[button layer] setBorderColor: [self colorFromHexString:@"#EEC591"].CGColor];
+//    [[button layer] setBorderColor:[UIColor grayColor].CGColor];
+    //color
+    if(cl != nil)
+        button.backgroundColor = [self colorFromHexString:cl];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
     
     //prepare the style
@@ -177,11 +207,13 @@
     UIFont *font1 = [UIFont fontWithName:@"HelveticaNeue-bold"  size:16.0f];
     NSDictionary *dict1 = @{NSUnderlineStyleAttributeName:@(NSUnderlineStyleNone),
                             NSFontAttributeName:font1,
+                            NSForegroundColorAttributeName:[self colorFromHexString:@"#1C1C1C"],
                             NSParagraphStyleAttributeName:style}; // Added line
     
     UIFont *font2 = [UIFont fontWithName:@"HelveticaNeue-Light"  size:16.0f];
     NSDictionary *dict2 = @{NSUnderlineStyleAttributeName:@(NSUnderlineStyleNone),
                             NSFontAttributeName:font2,
+                            NSForegroundColorAttributeName:[UIColor blackColor],
                             NSParagraphStyleAttributeName:style}; // Added line
     
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] init];
@@ -195,21 +227,28 @@
     return button;
 }
 
-- (UIButton *)createPlusBtnComponentWithQnt:(NSString *)quantity{
+- (UIButton *)createPlusBtnComponentWithQnt:(NSString *)quantity andColor:(NSString *)cl{
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     //move text 10 pixels down and right
     [button setTitleEdgeInsets:UIEdgeInsetsMake(2.0f, 2.0f, 0.0f, 0.0f)];
     //button layer
     [[button layer] setBorderWidth:1.0f];
-    [[button layer] setBorderColor:[UIColor grayColor].CGColor];
+    [[button layer] setBorderColor: [self colorFromHexString:@"#EEC591"].CGColor];
+    //[[button layer] setBorderColor:[UIColor grayColor].CGColor];
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] init];
     NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     [style setAlignment:NSTextAlignmentLeft];
     [style setLineBreakMode:NSLineBreakByWordWrapping];
     
-    UIFont *font1 = [UIFont fontWithName:@"HelveticaNeue-Light"  size:14.0f];
+    if(cl != nil)
+    button.backgroundColor = [self colorFromHexString:cl];
+    
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    UIFont *font1 = [UIFont fontWithName:@"HelveticaNeue-bold"  size:14.0f];
     NSDictionary *dict1 = @{NSUnderlineStyleAttributeName:@(NSUnderlineStyleNone),
                             NSFontAttributeName:font1,
+                            NSForegroundColorAttributeName:[UIColor blackColor],
                             NSParagraphStyleAttributeName:style}; // Added line
     
     [attString appendAttributedString:[[NSAttributedString alloc] initWithString:quantity attributes:dict1]];
@@ -224,38 +263,48 @@
     [button setTitleEdgeInsets:UIEdgeInsetsMake(2.0f, 10.0f, 0.0f, 0.0f)];
     //button layer
     [[button layer] setBorderWidth:1.0f];
-    [[button layer] setBorderColor:[UIColor grayColor].CGColor];
+    [[button layer] setBorderColor: [self colorFromHexString:@"#EEC591"].CGColor];
+    
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] init];
     NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     [style setAlignment:NSTextAlignmentLeft];
     [style setLineBreakMode:NSLineBreakByWordWrapping];
     
-    UIFont *font1 = [UIFont fontWithName:@"HelveticaNeue-Light"  size:14.0f];
+    UIFont *font1 = [UIFont fontWithName:@"Helvetica Neue"  size:14.0f];
     NSDictionary *dict1 = @{NSUnderlineStyleAttributeName:@(NSUnderlineStyleNone),
                             NSFontAttributeName:font1,
+                            NSForegroundColorAttributeName:[UIColor blackColor],
                             NSParagraphStyleAttributeName:style}; // Added line
     
-    [attString appendAttributedString:[[NSAttributedString alloc] initWithString:[[NSString alloc] initWithFormat:@"coperto %.02f€",copertoCost ]      attributes:dict1]];
+    [attString appendAttributedString:[[NSAttributedString alloc] initWithString:[[NSString alloc] initWithFormat:@"Service fee %.02f€",copertoCost ]      attributes:dict1]];
     [button setAttributedTitle:attString forState:UIControlStateNormal];
     return button;
     
 }
 
+
+#pragma mark - Button click handlers -
+
 -(void)aMethod{
     NSLog(@"aa");
 }
-//
-//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    
-//    NSLog(@"aa");
-//    [self.textField resignFirstResponder];
-//}
 
 - (void)handleTap:(UITapGestureRecognizer *)recognizer
 {
     
     NSLog(@"aa");
     [self.textField resignFirstResponder];
+}
+
+
+#pragma mark - Utilities -
+
+- (UIColor *)colorFromHexString:(NSString *)hexString {
+    unsigned rgbValue = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:hexString];
+    [scanner setScanLocation:1]; // bypass '#' character
+    [scanner scanHexInt:&rgbValue];
+    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
 }
 
 @end

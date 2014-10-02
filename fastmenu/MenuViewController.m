@@ -78,10 +78,11 @@
         [marr addObject:categ];
     }
     [self createCategoryButtonsFromArray:marr];
-    
     [self markCategoryButton:0];
     
-    self.title = [[NSString alloc]initWithFormat:@"tavolo %i",self.tableid-2000];
+    //navigational bar content
+    
+    self.title = [[NSString alloc]initWithFormat:@"table %i",self.tableid-2000];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"🔔" style:UIBarButtonItemStylePlain  target:self action:@selector(sendOrders)];
 }
@@ -95,8 +96,6 @@
         return nil;
     }
     if (index == 0) {
-//         pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageOrderViewController"];
-//         pageContentViewController.tableid = self.tableid;
         pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController2"];
         pageContentViewController.tableid = self.tableid;
         
@@ -213,8 +212,9 @@
         count++;
         
     }
-//
+
     [self.scrollView setScrollEnabled:YES];
+    [self.scrollView setShowsHorizontalScrollIndicator:NO];
     [self.scrollView setContentSize:CGSizeMake(xcoord, yheight)];
 }
 
