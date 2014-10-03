@@ -8,6 +8,7 @@
 
 #import "MenuViewController.h"
 #import "PageContentViewController.h"
+#import "Tools.h"
 
 @interface MenuViewController () <UIPageViewControllerDataSource>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -90,6 +91,8 @@
     
     //trival things
     self.totalLabel.tintColor = [UIColor blackColor];
+    
+    
 }
 
 
@@ -132,7 +135,7 @@
     for (int i = 0; i<= [self.menuArray count]; i++) {
         int bid = 1000 + i;
         UIButton *button = (UIButton *)[self.view viewWithTag:bid];
-        button.backgroundColor = [UIColor greenColor];
+        button.backgroundColor = [UIColor whiteColor];
     }
 }
 
@@ -198,7 +201,7 @@
     for (NSString *btn in arr) {
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        button.backgroundColor = [UIColor greenColor];
+        //button.backgroundColor = [UIColor greenColor];
         [button setTitle:btn forState:UIControlStateNormal];
         
         CGSize stringsize = [btn sizeWithAttributes: @{NSFontAttributeName:
@@ -206,6 +209,12 @@
         
         
         [button setFrame:CGRectMake(xcoord,1,stringsize.width+10, stringsize.height)];
+        
+        [[button layer] setBorderWidth:1.0f];
+        [[button layer] setBorderColor: [Tools colorFromHexString:@"#EEC591"].CGColor];
+        
+        
+        button.tintColor = [UIColor blackColor];
         
         //yheight = stringsize.height;
         xcoord += stringsize.width+20;

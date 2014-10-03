@@ -15,4 +15,5 @@
 +(UIButton *)createCopertoBtnWithNumPeople:(float) copertoCost;
 +(UIColor *)colorFromHexString:(NSString *)cl;
 
+//+(UIButton *)createCategoryBtnComponentWithName:(NSString *)name;
 @end
