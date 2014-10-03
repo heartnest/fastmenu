@@ -34,6 +34,7 @@
 		2EFF18EC19DC4A08005E738A /* 58.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EFF18E919DC4A08005E738A /* 58.png */; };
 		2EFF18ED19DC4A08005E738A /* 80.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EFF18EA19DC4A08005E738A /* 80.png */; };
 		2EFF18EE19DC4A08005E738A /* 120.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EFF18EB19DC4A08005E738A /* 120.png */; };
+		2EFF18F119DE92C9005E738A /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EFF18F019DE92C9005E738A /* Tools.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,8 @@
 		2EFF18E919DC4A08005E738A /* 58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 58.png; path = img/58.png; sourceTree = "<group>"; };
 		2EFF18EA19DC4A08005E738A /* 80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 80.png; path = img/80.png; sourceTree = "<group>"; };
 		2EFF18EB19DC4A08005E738A /* 120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 120.png; path = img/120.png; sourceTree = "<group>"; };
+		2EFF18EF19DE92C9005E738A /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
+		2EFF18F019DE92C9005E738A /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +153,8 @@
 				2EFF18E719DACCCE005E738A /* TempOrderVC.m */,
 				2EA6326B19CDA85000C2447A /* PageContentViewController.h */,
 				2EA6326C19CDA85000C2447A /* PageContentViewController.m */,
+				2EFF18EF19DE92C9005E738A /* Tools.h */,
+				2EFF18F019DE92C9005E738A /* Tools.m */,
 				2E20BC7C19B07BEE00540E78 /* Images.xcassets */,
 				2E20BC6B19B07BEE00540E78 /* Supporting Files */,
 			);
@@ -305,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EFF18F119DE92C9005E738A /* Tools.m in Sources */,
 				2E20BC7119B07BEE00540E78 /* main.m in Sources */,
 				2EA6320719CC760900C2447A /* MenuViewController.m in Sources */,
 				2EA6326D19CDA85000C2447A /* PageContentViewController.m in Sources */,

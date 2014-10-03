@@ -7,12 +7,13 @@
 //
 
 #import "PageContentViewController.h"
+#import "Tools.h"
 
 @interface PageContentViewController () 
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak,nonatomic) NSArray *orders;
+@property (strong,nonatomic) NSArray *orders;
 
 
 @end
@@ -28,15 +29,18 @@
     
     
     self.titleLabel.text = self.category;
+    
+    
+    
+//  Get Already ordered
+
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"tables" ofType:@"json"];
+    NSData *data = [[NSFileManager defaultManager] contentsAtPath:filePath];
+    NSArray *tables = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    NSDictionary *table = [tables objectAtIndex:self.tableid - 2001];
+    self.orders = [table objectForKey:@"orders"];
+ //   NSLog(@"%@",self.orders);
     [self createMenuItemButtonsFromArray:self.list];
-    
-    
-//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"tables" ofType:@"json"];
-//    NSData *data = [[NSFileManager defaultManager] contentsAtPath:filePath];
-//    NSArray *tables = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-//    NSDictionary *table = [tables objectAtIndex:1];
-//    self.orders = [table objectForKey:@"orders"];
-//    NSLog(@"%i",self.tableid);
 }
 
 
@@ -63,112 +67,54 @@
     // create already ordered
     
     for (NSDictionary *item in arr) {
+        UIButton *platePlusButton,*plateContentButton,*plateMinuesButton;
+        
         NSString *platename = [item objectForKey:@"name"];
-        UIButton *platePlusButton = [self createPlusBtnComponentWithQnt:@"+"];
+
+        int plateQntOrdered = [self getQuantityOrderedOfThisPlate:platename];
+        
+        if (plateQntOrdered > 0) {
+            platePlusButton = [Tools createPlusBtnComponentWithQnt:[@(plateQntOrdered) stringValue]  andColor:@"#FFDEAD"];
+            plateContentButton = [Tools createMenuBtnComponentWithName:platename price:3 color:@"#FFDEAD"];
+            plateMinuesButton = [Tools createPlusBtnComponentWithQnt:@"➖" andColor:@"#FFDEAD"];
+        }else{
+        platePlusButton = [Tools createPlusBtnComponentWithQnt:@"✚" andColor:nil];
+        plateContentButton = [Tools createMenuBtnComponentWithName:platename price:3 color:nil];
+            plateMinuesButton = [Tools createPlusBtnComponentWithQnt:@"➖" andColor:nil];
+            
+        }
+        
+        
+        
         platePlusButton.frame = CGRectMake(marginleft, ypos, functnWidh, boxheight);
+        plateContentButton.frame = CGRectMake(marginleft+functnWidh+5, ypos, boxwidth, boxheight);
+        plateMinuesButton.frame = CGRectMake(marginleft+functnWidh+boxwidth+10, ypos, functnWidh, boxheight);
+        
+        
         [self.scrollView addSubview:platePlusButton];
-        
-        UIButton *plateContentButton = [self createMenuBtnComponentWithName:platename andPrice:3];
-        plateContentButton.frame = CGRectMake(marginleft+functnWidh, ypos, boxwidth, boxheight);
         [self.scrollView addSubview:plateContentButton];
-        
-        UIButton *plateMinuesButton = [self createPlusBtnComponentWithQnt:@"➖"];
-        plateMinuesButton.frame = CGRectMake(marginleft+functnWidh+boxwidth, ypos, functnWidh, boxheight);
         [self.scrollView addSubview:plateMinuesButton];
         
-        ypos += boxheight + margintop;
+        ypos += boxheight + 2*margintop;
     }
     
-//    double xcoord = 1;
-//    double yheight = 20;
-//    for (NSDictionary *item in arr) {
-//        
-//        NSString *btnname = [item objectForKey:@"name"];
-//
-//        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//        button.backgroundColor = [UIColor greenColor];
-//        [button setTitle:btnname forState:UIControlStateNormal];
-//        
-//        CGSize stringsize = [btnname sizeWithAttributes: @{NSFontAttributeName:
-//                                                           [UIFont systemFontOfSize:17.0f]}];
-//        
-//        
-//        [button setFrame:CGRectMake(1,yheight,stringsize.width+10, stringsize.height)];
-//        
-//        yheight += stringsize.height;
-//        //xcoord += stringsize.width+20;
-//        [self.scrollView addSubview:button];
-//
-//    }
+    ypos += boxheight + margintop;
     
     [self.scrollView setScrollEnabled:YES];
     [self.scrollView setContentSize:CGSizeMake(0, ypos)];
 }
 
+-(int)getQuantityOrderedOfThisPlate:(NSString *)name{
+    
+    for (NSDictionary *p in self.orders) {
+        NSString *platename = [p objectForKey:@"name"];
+        NSString *platestate = [p objectForKey:@"state"];
 
--(UIButton *)createMenuBtnComponentWithName:(NSString *)name andPrice:(double)price{
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
-    //make the buttons content appear in the top-left
-    [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    [button setContentVerticalAlignment:UIControlContentVerticalAlignmentTop];
-    
-    //move text 10 pixels down and right
-    [button setTitleEdgeInsets:UIEdgeInsetsMake(9.0f, 10.0f, 0.0f, 0.0f)];
-    
-    //enable line break
-    button.titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
-    
-    //button layer
-    [[button layer] setBorderWidth:1.0f];
-    [[button layer] setBorderColor:[UIColor grayColor].CGColor];
-    
-    
-    //prepare the style
-    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    [style setAlignment:NSTextAlignmentLeft];
-    [style setLineBreakMode:NSLineBreakByWordWrapping];
-    
-    UIFont *font1 = [UIFont fontWithName:@"HelveticaNeue-bold"  size:16.0f];
-    NSDictionary *dict1 = @{NSUnderlineStyleAttributeName:@(NSUnderlineStyleNone),
-                            NSFontAttributeName:font1,
-                            NSParagraphStyleAttributeName:style}; // Added line
-    
-    UIFont *font2 = [UIFont fontWithName:@"HelveticaNeue-Light"  size:16.0f];
-    NSDictionary *dict2 = @{NSUnderlineStyleAttributeName:@(NSUnderlineStyleNone),
-                            NSFontAttributeName:font2,
-                            NSParagraphStyleAttributeName:style}; // Added line
-    
-    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] init];
-    [attString appendAttributedString:[[NSAttributedString alloc] initWithString:[[NSString alloc] initWithFormat:@"%@ ",name]    attributes:dict1]];
-    
-    [attString appendAttributedString:[[NSAttributedString alloc] initWithString:[[NSString alloc] initWithFormat:@"%.02f€",price ]   attributes:dict2]];
-    ;
-    
-    
-    [button setAttributedTitle:attString forState:UIControlStateNormal];
-    return button;
+        if ([platename isEqualToString:name] && [platestate isEqualToString:@"new"]) {
+            return [[p objectForKey:@"quantity"] intValue];
+        }
+    }
+    return -1;
 }
 
-- (UIButton *)createPlusBtnComponentWithQnt:(NSString *)quantity{
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    //move text 10 pixels down and right
-    [button setTitleEdgeInsets:UIEdgeInsetsMake(2.0f, 2.0f, 0.0f, 0.0f)];
-    //button layer
-    [[button layer] setBorderWidth:1.0f];
-    [[button layer] setBorderColor:[UIColor grayColor].CGColor];
-    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] init];
-    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    [style setAlignment:NSTextAlignmentLeft];
-    [style setLineBreakMode:NSLineBreakByWordWrapping];
-    
-    UIFont *font1 = [UIFont fontWithName:@"HelveticaNeue-Light"  size:14.0f];
-    NSDictionary *dict1 = @{NSUnderlineStyleAttributeName:@(NSUnderlineStyleNone),
-                            NSFontAttributeName:font1,
-                            NSParagraphStyleAttributeName:style}; // Added line
-    
-    [attString appendAttributedString:[[NSAttributedString alloc] initWithString:quantity attributes:dict1]];
-    [button setAttributedTitle:attString forState:UIControlStateNormal];
-    return button;
-}
 @end

@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong,nonatomic) NSArray *categories;
 @property (weak, nonatomic) IBOutlet UIView *pageview;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *totalLabel;
 
 
 @property NSString *titleText;
@@ -85,6 +86,10 @@
     self.title = [[NSString alloc]initWithFormat:@"table %i",self.tableid-2000];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"🔔" style:UIBarButtonItemStylePlain  target:self action:@selector(sendOrders)];
+    
+    
+    //trival things
+    self.totalLabel.tintColor = [UIColor blackColor];
 }
 
 
@@ -96,12 +101,12 @@
         return nil;
     }
     if (index == 0) {
-        pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController2"];
-        pageContentViewController.tableid = self.tableid;
+        pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Tmpodrvc"];
+        
         
         //can be deleted
-        pageContentViewController.category = [self.menuArray[index] objectForKey:@"category"];
-        pageContentViewController.list = [self.menuArray[index] objectForKey:@"list"];
+//        pageContentViewController.category = [self.menuArray[index] objectForKey:@"category"];
+//        pageContentViewController.list = [self.menuArray[index] objectForKey:@"list"];
         pageContentViewController.pageIndex = index;
     }
     else{
@@ -111,6 +116,8 @@
         pageContentViewController.pageIndex = index;
         
     }
+    
+    pageContentViewController.tableid = self.tableid;
     
     self.currentPageID = index;
    

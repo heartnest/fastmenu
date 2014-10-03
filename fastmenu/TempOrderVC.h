@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PageContentViewController.h"
 
-@interface TempOrderVC : UIViewController
+@interface TempOrderVC : PageContentViewController
 @property NSUInteger pageIndex;
 @property (nonatomic) int tableid;
 @property NSString *category;

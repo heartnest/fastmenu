@@ -19,6 +19,7 @@
  "person":3,
  "orders": [
             {"name":"Red Tea","price":4,"quantity":1,"state":"new"},
+            {"name":"Banshee","price":4,"quantity":1,"state":"new"},
         {"name":"Green Tea","price":4,"quantity":1,"state":"sent"},
         {"name":"Black Tea","price":4,"quantity":1,"state":"sent"},
           {"name":"Torta alla frutta","price":4,"quantity":1,"state":"cooking"},

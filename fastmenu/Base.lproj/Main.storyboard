@@ -114,11 +114,12 @@
                     <connections>
                         <outlet property="pageview" destination="eG9-2y-Ws3" id="qbS-hg-0yb"/>
                         <outlet property="scrollView" destination="cdx-J3-Ub3" id="WcG-3y-R45"/>
+                        <outlet property="totalLabel" destination="ZpH-Ea-JtE" id="Yyb-en-AHm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n9m-Kl-UEg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="804" y="415"/>
+            <point key="canvasLocation" x="856" y="373"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="3hq-sS-5YX">
@@ -166,7 +167,7 @@
         <!--Temp OrderVC-->
         <scene sceneID="e5M-ze-IEu">
             <objects>
-                <viewController storyboardIdentifier="PageContentViewController2" id="2hh-ed-AAf" customClass="TempOrderVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Tmpodrvc" id="2hh-ed-AAf" customClass="TempOrderVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZuR-De-Pdr"/>
                         <viewControllerLayoutGuide type="bottom" id="3tD-3E-k7e"/>

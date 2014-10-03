@@ -9,6 +9,7 @@
 #import "TableViewController.h"
 #import "MenuViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Tools.h"
 
 @interface TableViewController ()<UITabBarDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -138,7 +139,7 @@
                        action:@selector(didPressTableNeedsOrder:) forControlEvents:UIControlEventTouchUpInside];
         }else if ([tablestate isEqualToString:@"busy"]) {
           numpeople = [table objectForKey:@"person"];
-          button.backgroundColor = [self colorFromHexString:@"#FFDEAD"];
+          button.backgroundColor = [Tools colorFromHexString:@"#FFDEAD"];
             [button addTarget:self
                        action:@selector(didPressTableHasOrder:) forControlEvents:UIControlEventTouchUpInside];
         }else{
@@ -209,11 +210,5 @@
 }
 
 
-- (UIColor *)colorFromHexString:(NSString *)hexString {
-    unsigned rgbValue = 0;
-    NSScanner *scanner = [NSScanner scannerWithString:hexString];
-    [scanner setScanLocation:1]; // bypass '#' character
-    [scanner scanHexInt:&rgbValue];
-    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
-}
+
 @end
