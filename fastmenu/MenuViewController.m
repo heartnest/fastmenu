@@ -92,8 +92,9 @@
     [titleLabel addTarget:self action:@selector(titleTap:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = titleLabel;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"🔔" style:UIBarButtonItemStylePlain  target:self action:@selector(sendOrders)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"🔔" style:UIBarButtonItemStylePlain  target:self action:@selector(alertNotifications)];
     
+   // [self alertNotifications];
     
     //trival things
     self.totalLabel.tintColor = [UIColor blackColor];
@@ -102,6 +103,33 @@
     if (self.tablestate == 0) {
         [self alertNumPeople];
     }
+    
+}
+
+
+- (IBAction)summary:(UIBarButtonItem *)sender {
+    NSString *title = sender.title;
+    if ([title isEqualToString:@"Summary"]) {
+        [sender setTitle:@"SEND"];
+        UIViewController *selectedViewController = [self viewControllerAtIndex:0];
+        [self markCategoryButton:0];
+        
+        __weak UIPageViewController* pvcw = self.pageViewController;
+        [self.pageViewController setViewControllers:@[selectedViewController]
+                                          direction:UIPageViewControllerNavigationDirectionReverse
+                                           animated:YES completion:^(BOOL finished) {
+                                               UIPageViewController* pvcs = pvcw;
+                                               if (!pvcs) return;
+                                               dispatch_async(dispatch_get_main_queue(), ^{
+                                                   [pvcs setViewControllers:@[selectedViewController]
+                                                                  direction:UIPageViewControllerNavigationDirectionReverse
+                                                                   animated:NO completion:nil];
+                                               });
+                                           }];
+    }else{
+        [self alerOrderSent];
+    }
+    
     
 }
 
@@ -167,9 +195,6 @@
     return pageContentViewController;
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-      NSLog(@"Entered: kk %@",[[alertView textFieldAtIndex:0] text]);
-}
 
 -(void)markCategoryButton:(int) index{
     [self buttonsBackToColor];
@@ -184,9 +209,6 @@
     }
 }
 
--(void)sendOrders{
-    NSLog(@"order sent");
-}
 
 #pragma mark - Page View Controller Data Source
 
@@ -232,6 +254,8 @@
 }
 
 
+
+#pragma mark - buttons -
 /*
  menu category
 */
@@ -323,6 +347,8 @@
     [self markCategoryButton:pageid];
 }
 
+#pragma mark - alert dialogs -
+
 -(void)alertNumPeople{
     UIAlertView * alert = [[UIAlertView alloc]
                            initWithTitle:@"Number of People"
@@ -337,16 +363,30 @@
     [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeNumberPad];
     //[[alert textFieldAtIndex:0] becomeFirstResponder];
     
+    alert.tag = 10;
     [alert show];
 }
 
+
+
 -(void)alertNotifications{
     UIAlertView * alert = [[UIAlertView alloc]
-                           initWithTitle:@"Number of People"
-                           message:@"Please insert the number of people"
+                           initWithTitle:@"Notifications"
+                           message:@""
                            delegate:self
                            cancelButtonTitle:@"OK"
-                           otherButtonTitles:@"+1",@"add note",@"-1",nil];
+                           otherButtonTitles:@"Call from table 2",@"Call from table 3",@"Meal ready for table 5",nil];
+    
+    [alert show];
+}
+
+-(void)alerOrderSent{
+    UIAlertView * alert = [[UIAlertView alloc]
+                           initWithTitle:@"Orders sent successfully"
+                           message:@""
+                           delegate:self
+                           cancelButtonTitle:@"OK"
+                           otherButtonTitles:nil];
     
     [alert show];
 }
@@ -394,4 +434,15 @@
     //v.backgroundColor = [UIColor yellowColor];
     [av show];
 }
+
+
+#pragma mark - alert handler -
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == 10) {
+        NSLog(@"Entered: kk %@",[[alertView textFieldAtIndex:0] text]);
+    }
+    
+}
+
 @end

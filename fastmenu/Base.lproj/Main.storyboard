@@ -97,7 +97,11 @@
                                 <items>
                                     <barButtonItem title="Total: 12 euro" id="ZpH-Ea-JtE"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="fir-6l-DYL"/>
-                                    <barButtonItem title="SEND" id="AOx-cj-mr8"/>
+                                    <barButtonItem title="Summary" id="AOx-cj-mr8">
+                                        <connections>
+                                            <action selector="summary:" destination="l5A-ZB-Lvy" id="Utf-vQ-Olv"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
