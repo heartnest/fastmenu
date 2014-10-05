@@ -10,4 +10,5 @@
 
 @interface MenuViewController : UIViewController
 @property (nonatomic) int tableid;
+@property (nonatomic) int tablestate;
 @end

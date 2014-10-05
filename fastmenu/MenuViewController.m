@@ -16,22 +16,22 @@
 @property (weak, nonatomic) IBOutlet UIView *pageview;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *totalLabel;
 
-
 @property NSString *titleText;
 @property NSString *imageFile;
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 
 @property (strong, nonatomic) NSArray *pageTitles;
 @property (strong, nonatomic) NSArray *pageImages;
+@property (strong,nonatomic) NSArray *menuArray;
 
 @property (nonatomic) int currentPageID;
-
-@property (strong,nonatomic) NSArray *menuArray;
 
 @end
 
 @implementation MenuViewController
 
+
+#pragma mark - view controller life cycle -
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -46,8 +46,6 @@
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"menu" ofType:@"json"];
     NSData *data = [[NSFileManager defaultManager] contentsAtPath:filePath];
     self.menuArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    
-    
     
     // Create page view controller
     
@@ -93,9 +91,43 @@
     self.totalLabel.tintColor = [UIColor blackColor];
     
     
+    if (self.tablestate == 0) {
+        [self alertNumPeople];
+    }
+    
 }
 
-
+//-(void)viewWillDisappear:(BOOL)animated{
+//    //[super viewWillDisappear:animated];
+//    
+//    [self alertItemsNotSubmited];
+//    //NSLog(@"a");
+//}
+//- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+//   // if ([identifier isEqualToString:@"Identifier Of Segue Under Scrutiny"]) {
+//        // perform your computation to determine whether segue should occur
+//        
+//        //BOOL segueShouldOccur = YES|NO; // you determine this
+//        BOOL segueShouldOccur = NO;
+//        if (!segueShouldOccur) {
+//            UIAlertView *notPermitted = [[UIAlertView alloc]
+//                                         initWithTitle:@"Alert"
+//                                         message:@"Segue not permitted (better message here)"
+//                                         delegate:nil
+//                                         cancelButtonTitle:@"OK"
+//                                         otherButtonTitles:nil];
+//            
+//            // shows alert to user
+//            [notPermitted show];
+//            
+//            // prevent segue from occurring
+//            return NO;
+//        }
+//   // }
+//    
+//    // by default perform the segue transition
+//    return YES;
+//}
 
 - (PageContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
@@ -122,10 +154,15 @@
     
     pageContentViewController.tableid = self.tableid;
     
-    self.currentPageID = index;
+    self.currentPageID = (int) index;
    
     return pageContentViewController;
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+      NSLog(@"Entered: kk %@",[[alertView textFieldAtIndex:0] text]);
+}
+
 -(void)markCategoryButton:(int) index{
     [self buttonsBackToColor];
     UIButton *button = (UIButton *)[self.view viewWithTag:index+1000];
@@ -153,12 +190,12 @@
     }else
         index = 0;
     
-    int idx = index;
+    int idx = (int)index;
     if ((idx < 0) || (index == NSNotFound)) {
         return nil;
     }
     
-    [self markCategoryButton:index];
+    [self markCategoryButton:(int)index];
 
     index--;
     return [self viewControllerAtIndex:index];
@@ -177,7 +214,7 @@
         return nil;
     }
     
-    [self markCategoryButton:index];
+    [self markCategoryButton:(int)index];
     
     index++;
     if (index == [self.menuArray count]+1) {
@@ -186,6 +223,22 @@
     return [self viewControllerAtIndex:index];
 }
 
+-(void)alertNumPeople{
+    UIAlertView * alert = [[UIAlertView alloc]
+                           initWithTitle:@"Number of People"
+                           message:@"Please insert the number of people"
+                           delegate:self
+                           cancelButtonTitle:@"OK"
+                           otherButtonTitles:nil];
+    
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    
+    //[[alert textFieldAtIndex:0] setDelegate:self];
+    [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeNumberPad];
+    //[[alert textFieldAtIndex:0] becomeFirstResponder];
+    
+    [alert show];
+}
 
 /*
  menu category
@@ -220,7 +273,7 @@
         xcoord += stringsize.width+20;
         
         button.tag = 1000+count;
-        [button addTarget:self action:@selector(onButtonPressed:)
+        [button addTarget:self action:@selector(onCategoryButtonPressed:)
          forControlEvents:UIControlEventTouchUpInside];
         
         [self.scrollView addSubview:button];
@@ -238,8 +291,8 @@
  * view a category
  */
 
-- (void)onButtonPressed:(UIButton *)button {
-    int pageid = button.tag - 1000;
+- (void)onCategoryButtonPressed:(UIButton *)button {
+    int pageid = (int) button.tag - 1000;
     
     if (self.currentPageID > pageid) {
         PageContentViewController *selectedViewController = [self viewControllerAtIndex:pageid];
@@ -276,5 +329,16 @@
     }
         
     [self markCategoryButton:pageid];
+}
+
+
+-(void)alertItemsNotSubmited{
+    UIAlertView * alert = [[UIAlertView alloc]
+                           initWithTitle:@"Number of People"
+                           message:@"Please insert the number of people"
+                           delegate:self
+                           cancelButtonTitle:@"OK"
+                           otherButtonTitles:@"+1",@"add note",@"-1",nil];
+    [alert show];
 }
 @end

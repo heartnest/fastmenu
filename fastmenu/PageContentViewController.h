@@ -15,4 +15,10 @@
 @property (nonatomic) int tableid;
 @property NSString *category;
 @property (nonatomic,strong) NSArray *list;
+
+-(void)onClickPlusBtn:(UIButton *)sender;
+-(void)onClickMinusBtn:(UIButton *)sender;
+-(void)onClickPlateBtn:(UIButton *)sender;
+
+
 @end

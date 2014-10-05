@@ -16,6 +16,7 @@
 @property (weak,nonatomic) NSArray *orders;
 @property  (strong,nonatomic) UITextField *textField;
 
+
 @end
 
 @implementation TempOrderVC
@@ -26,6 +27,11 @@
 {
     //[super viewDidLoad];
 
+    
+    
+
+    
+    
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     [self.view addGestureRecognizer:tap];
 //    self.titleLabel.text = self.category;
@@ -117,24 +123,56 @@
             
             plateContentButton = [Tools createMenuBtnComponentWithName:platename price:price color:nil];
             
+            
+            //Actions bounded to buttons
+            [platePlusButton addTarget:self
+                                action:@selector(onClickPlusBtn:) forControlEvents:UIControlEventTouchUpInside];
+            [plateContentButton addTarget:self
+                                   action:@selector(onClickPlateBtn:) forControlEvents:UIControlEventTouchUpInside];
+            [plateMinuesButton addTarget:self
+                                  action:@selector(onClickMinusBtn:) forControlEvents:UIControlEventTouchUpInside];
+            
+            
         }else if ([state isEqualToString:@"sent"]) {
             platePlusButton = [Tools createPlusBtnComponentWithQnt:x andColor:@"#FFFFF0"];
             plateMinuesButton = [Tools createPlusBtnComponentWithQnt:@"📌" andColor:@"#FFFFF0"];
             plateContentButton = [Tools createMenuBtnComponentWithName:platename price:price color:nil];
+            
+
+            UILongPressGestureRecognizer *gr = [[UILongPressGestureRecognizer alloc] init];
+            [gr addTarget:self action:@selector(longPressKitAll:)];
+            [plateContentButton addGestureRecognizer:gr];
+            
         }else if ([state isEqualToString:@"cooking"]) {
+            
             platePlusButton = [Tools createPlusBtnComponentWithQnt:x andColor:@"#FFFFF0"];
             plateMinuesButton = [Tools createPlusBtnComponentWithQnt:@"♨️" andColor:@"#FFFFF0"];
             plateContentButton = [Tools createMenuBtnComponentWithName:platename price:price color:@"#FFFFF0"];
+            
+            UILongPressGestureRecognizer *gr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressKitPrice:)];
+            [plateContentButton addGestureRecognizer:gr];
+            
         }else if ([state isEqualToString:@"ready"]) {
             platePlusButton = [Tools createPlusBtnComponentWithQnt:x andColor:@"#FFFFF0"];
             plateMinuesButton = [Tools createPlusBtnComponentWithQnt:@"🔔" andColor:@"#FFDEAD"];
             plateContentButton = [Tools createMenuBtnComponentWithName:platename price:price color:@"#FFFFF0"];
+            
+            UILongPressGestureRecognizer *gr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressKitPrice:)];
+            [plateContentButton addGestureRecognizer:gr];
+            
+            
         }else if ([state isEqualToString:@"served"]) {
             platePlusButton = [Tools createPlusBtnComponentWithQnt:x andColor:@"#FFFFF0"];
             plateMinuesButton = [Tools createPlusBtnComponentWithQnt:@"👍" andColor:@"#FFFFF0"];
             plateContentButton = [Tools createMenuBtnComponentWithName:platename price:price color:@"#FFFFF0"];
+            
+            UILongPressGestureRecognizer *gr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressKitPrice:)];
+            [plateContentButton addGestureRecognizer:gr];
+            
+            
         }
         
+
         
         //set buttons positions
         plateMinuesButton.frame = CGRectMake(marginleft+functnWidh+boxwidth+10, ypos, functnWidh, boxheight);
@@ -166,6 +204,9 @@
         plateMinusButton.frame = CGRectMake(marginleft+functnWidh+boxwidth+10, ypos+topspace, functnWidh, boxheight);
         [self.scrollView addSubview:plateMinusButton];
     
+        [btn addTarget:self
+                        action:@selector(alertChangeServiceFee) forControlEvents:UIControlEventTouchUpInside];
+    
     // Coperto button --- end
     
     ypos += 4*boxheight + margintop;
@@ -189,6 +230,42 @@
 }
 
 
+- (void)longPressKitAll:(UILongPressGestureRecognizer *)sender {
+    if ( sender.state == UIGestureRecognizerStateBegan){
+        UIAlertView * alert = [[UIAlertView alloc]
+                               initWithTitle:@"Plate"
+                               message:@""
+                               delegate:self
+                               cancelButtonTitle:@"Cancel"
+                               otherButtonTitles:@"+1",@"Note",@"Correct price",@"-1",nil];
+        [alert show];
+    }
+}
+
+- (void)longPressKitPrice:(UILongPressGestureRecognizer *)sender {
+    if ( sender.state == UIGestureRecognizerStateBegan){
+        UIAlertView * alert = [[UIAlertView alloc]
+                               initWithTitle:@"Correct the price"
+                               message:@""
+                               delegate:self
+                               cancelButtonTitle:@"Cancel"
+                               otherButtonTitles:@"Correct",nil];
+        [alert show];
+    }
+}
+
+-(void)alertChangeServiceFee{
+    UIAlertView * alert = [[UIAlertView alloc]
+                           initWithTitle:@"Sercice Price"
+                           message:@""
+                           delegate:self
+                           cancelButtonTitle:@"OK"
+                           otherButtonTitles:nil];
+
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeDecimalPad];
+    [alert show];
+}
 
 @end
 

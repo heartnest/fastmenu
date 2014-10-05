@@ -54,14 +54,17 @@
     for (UIButton *aButton in [self.scrollView subviews]) {
         [aButton removeFromSuperview];
     }
+   
     NSArray *arr;
-    if ([item.title isEqualToString:@"Occupati"]) {
+     //NSLog(@"aa %@",item.title);
+    if ([item.title isEqualToString:@"Busy"]) {
+        
         arr = [self filterTablesWithArray:self.tables andState:@"busy"];
         
-    }else if([item.title isEqualToString:@"Liberi"]) {
+    }else if([item.title isEqualToString:@"Free"]) {
         arr = [self filterTablesWithArray:self.tables andState:@"free"];
         
-    }else if([item.title isEqualToString:@"Tutti"]) {
+    }else if([item.title isEqualToString:@"All"]) {
         arr = self.tables;
         
     }
@@ -75,25 +78,26 @@
 - (void)didPressTableHasOrder:(UIButton *)sender
 {
  
-    int tid = sender.tag;
+    int tid = (int)sender.tag;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 
     MenuViewController *viewController = (MenuViewController *)[storyboard instantiateViewControllerWithIdentifier:@"menu-story-id"];
     
     viewController.tableid = tid;
+    viewController.tablestate = 1;
     
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (void)didPressTableNeedsOrder:(UIButton *)sender
 {
-    int tid = sender.tag;
+    int tid = (int)sender.tag;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     MenuViewController *viewController = (MenuViewController *)[storyboard instantiateViewControllerWithIdentifier:@"menu-story-id"];
     
     viewController.tableid = tid;
-    
+    viewController.tablestate = 0;
     
     [self.navigationController pushViewController:viewController animated:YES];
 }

@@ -85,16 +85,26 @@
         }
         
         
+        //Actions bounded to buttons
+        [platePlusButton addTarget:self
+                            action:@selector(onClickPlusBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [plateContentButton addTarget:self
+                               action:@selector(onClickPlateBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [plateMinuesButton addTarget:self
+                              action:@selector(onClickMinusBtn:) forControlEvents:UIControlEventTouchUpInside];
         
+        //Fix button postions
         platePlusButton.frame = CGRectMake(marginleft, ypos, functnWidh, boxheight);
         plateContentButton.frame = CGRectMake(marginleft+functnWidh+5, ypos, boxwidth, boxheight);
         plateMinuesButton.frame = CGRectMake(marginleft+functnWidh+boxwidth+10, ypos, functnWidh, boxheight);
         
         
+        //Attach buttons
         [self.scrollView addSubview:platePlusButton];
         [self.scrollView addSubview:plateContentButton];
         [self.scrollView addSubview:plateMinuesButton];
         
+        //update postion tmp
         ypos += boxheight + 2*margintop;
     }
     
@@ -117,4 +127,58 @@
     return -1;
 }
 
+#pragma mark - UIButton click events -
+-(void)onClickPlusBtn:(UIButton *)sender
+{
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] init];
+    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    UIFont *font1 = [UIFont fontWithName:@"HelveticaNeue-bold"  size:14.0f];
+    NSDictionary *dict1 = @{NSUnderlineStyleAttributeName:@(NSUnderlineStyleNone),
+                            NSFontAttributeName:font1,
+                            NSForegroundColorAttributeName:[UIColor blackColor],
+                            NSParagraphStyleAttributeName:style}; // Added line
+    
+    NSString *quantity;
+    
+    NSString *txt = sender.titleLabel.text;
+    if (![txt isEqualToString:@"✚"]) {
+        int num = [txt intValue];
+        num ++;
+        quantity = [[NSString alloc] initWithFormat:@"%i",num ];
+    }else{
+        quantity = [[NSString alloc] initWithFormat:@"1"];
+    }
+    
+    [attString appendAttributedString:[[NSAttributedString alloc] initWithString:quantity attributes:dict1]];
+    [sender setAttributedTitle:attString forState:UIControlStateNormal];
+    
+    
+    // useful for future use
+    //int tid = (int)sender.tag;
+}
+-(void)onClickMinusBtn:(UIButton *)sender
+{
+    
+    int tid = (int)sender.tag;
+    NSLog(@"Minus button tag %i",tid);
+}
+-(void)onClickPlateBtn:(UIButton *)sender
+{
+    
+    int tid = (int)sender.tag;
+    NSLog(@"Plate button tag %i",tid);
+    [self alertMenuItem];
+}
+
+
+#pragma mark - UIAlerts -
+-(void)alertMenuItem{
+    UIAlertView * alert = [[UIAlertView alloc]
+                           initWithTitle:@"Plate"
+                           message:@""
+                           delegate:self
+                           cancelButtonTitle:@"Cancel"
+                           otherButtonTitles:@"+1",@"Note",@"Correct price",@"-1",nil];
+    [alert show];
+}
 @end
