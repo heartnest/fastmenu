@@ -82,7 +82,15 @@
     
     //navigational bar content
     
-    self.title = [[NSString alloc]initWithFormat:@"table %i",self.tableid-2000];
+    NSString *tablenum = [[NSString alloc]initWithFormat:@"table %i",self.tableid-2000];
+    //self.title = [[NSString alloc]initWithFormat:@"table %i",self.tableid-2000];
+    
+    UIButton *titleLabel = [UIButton buttonWithType:UIButtonTypeCustom];
+    [titleLabel setTitle:tablenum forState:UIControlStateNormal];
+    titleLabel.frame = CGRectMake(0, 0, 70, 44);
+    [titleLabel setTitleColor:[UIColor colorWithRed:0/255.0 green:122/255.0 blue:255.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [titleLabel addTarget:self action:@selector(titleTap:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.titleView = titleLabel;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"🔔" style:UIBarButtonItemStylePlain  target:self action:@selector(sendOrders)];
     
@@ -223,22 +231,6 @@
     return [self viewControllerAtIndex:index];
 }
 
--(void)alertNumPeople{
-    UIAlertView * alert = [[UIAlertView alloc]
-                           initWithTitle:@"Number of People"
-                           message:@"Please insert the number of people"
-                           delegate:self
-                           cancelButtonTitle:@"OK"
-                           otherButtonTitles:nil];
-    
-    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    
-    //[[alert textFieldAtIndex:0] setDelegate:self];
-    [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeNumberPad];
-    //[[alert textFieldAtIndex:0] becomeFirstResponder];
-    
-    [alert show];
-}
 
 /*
  menu category
@@ -331,6 +323,35 @@
     [self markCategoryButton:pageid];
 }
 
+-(void)alertNumPeople{
+    UIAlertView * alert = [[UIAlertView alloc]
+                           initWithTitle:@"Number of People"
+                           message:@"Please insert the number of people"
+                           delegate:self
+                           cancelButtonTitle:@"OK"
+                           otherButtonTitles:nil];
+    
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    
+    //[[alert textFieldAtIndex:0] setDelegate:self];
+    [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeNumberPad];
+    //[[alert textFieldAtIndex:0] becomeFirstResponder];
+    
+    [alert show];
+}
+
+-(void)alertNotifications{
+    UIAlertView * alert = [[UIAlertView alloc]
+                           initWithTitle:@"Number of People"
+                           message:@"Please insert the number of people"
+                           delegate:self
+                           cancelButtonTitle:@"OK"
+                           otherButtonTitles:@"+1",@"add note",@"-1",nil];
+    
+    [alert show];
+}
+
+
 
 -(void)alertItemsNotSubmited{
     UIAlertView * alert = [[UIAlertView alloc]
@@ -340,5 +361,37 @@
                            cancelButtonTitle:@"OK"
                            otherButtonTitles:@"+1",@"add note",@"-1",nil];
     [alert show];
+}
+
+- (IBAction) titleTap:(id) sender
+{
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Free tables to go" message:@"" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 230, 150)];
+    
+    int x=0,y=0;
+    //buttons on view
+    for (int i=1; i<6; i++) {
+        
+        NSString *t = [[NSString alloc] initWithFormat:@"%i",i ];
+        UIButton *titleLabel = [UIButton buttonWithType:UIButtonTypeCustom];
+        [titleLabel setTitle:t forState:UIControlStateNormal];
+        titleLabel.frame = CGRectMake(x, y, 50, 50);
+        [titleLabel setTitleColor:[UIColor colorWithRed:0/255.0 green:122/255.0 blue:255.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+        
+        
+        [[titleLabel layer] setBorderWidth:1.0f];
+        [[titleLabel layer] setBorderColor:[UIColor grayColor].CGColor];
+        x += 55;
+        if (i%4 == 0 && i !=0) {
+            y += 55;
+            x = 0;
+        }
+        [v addSubview:titleLabel];
+    }
+    
+    
+    [av setValue:v forKey:@"accessoryView"];
+    //v.backgroundColor = [UIColor yellowColor];
+    [av show];
 }
 @end
