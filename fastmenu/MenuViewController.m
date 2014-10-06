@@ -48,37 +48,31 @@
     
     //load table data
     
-//    NSString *filePath2 = [[NSBundle mainBundle] pathForResource:@"tables" ofType:@"json"];
-//    NSData *data2 = [[NSFileManager defaultManager] contentsAtPath:filePath2];
-//    NSArray *tables = [NSJSONSerialization JSONObjectWithData:data2 options:0 error:nil];
-//    NSDictionary *table = [tables objectAtIndex:self.tableid - 2001];
-//    self.orders = [table objectForKey:@"orders"];
-//    
-//    
+    NSString *filePath2 = [[NSBundle mainBundle] pathForResource:@"tables" ofType:@"json"];
+    NSData *data2 = [[NSFileManager defaultManager] contentsAtPath:filePath2];
+    NSArray *tables = [NSJSONSerialization JSONObjectWithData:data2 options:0 error:nil];
+    NSDictionary *table = [tables objectAtIndex:self.tableid - 2001];
+    NSArray *orders = [table objectForKey:@"orders"];
+    
+    [[NSUserDefaults standardUserDefaults]setObject:orders forKey:[[NSString alloc] initWithFormat:@"ordersOfTable%i",self.tableid]];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+  
     
     // Create page view controller
     
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
     self.pageViewController.dataSource = self;
-    
-    
     // Create page content view controller
-    
     PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
     NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-    
-    
     // Change the size of page view controller
-    
     self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width*95/100, self.view.frame.size.height *75/100);
-    
     //add view
-    
     [self.pageview addSubview:_pageViewController.view];
     
     
-    //create menu buttons
+    //create category buttons
     
     NSMutableArray *marr = [[NSMutableArray alloc]init];
     [marr addObject:@"Selected"];
@@ -89,8 +83,13 @@
     [self createCategoryButtonsFromArray:marr];
     [self markCategoryButton:0];
     
-    //navigational bar content
     
+    //top left bar button
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Tables" style:UIBarButtonItemStyleBordered target:self action:@selector(toTables:)];
+    self.navigationItem.leftBarButtonItem = cancelButton;
+    
+    
+    //top center button
     NSString *tablenum = [[NSString alloc]initWithFormat:@"table %i",self.tableid-2000];
     //self.title = [[NSString alloc]initWithFormat:@"table %i",self.tableid-2000];
     
@@ -101,12 +100,14 @@
     [titleLabel addTarget:self action:@selector(alertChangeTable:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = titleLabel;
     
+     //top right button
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"🔔" style:UIBarButtonItemStylePlain  target:self action:@selector(alertNotifications)];
     
-    //[self alertNotifications];
+
     
-    //trival things
+    //bottom left bar button
     self.totalLabel.tintColor = [UIColor blackColor];
+    self.totalLabel.title=[[NSString alloc]initWithFormat:@"%0.2f euro",[self howMuchNow] ];
     
     
     if (self.tablestate == 0) {
@@ -114,10 +115,7 @@
     }
     
     
-    //left bar button
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Tables" style:UIBarButtonItemStyleBordered target:self action:@selector(toTables:)];
-    
-    self.navigationItem.leftBarButtonItem = cancelButton;
+
 }
 
 #pragma mark - UIButton Press -
@@ -153,37 +151,7 @@
     
 }
 
-//-(void)viewWillDisappear:(BOOL)animated{
-//    //[super viewWillDisappear:animated];
-//    
-//    [self alertItemsNotSubmited];
-//    //NSLog(@"a");
-//}
-//- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-//   // if ([identifier isEqualToString:@"Identifier Of Segue Under Scrutiny"]) {
-//        // perform your computation to determine whether segue should occur
-//        
-//        //BOOL segueShouldOccur = YES|NO; // you determine this
-//        BOOL segueShouldOccur = NO;
-//        if (!segueShouldOccur) {
-//            UIAlertView *notPermitted = [[UIAlertView alloc]
-//                                         initWithTitle:@"Alert"
-//                                         message:@"Segue not permitted (better message here)"
-//                                         delegate:nil
-//                                         cancelButtonTitle:@"OK"
-//                                         otherButtonTitles:nil];
-//            
-//            // shows alert to user
-//            [notPermitted show];
-//            
-//            // prevent segue from occurring
-//            return NO;
-//        }
-//   // }
-//    
-//    // by default perform the segue transition
-//    return YES;
-//}
+#pragma mark - subview content & exchange -
 
 - (PageContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
@@ -193,11 +161,6 @@
     }
     if (index == 0) {
         pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Tmpodrvc"];
-        
-        
-        //can be deleted
-//        pageContentViewController.category = [self.menuArray[index] objectForKey:@"category"];
-//        pageContentViewController.list = [self.menuArray[index] objectForKey:@"list"];
         pageContentViewController.pageIndex = index;
     }
     else{
@@ -207,7 +170,6 @@
         pageContentViewController.pageIndex = index;
         
     }
-    
     pageContentViewController.tableid = self.tableid;
     
     self.currentPageID = (int) index;
@@ -221,6 +183,7 @@
     UIButton *button = (UIButton *)[self.view viewWithTag:index+1000];
     button.backgroundColor = [UIColor yellowColor];
 }
+
 -(void)buttonsBackToColor{
     for (int i = 0; i<= [self.menuArray count]; i++) {
         int bid = 1000 + i;
@@ -275,7 +238,7 @@
 
 
 
-#pragma mark - buttons -
+#pragma mark - buttons creations -
 /*
  menu category
 */
@@ -371,18 +334,15 @@
 
 -(void)alertNumPeople{
     UIAlertView * alert = [[UIAlertView alloc]
-                           initWithTitle:@"Number of People"
-                           message:@"Please insert the number of people"
+                           initWithTitle:@""
+                           message: [[NSString alloc ] initWithFormat:@"How many people for table %i?",self.tableid-2000]
                            delegate:self
-                           cancelButtonTitle:@"OK"
-                           otherButtonTitles:nil];
+                           cancelButtonTitle:@"Cancel"
+                           otherButtonTitles:@"OK",nil];
     
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    
-    //[[alert textFieldAtIndex:0] setDelegate:self];
     [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeNumberPad];
-    //[[alert textFieldAtIndex:0] becomeFirstResponder];
-    
+
     alert.tag = 10;
     [alert show];
 }
@@ -473,7 +433,12 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == 10) {
-        NSLog(@"Entered: kk %@",[[alertView textFieldAtIndex:0] text]);
+        if (buttonIndex == 0) {
+            [self backToTablesList];
+        }else if(buttonIndex == 1) {
+             NSLog(@"Entered: kk %@",[[alertView textFieldAtIndex:0] text]);
+        }
+       
     }
     if (alertView.tag == 40) {
     
@@ -483,8 +448,9 @@
             //NSLog(@"11");
         }
     }
-    
 }
+
+#pragma mark - utilities -
 
 -(BOOL)doesMenuContainNewPlate:(NSArray *)arr{
     BOOL res = NO;
@@ -497,6 +463,18 @@
     }
     return res;
 }
+
+-(double)howMuchNow{
+    double sum = 0;
+    NSArray *arr = [[NSUserDefaults standardUserDefaults] objectForKey: [[NSString alloc] initWithFormat:@"ordersOfTable%i",self.tableid]];
+    for (NSDictionary *d in arr) {
+        double a = [[d objectForKey:@"price"] doubleValue];
+        double b = [[d objectForKey:@"quantity"] doubleValue];
+        sum += (a*b);
+    }
+    return sum;
+}
+
 -(void)backToTablesList{
     [self.navigationController popViewControllerAnimated:YES];
 }

@@ -31,6 +31,7 @@
                                     <tabBarItem title="Busy" image="tavolo.png" id="Pow-8z-jh8"/>
                                     <tabBarItem title="Free" image="tavolo.png" id="AAw-U8-wMh"/>
                                     <tabBarItem title="All" image="tavolo.png" id="3Xp-pi-h2N"/>
+                                    <tabBarItem title="More" image="points.png" id="raB-Ly-MKS"/>
                                 </items>
                             </tabBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="47r-zP-zG6">
@@ -138,21 +139,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5R-LS-0yV">
-                                <rect key="frame" x="10" y="8" width="230" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SPf-dP-Xpt">
                                 <rect key="frame" x="5" y="28" width="311" height="452"/>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqh-h6-fFW">
+                                <rect key="frame" x="7" y="-1" width="303" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="priceTypeBtn" destination="fqh-h6-fFW" id="izW-Ub-xeS"/>
                         <outlet property="scrollView" destination="SPf-dP-Xpt" id="bBW-UL-Vyu"/>
-                        <outlet property="titleLabel" destination="n5R-LS-0yV" id="1wQ-XZ-bWG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMY-XD-fAN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -187,6 +189,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="points.png" width="30" height="30"/>
         <image name="tavolo.png" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

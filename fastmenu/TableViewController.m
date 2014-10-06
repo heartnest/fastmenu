@@ -43,6 +43,9 @@
     NSData *data = [[NSFileManager defaultManager] contentsAtPath:filePath];
     self.tables = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 
+    //top right button
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"🔔" style:UIBarButtonItemStylePlain  target:self action:@selector(alertNotifications)];
+    
     //load buttons
     [self createTableButtonsFromArray:self.tables];
 }
@@ -213,6 +216,16 @@
     [self.scrollView setContentSize:CGSizeMake(width, ypos)];
 }
 
-
+-(void)alertNotifications{
+    UIAlertView * alert = [[UIAlertView alloc]
+                           initWithTitle:@"Notifications"
+                           message:@""
+                           delegate:self
+                           cancelButtonTitle:@"OK"
+                           otherButtonTitles:@"Call from table 2",@"Call from table 3",@"Meal ready for table 5",nil];
+    
+    alert.tag = 20;
+    [alert show];
+}
 
 @end

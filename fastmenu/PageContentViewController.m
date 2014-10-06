@@ -11,7 +11,7 @@
 
 @interface PageContentViewController () 
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet UIButton *priceTypeBtn;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong,nonatomic) NSArray *orders;
 
@@ -28,9 +28,12 @@
     //self.backgroundImageView.image = [UIImage imageNamed:self.imageFile];
     
     
-    self.titleLabel.text = self.category;
-    
-    
+    // price rage button
+    NSString *price = [[NSString alloc] initWithFormat:@"%@ - Normal Price",self.category];
+    [self.priceTypeBtn setTitle:price forState:UIControlStateNormal];
+    [self.priceTypeBtn addTarget:self
+                        action:@selector(alertChPriceGroup) forControlEvents:UIControlEventTouchUpInside];
+
     
 //  Get Already ordered
 
@@ -181,6 +184,16 @@
                            delegate:self
                            cancelButtonTitle:@"Cancel"
                            otherButtonTitles:@"+1",@"Note",@"Correct price",@"-1",nil];
+    [alert show];
+}
+
+-(void)alertChPriceGroup{
+    UIAlertView * alert = [[UIAlertView alloc]
+                           initWithTitle:@"Change Price Group"
+                           message:@""
+                           delegate:self
+                           cancelButtonTitle:@"Cancel"
+                           otherButtonTitles:@"Normal Price",@"Weekend Price",@"Special Price",nil];
     [alert show];
 }
 @end

@@ -6,6 +6,8 @@
  {
  "tableid": 2,
  "state":"busy",
+ "sum":28.00,
+  "person":1,
  "orders": [
           {"name":"Abbey","price":5,"quantity":3,"state":"new"},
           {"name":"Alexander","price":5,"quantity":1,"state":"new"},
@@ -30,6 +32,8 @@
  {
  "tableid": 4,
  "state":"busy",
+ "sum":28.00,
+ "person":1,
  "orders": [
           {"name":"Torta alla frutta","price":4,"quantity":1,"state":"ready"},
           {"name":"Torta della nonna","price":4,"quantity":1,"state":"cooking"},
