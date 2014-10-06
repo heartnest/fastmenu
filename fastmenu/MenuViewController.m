@@ -85,14 +85,14 @@
     
     
     //top left bar button
+    
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"〈 Tables" style:UIBarButtonItemStyleBordered target:self action:@selector(toTables:)];
     self.navigationItem.leftBarButtonItem = cancelButton;
     
     
     //top center button
-    NSString *tablenum = [[NSString alloc]initWithFormat:@"table %i",self.tableid-2000];
-    //self.title = [[NSString alloc]initWithFormat:@"table %i",self.tableid-2000];
     
+    NSString *tablenum = [[NSString alloc]initWithFormat:@"table %i",self.tableid-2000];
     UIButton *titleLabel = [UIButton buttonWithType:UIButtonTypeCustom];
     [titleLabel setTitle:tablenum forState:UIControlStateNormal];
     titleLabel.frame = CGRectMake(0, 0, 70, 44);
@@ -101,6 +101,7 @@
     self.navigationItem.titleView = titleLabel;
     
      //top right button
+    
     UIButton *button1=[UIButton buttonWithType:UIButtonTypeCustom];
     [button1 setFrame:CGRectMake(0.0, 0.0, 25.0, 25.0)];
     [button1 addTarget:self action:@selector(alertNotifications) forControlEvents:UIControlEventTouchUpInside];
@@ -108,9 +109,8 @@
     UIBarButtonItem *buttonbell = [[UIBarButtonItem alloc]initWithCustomView:button1];
     self.navigationItem.rightBarButtonItem = buttonbell;
     
-
-    
     //bottom left bar button
+    
     self.totalLabel.tintColor = [UIColor blackColor];
     self.totalLabel.title=[[NSString alloc]initWithFormat:@"%0.2f euro",[self howMuchNow] ];
     
@@ -122,7 +122,7 @@
 }
 
 
-#pragma mark - UIButton Press -
+#pragma mark - UIButton Actions -
 
 -(void)toTables:(id)sender{
     [self alertItemsNotSubmited];
@@ -148,14 +148,19 @@
                                                                    animated:NO completion:nil];
                                                });
                                            }];
-    }else{
-        [self alerOrderSent];
     }
-    
+    else if([title isEqualToString:@"SEND"]){
+        [self alerOrderSent];
+        [sender setTitle:@"PAY"];
+    }
+    else if([title isEqualToString:@"PAY"]){
+        [self alerPayBill];
+    }
     
 }
 
-#pragma mark - subview content & exchange -
+
+#pragma mark - subview content & exchanges -
 
 - (PageContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
@@ -242,10 +247,7 @@
 
 
 
-#pragma mark - buttons creations -
-/*
- menu category
-*/
+#pragma mark - creating buttons -
 
 -(void) createCategoryButtonsFromArray:(NSArray *) arr{
     
@@ -290,10 +292,6 @@
     [self.scrollView setContentSize:CGSizeMake(xcoord, yheight)];
 }
 
-/**
- * view a category
- */
-
 - (void)onCategoryButtonPressed:(UIButton *)button {
     int pageid = (int) button.tag - 1000;
     
@@ -334,7 +332,8 @@
     [self markCategoryButton:pageid];
 }
 
-#pragma mark - alert dialogs -
+
+#pragma mark - alerts -
 
 -(void)alertNumPeople{
     UIAlertView * alert = [[UIAlertView alloc]
@@ -435,6 +434,17 @@
     
 }
 
+-(void)alerPayBill{
+    UIAlertView * alert = [[UIAlertView alloc]
+                           initWithTitle:@"Order paid successfullyaa"
+                           message:@""
+                           delegate:self
+                           cancelButtonTitle:@"OK"
+                           otherButtonTitles:nil];
+    alert.tag= 60;
+    [alert show];
+}
+
 
 #pragma mark - alert handler -
 
@@ -447,7 +457,7 @@
         }
        
     }
-    if (alertView.tag == 40) {
+    else if (alertView.tag == 40) {
     
         if (buttonIndex == 0) {
             [self backToTablesList];
@@ -455,6 +465,10 @@
             //NSLog(@"11");
         }
     }
+    else if(alertView.tag == 60){
+        [self backToTablesList];
+    }
+    
 }
 
 #pragma mark - utilities -

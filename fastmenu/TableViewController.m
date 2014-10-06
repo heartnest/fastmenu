@@ -35,10 +35,10 @@
 {
     [super viewDidLoad];
 
-    //set delegates
+    //set delegates for buttom tab bar
     [self.tabbar setDelegate:self];
     
-    //JSon: load table info
+    //Load table infos
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"tables" ofType:@"json"];
     NSData *data = [[NSFileManager defaultManager] contentsAtPath:filePath];
     self.tables = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
@@ -52,7 +52,7 @@
     UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithCustomView:button1];
     self.navigationItem.rightBarButtonItem = button;
     
-    //load buttons
+    //show table buttons
     [self createTableButtonsFromArray:self.tables];
 }
 
@@ -65,7 +65,6 @@
     }
    
     NSArray *arr;
-     //NSLog(@"aa %@",item.title);
     if ([item.title isEqualToString:@"Busy"]) {
         
         arr = [self filterTablesWithArray:self.tables andState:@"busy"];
@@ -81,7 +80,7 @@
 }
 
 
-#pragma mark - button actions -
+#pragma mark - UIButton actions -
 
 
 - (void)didPressTableHasOrder:(UIButton *)sender
@@ -111,19 +110,7 @@
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
--(NSArray *)filterTablesWithArray:(NSArray *)arr andState:(NSString *)state{
-    NSMutableArray *result = [[NSMutableArray alloc]init];
-    for (NSDictionary *table in arr) {
-         NSString *tablestate = [table objectForKey:@"state"];
-        if([state isEqualToString:tablestate]){
-            [result addObject:table];
-        }
-            
-    }
-    return [result copy];
-}
-
-
+#pragma mark - creating buttons -
 
 -(void) createTableButtonsFromArray:(NSArray *) arr{
     
@@ -146,8 +133,6 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         
         if ([tablestate isEqualToString:@"free"]) {
-          //  button.backgroundColor = [UIColor greenColor];
-            
             [button addTarget:self
                        action:@selector(didPressTableNeedsOrder:) forControlEvents:UIControlEventTouchUpInside];
         }else if ([tablestate isEqualToString:@"busy"]) {
@@ -156,10 +141,9 @@
             [button addTarget:self
                        action:@selector(didPressTableHasOrder:) forControlEvents:UIControlEventTouchUpInside];
         }else{
-          //  button.backgroundColor = [UIColor yellowColor];
             [button addTarget:self
                        action:@selector(didPressTableNeedsOrder:) forControlEvents:UIControlEventTouchUpInside];
-}
+        }
         
         button.tag = 2000+tableid;
         
@@ -222,6 +206,8 @@
     [self.scrollView setContentSize:CGSizeMake(width, ypos)];
 }
 
+#pragma mark - Alerts & utilities -
+
 -(void)alertNotifications{
     UIAlertView * alert = [[UIAlertView alloc]
                            initWithTitle:@"Notifications"
@@ -232,6 +218,18 @@
     
     alert.tag = 20;
     [alert show];
+}
+
+-(NSArray *)filterTablesWithArray:(NSArray *)arr andState:(NSString *)state{
+    NSMutableArray *result = [[NSMutableArray alloc]init];
+    for (NSDictionary *table in arr) {
+        NSString *tablestate = [table objectForKey:@"state"];
+        if([state isEqualToString:tablestate]){
+            [result addObject:table];
+        }
+        
+    }
+    return [result copy];
 }
 
 @end

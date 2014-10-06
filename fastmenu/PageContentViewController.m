@@ -47,7 +47,7 @@
     [self createMenuItemButtonsFromArray:self.list];
 }
 
-
+#pragma mark - Creating Buttons -
 
 -(void) createMenuItemButtonsFromArray:(NSArray *) arr{
     
@@ -119,20 +119,9 @@
     [self.scrollView setContentSize:CGSizeMake(0, ypos)];
 }
 
--(int)getQuantityOrderedOfThisPlate:(NSString *)name{
-    
-    for (NSDictionary *p in self.orders) {
-        NSString *platename = [p objectForKey:@"name"];
-        NSString *platestate = [p objectForKey:@"state"];
 
-        if ([platename isEqualToString:name] && [platestate isEqualToString:@"new"]) {
-            return [[p objectForKey:@"quantity"] intValue];
-        }
-    }
-    return -1;
-}
+#pragma mark - Button Actions -
 
-#pragma mark - UIButton click events -
 -(void)onClickPlusBtn:(UIButton *)sender
 {
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] init];
@@ -174,7 +163,8 @@
 }
 
 
-#pragma mark - UIAlerts -
+#pragma mark - Alerts & Utitilies -
+
 -(void)alertMenuItem:(NSString *)name{
     UIAlertView * alert = [[UIAlertView alloc]
                            initWithTitle:name
@@ -194,5 +184,18 @@
                            cancelButtonTitle:@"Cancel"
                            otherButtonTitles:@"Normal Price",@"Weekend Price",@"Special Price",nil];
     [alert show];
+}
+
+-(int)getQuantityOrderedOfThisPlate:(NSString *)name{
+    
+    for (NSDictionary *p in self.orders) {
+        NSString *platename = [p objectForKey:@"name"];
+        NSString *platestate = [p objectForKey:@"state"];
+        
+        if ([platename isEqualToString:name] && [platestate isEqualToString:@"new"]) {
+            return [[p objectForKey:@"quantity"] intValue];
+        }
+    }
+    return -1;
 }
 @end

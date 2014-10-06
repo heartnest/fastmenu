@@ -58,6 +58,8 @@
 }
 
 
+#pragma mark - creating buttons -
+
 
 -(void) createMenuItemButtonsFromArray:(NSArray *) arr{
     
@@ -238,7 +240,7 @@
 }
 
 
-#pragma mark - Button click handlers -
+#pragma mark - Button Actions -
 
 -(void)addNewPlate{
     NSLog(@"add new plate tapped");
@@ -278,6 +280,8 @@
         [alert show];
     }
 }
+
+#pragma mark - Alerts -
 
 -(void)alertChangeServiceFee{
     UIAlertView * alert = [[UIAlertView alloc]
