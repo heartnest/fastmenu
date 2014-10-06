@@ -39,9 +39,11 @@
     NSArray *tables = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     NSDictionary *table = [tables objectAtIndex:self.tableid - 2001];
     self.orders = [table objectForKey:@"orders"];
+    
  //   NSLog(@"%@",self.orders);
     [self createMenuItemButtonsFromArray:self.list];
 }
+
 
 
 -(void) createMenuItemButtonsFromArray:(NSArray *) arr{

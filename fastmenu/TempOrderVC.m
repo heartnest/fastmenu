@@ -11,9 +11,9 @@
 
 @interface TempOrderVC () <UIGestureRecognizerDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic)  UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak,nonatomic) NSArray *orders;
+@property (strong,nonatomic) NSArray *orders;
 @property  (strong,nonatomic) UITextField *textField;
 
 
@@ -27,17 +27,9 @@
 {
     //[super viewDidLoad];
 
-    
-    
-
-    
-    
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     [self.view addGestureRecognizer:tap];
-//    self.titleLabel.text = self.category;
-//    [self createMenuItemButtonsFromArray:self.list];
-//    
-    
+  
     self.titleLabel.text = self.category;
     int realtableid = self.tableid - 2001;
     
@@ -49,6 +41,22 @@
     
     [self createMenuItemButtonsFromArray:self.orders];
 }
+
+
+-(void)setOrders:(NSArray *)orders{
+    
+    if (_orders == nil) {
+        _orders = [[NSArray alloc ] init];
+    }
+    
+    _orders = orders;
+    
+    [[NSUserDefaults standardUserDefaults]setObject:orders forKey:[[NSString alloc] initWithFormat:@"ordersOfTable%i",self.tableid]];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    
+    
+}
+
 
 
 -(void) createMenuItemButtonsFromArray:(NSArray *) arr{

@@ -12,7 +12,6 @@
 
 @interface MenuViewController () <UIPageViewControllerDataSource>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (strong,nonatomic) NSArray *categories;
 @property (weak, nonatomic) IBOutlet UIView *pageview;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *totalLabel;
 
@@ -20,9 +19,8 @@
 @property NSString *imageFile;
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 
-@property (strong, nonatomic) NSArray *pageTitles;
-@property (strong, nonatomic) NSArray *pageImages;
 @property (strong,nonatomic) NSArray *menuArray;
+@property (strong,nonatomic) NSArray *categories;
 
 @property (nonatomic) int currentPageID;
 
@@ -43,9 +41,20 @@
     [super viewDidLoad];
 
     //load menu data
+    
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"menu" ofType:@"json"];
     NSData *data = [[NSFileManager defaultManager] contentsAtPath:filePath];
     self.menuArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    
+    //load table data
+    
+//    NSString *filePath2 = [[NSBundle mainBundle] pathForResource:@"tables" ofType:@"json"];
+//    NSData *data2 = [[NSFileManager defaultManager] contentsAtPath:filePath2];
+//    NSArray *tables = [NSJSONSerialization JSONObjectWithData:data2 options:0 error:nil];
+//    NSDictionary *table = [tables objectAtIndex:self.tableid - 2001];
+//    self.orders = [table objectForKey:@"orders"];
+//    
+//    
     
     // Create page view controller
     
@@ -89,12 +98,12 @@
     [titleLabel setTitle:tablenum forState:UIControlStateNormal];
     titleLabel.frame = CGRectMake(0, 0, 70, 44);
     [titleLabel setTitleColor:[UIColor colorWithRed:0/255.0 green:122/255.0 blue:255.0/255.0 alpha:1.0] forState:UIControlStateNormal];
-    [titleLabel addTarget:self action:@selector(titleTap:) forControlEvents:UIControlEventTouchUpInside];
+    [titleLabel addTarget:self action:@selector(alertChangeTable:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = titleLabel;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"🔔" style:UIBarButtonItemStylePlain  target:self action:@selector(alertNotifications)];
     
-   // [self alertNotifications];
+    //[self alertNotifications];
     
     //trival things
     self.totalLabel.tintColor = [UIColor blackColor];
@@ -104,6 +113,17 @@
         [self alertNumPeople];
     }
     
+    
+    //left bar button
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Tables" style:UIBarButtonItemStyleBordered target:self action:@selector(toTables:)];
+    
+    self.navigationItem.leftBarButtonItem = cancelButton;
+}
+
+#pragma mark - UIButton Press -
+
+-(void)toTables:(id)sender{
+    [self alertItemsNotSubmited];
 }
 
 
@@ -377,6 +397,7 @@
                            cancelButtonTitle:@"OK"
                            otherButtonTitles:@"Call from table 2",@"Call from table 3",@"Meal ready for table 5",nil];
     
+    alert.tag = 20;
     [alert show];
 }
 
@@ -387,25 +408,37 @@
                            delegate:self
                            cancelButtonTitle:@"OK"
                            otherButtonTitles:nil];
-    
+    alert.tag = 30;
     [alert show];
 }
 
 
 
 -(void)alertItemsNotSubmited{
-    UIAlertView * alert = [[UIAlertView alloc]
-                           initWithTitle:@"Number of People"
-                           message:@"Please insert the number of people"
-                           delegate:self
-                           cancelButtonTitle:@"OK"
-                           otherButtonTitles:@"+1",@"add note",@"-1",nil];
-    [alert show];
+    
+    NSArray *arr = [[NSUserDefaults standardUserDefaults] objectForKey: [[NSString alloc] initWithFormat:@"ordersOfTable%i",self.tableid]];
+    
+    if ([self doesMenuContainNewPlate:arr]) {
+        UIAlertView * alert = [[UIAlertView alloc]
+                               initWithTitle:@"Orders have not been sent!"
+                               message:@"If you leave, temporal orders will be deleted"
+                               delegate:self
+                               cancelButtonTitle:@"Leave"
+                               otherButtonTitles:@"Stay",nil];
+        alert.tag = 40;
+        [alert show];
+    }else{
+        [self backToTablesList];
+    }
+    
+    
+
 }
 
-- (IBAction) titleTap:(id) sender
+
+- (void)alertChangeTable:(id) sender
 {
-    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Free tables to go" message:@"" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Free tables to go" message:@"" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
     UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 230, 150)];
     
     int x=0,y=0;
@@ -430,9 +463,9 @@
     }
     
     
-    [av setValue:v forKey:@"accessoryView"];
-    //v.backgroundColor = [UIColor yellowColor];
-    [av show];
+    [alert setValue:v forKey:@"accessoryView"];
+    alert.tag = 50;
+    [alert show];
 }
 
 
@@ -442,7 +475,30 @@
     if (alertView.tag == 10) {
         NSLog(@"Entered: kk %@",[[alertView textFieldAtIndex:0] text]);
     }
+    if (alertView.tag == 40) {
     
+        if (buttonIndex == 0) {
+            [self backToTablesList];
+        }else if(buttonIndex == 1) {
+            //NSLog(@"11");
+        }
+    }
+    
+}
+
+-(BOOL)doesMenuContainNewPlate:(NSArray *)arr{
+    BOOL res = NO;
+    for (NSDictionary *d in arr) {
+        NSString *tmp = [d objectForKey:@"state"];
+        if ([tmp isEqualToString:@"new"]) {
+            res = YES;
+            break;
+        }
+    }
+    return res;
+}
+-(void)backToTablesList{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

@@ -7,7 +7,7 @@
         <!--Table View Controller - Tables-->
         <scene sceneID="Xam-R0-jom">
             <objects>
-                <viewController id="4iK-AU-xF9" customClass="TableViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tables-story-id" id="4iK-AU-xF9" customClass="TableViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5Lq-8z-lmX"/>
                         <viewControllerLayoutGuide type="bottom" id="qnb-5S-HLB"/>
