@@ -21,7 +21,7 @@
 
 @property (strong,nonatomic) NSArray *menuArray;
 @property (strong,nonatomic) NSArray *categories;
-
+@property (strong,nonatomic) UIAlertView *tmpalert;
 @property (nonatomic) int currentPageID;
 
 @end
@@ -85,7 +85,7 @@
     
     
     //top left bar button
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Tables" style:UIBarButtonItemStyleBordered target:self action:@selector(toTables:)];
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"〈 Tables" style:UIBarButtonItemStyleBordered target:self action:@selector(toTables:)];
     self.navigationItem.leftBarButtonItem = cancelButton;
     
     
@@ -101,7 +101,12 @@
     self.navigationItem.titleView = titleLabel;
     
      //top right button
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"🔔" style:UIBarButtonItemStylePlain  target:self action:@selector(alertNotifications)];
+    UIButton *button1=[UIButton buttonWithType:UIButtonTypeCustom];
+    [button1 setFrame:CGRectMake(0.0, 0.0, 25.0, 25.0)];
+    [button1 addTarget:self action:@selector(alertNotifications) forControlEvents:UIControlEventTouchUpInside];
+    [button1 setImage:[UIImage imageNamed:@"bell36red.png"] forState:UIControlStateNormal];
+    UIBarButtonItem *buttonbell = [[UIBarButtonItem alloc]initWithCustomView:button1];
+    self.navigationItem.rightBarButtonItem = buttonbell;
     
 
     
@@ -113,10 +118,9 @@
     if (self.tablestate == 0) {
         [self alertNumPeople];
     }
-    
-    
 
 }
+
 
 #pragma mark - UIButton Press -
 
@@ -425,7 +429,10 @@
     
     [alert setValue:v forKey:@"accessoryView"];
     alert.tag = 50;
+    
+    self.tmpalert = alert;
     [alert show];
+    
 }
 
 

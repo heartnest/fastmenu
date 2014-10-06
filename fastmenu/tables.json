@@ -21,9 +21,9 @@
  "person":3,
  "orders": [
             {"name":"Red Tea","price":4,"quantity":1,"state":"new"},
-            {"name":"Banshee","price":4,"quantity":1,"state":"new"},
+            {"name":"Banshee","price":4,"quantity":1,"state":"new","note":"2 with ice and one without"},
         {"name":"Green Tea","price":4,"quantity":1,"state":"sent"},
-        {"name":"Black Tea","price":4,"quantity":1,"state":"sent"},
+        {"name":"Black Tea","price":4,"quantity":1,"state":"sent","note":"cold"},
           {"name":"Torta alla frutta","price":4,"quantity":1,"state":"cooking"},
           {"name":"Torta della nonna","price":4,"quantity":1,"state":"ready"},
           {"name":"Pasticci misti","price":11,"quantity":1,"state":"served"}

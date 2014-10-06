@@ -119,6 +119,30 @@
     
 }
 
++(UIButton *)createNoteBtnWithString:(NSString *) str{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    //move text 10 pixels down and right
+    [button setTitleEdgeInsets:UIEdgeInsetsMake(2.0f, 10.0f, 0.0f, 0.0f)];
+    //button layer
+    [[button layer] setBorderWidth:1.0f];
+    [[button layer] setBorderColor: [Tools colorFromHexString:@"#EEC591"].CGColor];
+    
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] init];
+    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    
+    UIFont *font1 = [UIFont fontWithName:@"Helvetica Neue"  size:14.0f];
+    NSDictionary *dict1 = @{NSUnderlineStyleAttributeName:@(NSUnderlineStyleNone),
+                            NSFontAttributeName:font1,
+                            NSForegroundColorAttributeName:[UIColor blackColor],
+                            NSParagraphStyleAttributeName:style}; // Added line
+    
+    [attString appendAttributedString:[[NSAttributedString alloc] initWithString:[[NSString alloc] initWithFormat:@"%@",str ]      attributes:dict1]];
+    [button setAttributedTitle:attString forState:UIControlStateNormal];
+    return button;
+    
+}
+
 
 +(UIColor *)colorFromHexString:(NSString *)hexString {
     unsigned rgbValue = 0;

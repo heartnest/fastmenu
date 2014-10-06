@@ -99,7 +99,7 @@
     UIButton *addNewPlateBtn = [Tools createPlusBtnComponentWithQnt:@"✚" andColor:nil];
     
     [addNewPlateBtn addTarget:self
-               action:@selector(aMethod)
+               action:@selector(addNewPlate)
      forControlEvents:UIControlEventTouchUpInside];
     addNewPlateBtn.frame = CGRectMake(marginleft, 10.0, functnWidh, boxheight);
     
@@ -120,6 +120,8 @@
         NSString *quantity = [item objectForKey:@"quantity"];
         NSString *x = [[NSString alloc] initWithFormat:@"%@",quantity];
         NSString *state = [item objectForKey:@"state"];
+        NSString *note = [item objectForKey:@"note"];
+        
 
         // Buttons declaration
         UIButton *platePlusButton,*plateMinuesButton,*plateContentButton;
@@ -176,9 +178,8 @@
             
             UILongPressGestureRecognizer *gr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressKitPrice:)];
             [plateContentButton addGestureRecognizer:gr];
-            
-            
         }
+        
         
 
         
@@ -192,8 +193,21 @@
         [self.scrollView addSubview:plateMinuesButton];
         [self.scrollView addSubview:plateContentButton];
         
+        
+        
         ypos += boxheight + margintop;
         
+        if (note != nil && ![note isEqualToString:@""]) {
+            UIButton *notebtn = [Tools createNoteBtnWithString:note];
+            UIButton *noteminus = [Tools createPlusBtnComponentWithQnt:@"➖" andColor:nil];
+            notebtn.frame = CGRectMake(marginleft+functnWidh+5, ypos, boxwidth, boxheight );
+            noteminus.frame = CGRectMake(marginleft+functnWidh+boxwidth+10, ypos, functnWidh, boxheight);
+            [self.scrollView addSubview:notebtn];
+            [self.scrollView addSubview:noteminus];
+            ypos += boxheight + margintop;
+            [notebtn addTarget:self
+                    action:@selector(alertAddNote) forControlEvents:UIControlEventTouchUpInside];
+        }
         
     }
     
@@ -226,14 +240,13 @@
 
 #pragma mark - Button click handlers -
 
--(void)aMethod{
-    NSLog(@"aa");
+-(void)addNewPlate{
+    NSLog(@"add new plate tapped");
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)recognizer
 {
-    
-    NSLog(@"aa");
+    NSLog(@"tapped outside");
     [self.textField resignFirstResponder];
 }
 
@@ -246,7 +259,10 @@
                                delegate:self
                                cancelButtonTitle:@"Cancel"
                                otherButtonTitles:@"+1",@"Note",@"Correct price",@"-1",nil];
+        
+        alert.tag = 110;
         [alert show];
+        
     }
 }
 
@@ -258,6 +274,7 @@
                                delegate:self
                                cancelButtonTitle:@"Cancel"
                                otherButtonTitles:@"Correct",nil];
+        alert.tag = 120;
         [alert show];
     }
 }
@@ -272,8 +289,49 @@
 
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeDecimalPad];
+    alert.tag = 130;
     [alert show];
 }
 
+-(void)alertAddNote{
+    UIAlertView * alert = [[UIAlertView alloc]
+                           initWithTitle:@"Note"
+                           message:@""
+                           delegate:self
+                           cancelButtonTitle:@"Cancell"
+                           otherButtonTitles:@"Confirm",nil];
+    
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeDefault];
+    alert.tag = 140;
+    [alert show];
+}
+
+-(void)alertCorrectPrice{
+    UIAlertView * alert = [[UIAlertView alloc]
+                           initWithTitle:@"Price"
+                           message:@""
+                           delegate:self
+                           cancelButtonTitle:@"OK"
+                           otherButtonTitles:nil];
+    
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeDecimalPad];
+    alert.tag = 140;
+    [alert show];
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == 110 || alertView.tag == 100) {
+        NSLog(@"a");
+        if (buttonIndex == 2) {
+            [self alertAddNote];
+        }else if(buttonIndex == 3) {
+            [self alertCorrectPrice];
+        }
+        
+    }
+}
 @end
 

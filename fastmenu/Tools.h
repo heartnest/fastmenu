@@ -14,6 +14,6 @@
 + (UIButton *)createPlusBtnComponentWithQnt:(NSString *)quantity andColor:(NSString *)cl;
 +(UIButton *)createCopertoBtnWithNumPeople:(float) copertoCost;
 +(UIColor *)colorFromHexString:(NSString *)cl;
-
++(UIButton *)createNoteBtnWithString:(NSString *) str;
 //+(UIButton *)createCategoryBtnComponentWithName:(NSString *)name;
 @end

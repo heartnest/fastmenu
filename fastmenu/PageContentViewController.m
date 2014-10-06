@@ -169,21 +169,20 @@
 }
 -(void)onClickPlateBtn:(UIButton *)sender
 {
-    
-    int tid = (int)sender.tag;
-    NSLog(@"Plate button tag %i",tid);
-    [self alertMenuItem];
+    NSString *platename = sender.titleLabel.text;
+    [self alertMenuItem:platename];
 }
 
 
 #pragma mark - UIAlerts -
--(void)alertMenuItem{
+-(void)alertMenuItem:(NSString *)name{
     UIAlertView * alert = [[UIAlertView alloc]
-                           initWithTitle:@"Plate"
+                           initWithTitle:name
                            message:@""
                            delegate:self
                            cancelButtonTitle:@"Cancel"
                            otherButtonTitles:@"+1",@"Note",@"Correct price",@"-1",nil];
+    alert.tag = 100;
     [alert show];
 }
 

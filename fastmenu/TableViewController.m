@@ -43,8 +43,14 @@
     NSData *data = [[NSFileManager defaultManager] contentsAtPath:filePath];
     self.tables = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 
-    //top right button
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"🔔" style:UIBarButtonItemStylePlain  target:self action:@selector(alertNotifications)];
+
+    //right top button
+    UIButton *button1=[UIButton buttonWithType:UIButtonTypeCustom];
+    [button1 setFrame:CGRectMake(0.0, 0.0, 20.0, 20.0)];
+    [button1 addTarget:self action:@selector(alertNotifications) forControlEvents:UIControlEventTouchUpInside];
+    [button1 setImage:[UIImage imageNamed:@"bell36.png"] forState:UIControlStateNormal];
+    UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithCustomView:button1];
+    self.navigationItem.rightBarButtonItem = button;
     
     //load buttons
     [self createTableButtonsFromArray:self.tables];
