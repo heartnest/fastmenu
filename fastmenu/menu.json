@@ -2,6 +2,7 @@
  {
     "category": "Soft Drink",
     "list": [
+             {"name":"Orange Juice","price":5},
                  {"name":"Anita","price":5},
                  {"name":"Banshee","price":5},
              {"name":"B52","price":5},
@@ -46,6 +47,21 @@
           {"name":"Gin Fizz","price":3.5}
           ]
  },
+ {
+ "category": "Coffee",
+ "list": [
+          {"name":"Expresso","price":1},
+          {"name":"Cappucino","price":1},
+          {"name":"Macchiato","price":1},
+          {"name":"Shakerato","price":2},
+          {"name":"Caffe latte","price":1},
+          {"name":"Bianca neve","price":1},
+          {"name":"Caffe ginsen","price":1},
+          {"name":"Cioccolato caldo","price":1},
+          {"name":"Crema di caffè","price":1}
+          ]
+ }
+ ,
  {
  "category": "Tea",
  "list": [

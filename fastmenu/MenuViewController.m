@@ -338,7 +338,7 @@
 -(void)alertNumPeople{
     UIAlertView * alert = [[UIAlertView alloc]
                            initWithTitle:@""
-                           message: [[NSString alloc ] initWithFormat:@"How many people for table %i?",self.tableid-2000]
+                           message: [[NSString alloc ] initWithFormat:@"Number of people for table %i?",self.tableid-2000]
                            delegate:self
                            cancelButtonTitle:@"Cancel"
                            otherButtonTitles:@"OK",nil];

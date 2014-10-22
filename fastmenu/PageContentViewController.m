@@ -51,13 +51,14 @@
 
 -(void) createMenuItemButtonsFromArray:(NSArray *) arr{
     
+    
 
     //get var,create table buttons
     int margintop = 6;
     int marginleft = 6;
 
     double width = self.scrollView.frame.size.width;
-    double ypos = margintop;
+    double ypos = margintop + 24;
     
     //   double xpos = marginleft;
     double boxwidth = width*85/128;

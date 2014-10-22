@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E16B90419F556B800C0DC26 /* tavolo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E16B90319F556B800C0DC26 /* tavolo.png */; };
+		2E16B90619F556CD00C0DC26 /* tavologb.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E16B90519F556CD00C0DC26 /* tavologb.png */; };
 		2E20BC6519B07BEE00540E78 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E20BC6419B07BEE00540E78 /* Foundation.framework */; };
 		2E20BC6719B07BEE00540E78 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E20BC6619B07BEE00540E78 /* CoreGraphics.framework */; };
 		2E20BC6919B07BEE00540E78 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E20BC6819B07BEE00540E78 /* UIKit.framework */; };
@@ -24,7 +26,6 @@
 		2E9DF16419E308FB0096865B /* bell36.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E9DF16319E308FB0096865B /* bell36.png */; };
 		2E9DF16619E30DC50096865B /* bell36red.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E9DF16519E30DC50096865B /* bell36red.png */; };
 		2EA631FF19CC598600C2447A /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA631FE19CC598600C2447A /* TableViewController.m */; };
-		2EA6320419CC722800C2447A /* tavolo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EA6320319CC722800C2447A /* tavolo.png */; };
 		2EA6320719CC760900C2447A /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA6320619CC760900C2447A /* MenuViewController.m */; };
 		2EA6326D19CDA85000C2447A /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA6326C19CDA85000C2447A /* PageContentViewController.m */; };
 		2EA6327119CDF5BC00C2447A /* menu.json in Resources */ = {isa = PBXBuildFile; fileRef = 2EA6327019CDF5BC00C2447A /* menu.json */; };
@@ -47,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E16B90319F556B800C0DC26 /* tavolo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tavolo.png; path = img/tavolo.png; sourceTree = "<group>"; };
+		2E16B90519F556CD00C0DC26 /* tavologb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tavologb.png; path = img/tavologb.png; sourceTree = "<group>"; };
 		2E20BC6119B07BEE00540E78 /* fastmenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fastmenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E20BC6419B07BEE00540E78 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2E20BC6619B07BEE00540E78 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -69,7 +72,6 @@
 		2E9DF16519E30DC50096865B /* bell36red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bell36red.png; path = img/bell36red.png; sourceTree = "<group>"; };
 		2EA631FD19CC598600C2447A /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		2EA631FE19CC598600C2447A /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
-		2EA6320319CC722800C2447A /* tavolo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tavolo.png; path = img/tavolo.png; sourceTree = "<group>"; };
 		2EA6320519CC760900C2447A /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		2EA6320619CC760900C2447A /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		2EA6326B19CDA85000C2447A /* PageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContentViewController.h; sourceTree = "<group>"; };
@@ -164,8 +166,9 @@
 			children = (
 				2EA6327019CDF5BC00C2447A /* menu.json */,
 				2EA6327519CEEE4800C2447A /* tables.json */,
+				2E16B90319F556B800C0DC26 /* tavolo.png */,
+				2E16B90519F556CD00C0DC26 /* tavologb.png */,
 				2E9DF16119E2E34B0096865B /* points.png */,
-				2EA6320319CC722800C2447A /* tavolo.png */,
 				2E20BC7319B07BEE00540E78 /* FMAppDelegate.h */,
 				2E20BC7419B07BEE00540E78 /* FMAppDelegate.m */,
 				2E20BC6C19B07BEE00540E78 /* fastmenu-Info.plist */,
@@ -280,11 +283,12 @@
 				2EA6327119CDF5BC00C2447A /* menu.json in Resources */,
 				2E9DF16219E2E34B0096865B /* points.png in Resources */,
 				2E9DF16619E30DC50096865B /* bell36red.png in Resources */,
+				2E16B90419F556B800C0DC26 /* tavolo.png in Resources */,
 				2E20BC7D19B07BEE00540E78 /* Images.xcassets in Resources */,
 				2EA6327619CEEE4800C2447A /* tables.json in Resources */,
 				2E20BC6F19B07BEE00540E78 /* InfoPlist.strings in Resources */,
-				2EA6320419CC722800C2447A /* tavolo.png in Resources */,
 				2E20BC7819B07BEE00540E78 /* Main.storyboard in Resources */,
+				2E16B90619F556CD00C0DC26 /* tavologb.png in Resources */,
 				2EFF18EC19DC4A08005E738A /* 58.png in Resources */,
 				2EFF18ED19DC4A08005E738A /* 80.png in Resources */,
 				2E9DF16419E308FB0096865B /* bell36.png in Resources */,

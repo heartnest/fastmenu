@@ -1,0 +1,454 @@
+La cameriera 
+di una caffetteria
+Corso di Interazione Persona/Computer
+123
+ABCIndice
+
+La cameriera 	1
+di una caffetteria	1
+Indice	2
+Introduzione	4
+Descrizione	4
+Schema	4
+Analisi etnografica & Studio di fattibilità	5
+Segmentazione del target di utenza	5
+Contesto d’uso	10
+Goal & task	10
+Scenari d’uso	11
+Valutazione dei sistemi esistenti	14
+Expert Usability Review	14
+Scelta delle linee guida	14
+Prima esplorazione del sistema	17
+Waiterio	17
+Analisi diretta	24
+Analisi inversa	24
+Conclusione	25
+User testing	26
+Definizione del protocollo di testing	26
+Protocollo di testing	26
+Task	26
+Test e soggetti	27
+Metodologia di testing	27
+Analisi dei dati	30
+Proposta di intervento	33
+Modello di design	33
+Concetti	33
+Operazioni	33
+Architettura dell’informazione	34
+Design dell’interazione	35
+Prototipo di interfaccia	36
+Valutazione dell’intervento	39
+Ispezione del progetto	39
+User testing	41
+La prima fase di testing	41
+Conclusioni e raccomandazioni	43Introduzione
+
+
+Descrizione
+
+Il sistema di cui ci siamo occupati è destinato ad una caffetteria o ad un ristorante, ed è composto da una serie di device portabili e ambientali che possono interagire tra di loro (ad esempio attraverso una rete wifi).
+
+Schema
+
+Nei prossimi capitoli, partendo da considerazioni di carattere Analisi etnografica & Studio di fattibilità
+
+
+Vediamo per prima cosa una caratterizzazione degli utenti che prevediamo siano i destinatari del nostro sistema.
+Segmentazione del target di utenza
+
+Come abbiamo già detto, gli utenti primari del sistema che stiamo progettando sono le cameriere, mentre gli utenti secondari sono i clienti del ristorante, i cuochi, il cassiere.
+Diamo una migliore caratterizzazione delle cameriere: sono tutte persone diplomate, ma molto poche le laureate; hanno un’età compresa tra i venti e i quarant’anni (un 25 anni di media). La giovane età e un grado di istruzione alto favoriscono un rapido apprendimento del funzionamento del sistema. C’è anche da considerare il fatto che un quarto delle cameriere lavora in part-time, e una cameriera su dieci lavora a tempo determinato; il costante ricambio del personale pone il vincolo che la curva di apprendimento del sistema sia bassa.
+Le principali capacità che influenzano l’utilizzo del sistema sono la conoscenza del lavoro al bar e la conoscenza di dispositivo elettronico. Sulla base dei livelli di quelle due capacità, dividiamo i camerieri in tre principali tipi :
+Quello esperto, che conosce il lavoro di caffetteria bene e padroneggia bene gli strumenti, può apprendere e utilizzare un sistema che consente la gestione delle ordinazioni al bar facilmente.
+Quello non tecnologico, che conosce il lavoro di caffetteria bene, ma non conosce dispositivi elettronici e termini tecnologici bene.
+Quello inesperto, che non conosce bene ne il lavoro di caffetteria ne l’utilizzo di dispositivi elettronici. 
+User research
+Tramite interagire con i ragazzi che stanno lavorando o hanno lavorato come un cameriere, conosciamo il contesto di task in cui l’utente userebbe il sistema. I passi lavorativi per un cameriere sono:
+Accoglie i clienti facendoli accomodare ai tavoli e porge loro il menu cartaceo.
+Quando le persone sono pronte, prende l’ordine con un dispositivo apposito.
+Non appena ha finito di prendere l’ordine, viene stampata la lista dei prodotti ordinati da un altro dispositivo situato nella cucina, nel banco, ecc..
+Quando il prodotto è pronto, la cucina e il banco chiamano il cameriere, il cameriere prende il prodotto ai clienti. Mentre mangiano, i clienti possono aggiungere nuovo prodotto o cancellare prodotto ordinato.
+Una volta terminata la consumazione, i clienti vanno alla cassa dove possono pagare il conto. Al momento del pagamento possono essere riscontrati degli errori nel conto: l’addetta alla cassa può risalire alla cameriera che ha preso l’ordine. 
+
+
+
+
+
+
+Contesto d’uso
+
+La descrizione del progetto ha gi  specificato dettagliatamente il contesto d’uso, il contesto d’uso è una caffetteria/ristorante in pieno centro, con prezzi medio-alti e con una clientela straniera cospicua. Nella caffetteria rannstallato un sistema composto da una serie di device portabili e ambientali in grado di interagire fra loro.
+I clienti, essendo i prezzi moderatamente alti, sono esigenti, e tendono a spazientirsi in fretta e a cambiare idea su quello che vogliono. Molto spesso accade che mentre la cameriera sta sparecchiando tavoli o portando ordini, venga richiamata da persone sedute ad altri tavoli che le chiedono di aggiungere prodotti al volo. In questi frangenti, la cameriera ha sempre almeno una mano occupata e pu portando ordini, venga richiamata da persone 3 cafff pu portando ordini, venga richiamatato (non si vede, se lo deve ricordare a memoria).
+Ci sono momenti in cui la caffetteria a memoria).rsone sedute ad altri tavoli che le chiedono di aggiungere prodototico e strano, che la cameriera non conosce e non ha mai sentito nominare perché è appena stato inserito nel menu. Contemporaneamente viene chiamata dal tavolo affianco che vuole modificare lare ldute ad altri tavoliico.
+Sempre per accogliere al meglio i clienti molto esigenti del locale, la cameriera non puedono di aggiungere prodorsi al tavolo e chiedere le ordinazioni prima che i clienti siano effettivamente pronti a prenotare e deve essere però pronta a prendere le ordinazioni o ad ascoltare ogni successiva richiesta del cliente senza che questo si sforzi di chiamarla, con il rischio magari di non venire sentito.
+La caffetteria/ristorante ha un costante e cospicuo ricambio di personale, pertanto il software deve essere facile da imparare e capire.
+
+Goal & task
+I goal principali per diversi ruoli sono:
+Per la cameriere:
+Un sistema che gli aiuta a svolgere il loro lavoro meglio, a risparmiare il tempo e la forza. Aumentare l’efficacia di lavoro.
+Per il titolare:
+Avere un sistema che permetta di migliorare la gestione del locale, migliorando l’esperienza dei clienti
+Controllare il lavoro delle cameriere.
+Per la cassa e la cucina:
+Potere richiamare le cameriere in caso di necessità.
+Per i clienti:
+Essere servito con alta qualità di servizio 
+Non essere disturbati quando non si ha bisogno della cameriera.
+I task da compiere sono:
+Creazione di un conto: quando il cliente e’ pronto per ordinare, la cameriera prende l’ordinazione con il dispositivo. Deve selezionare il tavolo, aggiungere i piatti scelti dal menu. A volte deve aggiungere manualmente i piatti che compaiono sul menu cartaceo ma che non sono ancora stati aggiunti al menu digitale. Inoltre, il supporto di aggiungere le note per i piatti e’ necessario.
+Interrogazione di conti creati: per sapere la situazione di ogni conto, e’ possibile controllare tutti i dettagli dei conti esistenti.
+Modificazione di un conto: e’ possibile modificare un conto gia’ esistente aggiungendo nuovi piatti, note o eliminando piatti ordinati precedentemente.Inoltre, e’ possibile che spostare un conto a un altro tavolo quando il cliente richiede di spostarsi in un altro tavolo.
+Eliminazione di un conto: e’ possibile eliminare un conto quando ci sono dei errori o il cliente lascia il tavolo.
+La collaborazione con la cucina e con la cassa: quando il cuoco o la cassiera ha dubbio o bisogno di richiamare la cameriera, e’ possibile ricevere il richiamo con un messaggio.
+ 
+Scenari d’uso
+
+Dopo aver compreso e studiato poco sopra i task e i goal del sistema, usiamo ora i personaggi per scrivere degli scenari in cui questi utenti portano a termine i loro obiettivi personali con il sistema attraverso quei task.
+
+Scenario 1
+Lyn lavora in un ristorante cinese come cameriera nei fine settimana. Sa fare bene il suo lavoro, ma non ha mai preso le ordinazioni, perché c’è un’altra ragazza che invece lavora a tempo pieno e prende lei di solito le ordinazioni; in un certo senso, Lyn deve aiutare la cameriera.
+Un giorno arrivano molti clienti, e una sola ragazza non basta a prendere le ordinazioni, e il titolare chiede a Lyn di aiutare a prendere le ordinazioni dei clienti. Dopo qualche indicazione veloce sul sistema delle ordinazioni, Lyn va dai clienti.
+Arrivano dieci clienti, ordinano molti piatti; e anche se alla fine i piatti ordinati sono simili, in realtà ogni persona ha i suoi diversi gusti. A un cliente piace la cola ghiacciata, a un altro invece senza zucchero; e Lyn deve inserire tutti i prodotti giusti, le preferenze giuste, le giuste quantità.
+Dopo che Lyn ha annotato le ordinazioni, i clienti decidono di cambiare tavolo, perché in quello attuale si sta un po’ stretti in dieci; Lyn deve spostare il loro conto al nuovo tavolo.
+Dato che i clienti hanno ordinato molti piatti di tipo diverso, vogliono ovviamente che i piatti siano serviti in ordine di portata, per evitare che, mentre a una persona sono già state servite diverse portate, un altro cliente invece non ha nemmeno cominciato a mangiare.
+Dopo mezz’ora, due tra i clienti aggiungono nuovi pietanze all’ordinazione, mentre una persona cambia idea e chiede che non gli sia portato un piatto che aveva ordinato precedentemente.
+Quando tutti finiscono di mangiare, vanno alla cassa a pagare, ma hanno dei dubbi sul conto, e credono che nel conto ci siano dei piatti che in realtà non gli sono stati serviti. La cassa richiama Lyn per verificare.
+
+Scenario 2
+Vincenzo ha appena trovato lavoro come cameriere in un ristorante, ma dato che ha cominciato a lavorare solo da poco, non conosce ancora tuttie le pietanze del ristorante, e a volte deve indovinare quello che i clienti intendono. Vista la situazione, vuole che il sistema sia facilissimo da usare e che lo aiuti a segnare correttamente le ordinazioni.
+I clienti ordinano un caffè, un cappuccino e un succo alla pesca. Dopo che l’ordinazione è inserita cambiano idea, e invece del succo alla pesca, vogliono una bottiglia d’acqua rigorosamente a temperatura ambiente. Vincenzo deve cancellare subito il succo e aggiungere una bottiglia d’acqua, specificando che l’acqua va a temperatura ambiente.
+Mentre prende l’ordinazione per un gruppo di clienti, arriva un altro gruppo di clienti; dopo essersi accomodati ad un tavolo, desiderano due bottiglie d’acqua fredda il più presto possibile, perché hanno molta sete. Vincenzo deve subito creare una nuova ordinazione per i clienti appena arrivati. Dopodiché va a prendere la bottiglia d’acqua a temperatura ambiente e le due fredde per i due diversi tavoli: deve stare attento a non dimenticare cosa è di chi.
+
+Scenario 3
+Valutazione dei sistemi esistenti
+
+In questa sezione analizzeremo alcuni tra le soluzioni e i software commercializzati ed effettivamente in uso nel campo della ristorazione, e proporremo un confronto fra questi.
+
+Considereremo con particolare attenzione due applicazioni per una valutazione approfondita: il primo software è Waiterio (www.waiterio.com) per smartphone Android; il secondo è un sistema sviluppato da CSI (www.cashsystemes.eu) ed è un prodotto che comprende sia la parte hardware che quella software (PDA).
+
+Anzitutto specifichiamo i paradigmi, le teorie e le linee guida da seguire per lo sviluppo di un sistema di questo tipo, poi eseguiamo le analisi diretta e inversa dei sistemi tenendo conto delle linee guida di riferimento.
+
+In conclusione proporremo una sintesi dei vantaggi e degli svantaggi.
+Expert Usability Review
+Diversamente dal tradizionale test di usabilità, una expert usability review comporta l’ispezione del sistema da parte di specialisti ed esperti del campo per identificare eventuali problemi di usabilità; non fa dunque uso di utenti e per questo è economica e veloce. È spesso preferita al testing vero e proprio, ma al contrario di quest’ultimo non può dare un quadro fedele dell’usabilità del sistema. Dato che non si basa sul feedback di utenti, l’analisi deve piuttosto fondarsi su linee guida individuate in precedenza a partire da principi generali di usabilità.
+Scelta delle linee guida
+Prima dell’esplorazione dei sistemi già esistenti individuiamo dunque delle linee guida che utilizzeremo nelle analisi successive. Scegliamo le linee guida tenendo sempre come punti cardinali le categorie individuate dal MIT.
+
+Navigazione
+In ogni schermata è possibile tornare alla schermata precedente
+Deve essere sempre visibile il tavolo di cui si stanno aggiornando le ordinazioni
+Deve essere sempre visibile il nome della cameriera che sta usando il dispositivo
+Le operazioni più importanti e frequenti sono le più visibili ed evidenti
+
+ Funzionalità
+Si possono completare tutti i task con l’ausilio del sistema
+Nelle schermate dove sono presenti tanti voci simili deve essere presente la funzione di ricerca
+Si deve fornire agli utenti più esperti la possibilità di utilizzare scorciatoie per velocizzare le operazioni
+Le etichette delle funzioni devono essere chiare e non ambigue
+
+Controllo da parte dell’utente
+Tutti i pulsanti e le scelte di lista sono facile da premere o da selezionare
+L'utente deve poter annullare in ogni momento un'operazione appena iniziata senza altre conseguenze sullo stato del sistema
+Quando l’utente abbandona la schermata attuale senza completare l’operazione, gli viene chiesta conferma
+
+Aiuto e guide
+L'applicazione deve essere pensata per richiedere istruzioni e aiuto minimi
+Sono presenti delle istruzioni d’uso e dei suggerimenti sulle funzioni del sistema
+L’ aiuto è accessibile facilmente
+
+Feedback
+Ogni parte dell'interfaccia con cui è possibile interagire deve rispondere con una reazione istantanea e sensibile
+Tutti i feedback devono essere tempestivi
+Al completamento di un compito, l'utente deve riceverne conferma con un chiaro feedback positivo
+
+Coerenza
+Stili d'interazione e stili grafici devono essere coerenti all'interno del sistema
+Gli stessi elementi grafici corrispondono alle azioni uguali
+Il titolo della schermata deve essere significativo e rifletterne il contenuto
+Quando si possono eseguire operazioni simili o uguali, si possono eseguire le stesse operazioni sull'interfaccia e vedere gli stessi elementi grafici
+
+Prevenzione e correzione errori
+Tutte le azioni devono essere reversibili
+Riconoscere più che memorizzare: il sistema deve accumulare le scelte sullo schermo durante la navigazione fino al termine del compito, quando le informazioni non sono più necessarie
+I messaggi di errore devono essere informativi, non gergali e di aiuto effettivo nella risoluzione del problema
+Nel caso d'errore l'interfaccia dovrebbe fornire all'utente strumenti che gli permettano di risolvere il problema
+
+Chiarezza strutturale e visuale
+Lo stile di architettura e layout è sgombro e conciso: "semplice e potente"!
+Si utilizzano diversi stili per distinguere i tavoli occupati da quelli liberi
+Non si devono mettere troppi elementi in una sola schermata
+Operazioni nello stesso contesto sono raggruppate, l’organizzazione degli elementi segue una gerarchia contenutistica e funzionale
+Gli elementi e la relativa funzionalità sono chiaramente visibili
+Ridurre al minimo gli elementi testuali per minimizzare il carico cognitivo, utilizzando icone significative e non ambigue
+L’utente può completare i task con il minor numero possibile di azioni
+
+
+Prima esplorazione del sistema
+Vediamo le caratteristiche principali delle applicazioni già esistenti.
+Waiterio
+
+Waiterio è un software per la gestione di ristorante, con questo programma si possono gestire le ordinazioni, il menu, il personale, controllare lo stato delle prenotazioni; supporta inoltre la prenotazione dei tavoli. Oltra alla versione app per iOS e Android, può essere utilizzato anche come web app, e tutti i dati vengono automaticamente sincronizzati.
+
+
+
+
+Per usare questo software, prima si deve fare il login con un account (fig. 1). Con un account l’utente può accedere in un dato ristorante o bar, per lavorare insieme ad altro personale (manager, cuoco, barista, ...).
+
+Dopo l’accesso viene mostrata la schermata principale, in cui è possibile creare una nuova ordinazione, nella barra superiore ci sono il nome del locale in cui si lavora e il pulsante “Help”. Questa barra è sempre presente (fig. 2a).
+
+
+Una volta creato un nuovo ordine con “+”, si passa ad una schermata dove si possono selezionare i diversi piatti (fig. 3a), in questa schermata, scorrendo orizzontalmente o facendo tap sulle etichette si può cambiare la categoria dei piatti. Cliccando l’icona “+” a sinistra si aggiunge un piatto dopodiché il “+” diventa la quantità ordinata di quel piatto (fig. 3b), cliccando invece il “–” a destra cancella il piatto o diminuisce il numero dei piatti; cliccando sul nome del piatto al centro presenta una nuova area in cui si possono scegliere più dettagli, si può specificare un’aggiunta o modifica a quel piatto (preimpostata o inserita manualmente) e decidere l’ordine di portata. In questa schermata si possono anche aggiungere manualmente piatti che non sono nel menù digitale con “add new item”.
+
+
+
+
+Nella schermata di scelta dei piatti, scorrendo con il dito dal basso verso l’alto o cliccando direttamente sull’etichetta “table” si passa alla schermata in cui è possibile selezionare il tavolo (fig. 4); si può cliccare il numero del tavolo o inserire il nome nell’area di input in alto a destra (“table name”). Infine, scorrendo verso il basso si può tornare alla schermata precedente.
+
+
+
+
+Quando la clientela finisce l’ordinazione, il cameriere clicca l’icona in alto a destra per inviare questa ordinazione; poi il sistema torna alla schermata principale dove si vede che l’ordinazione è stata aggiornata (fig. 5a), dopodiché questa ordinazione sarà presa in carico da altri colleghi. Tra le opzioni di configurazione di ogni account, è possibile modificare la modalità di visualizzazione delle ordinazioni, su una sola colonna o su due (fig. 5b).
+
+
+
+Cliccando su un’ordinazione si passa ad una schermata in cui si possono controllare e modificare diverse voci dell’ordinazione (fig. 6a): aggiunge/eliminare piatti, cambiare la quantità dei piatti, aggiungere extra o note su piatti, cambiare lo stato di piatti).Cliccando il numero a sinistra si può aggiungere un piatto in più, cliccando sul nome del piatto al centro si possono aggiungere extra o note, come abbiamo visto sopra per la prima ordinazione. È ovvia anche la funzione di “-”. Cliccando invece l’icona a forma di cappello sulla destra permette di cambiare lo stato di preparazione dei piatti (fig. 6b): ci sono tre diversi stati per ogni piatto, oltre alla possibilità di annullare. Se la cameriera sceglie un altro tavolo, il conto è spostato al nuovo tavolo.
+
+
+
+Dopo le modifiche agli stati dei piatti, si vede subito il cambiamento nella schermata dell’ordinazione (fig. 7).
+
+
+
+
+	Nella schermata “staff” si può gestire il personale, aggiungere nuovi dipendenti con diversi ruoli (fig. 8a) o cambiare i ruoli per i membri  già esistenti (fig. 8b).
+
+
+Ci sarebbero ancora altre funzioni, come modificare i menu, pagare il conto, riservare i tavoli per i clienti che hanno prenotato, consultare le situazioni operazionali di determinati periodi, stampare gli scontrini o aggiungere mance/coperti, ecc. Però, dato che dobbiamo concentrarci solo sulle funzioni di gestione delle ordinazioni e progettiamo un sistema solo per i camerieri, non c’è bisogno trattare le altre funzioni presenti in Waiterio.
+
+Analisi diretta
+Analizziamo adesso più sistematicamente le applicazioni rispetto alle linee guida individuate.
+Il login al sistema è lungo: si deve usare un’email o un account di Google per accedere al sistema, non si può accedere con un username, e per compilare l’indirizzo email ci vuole del tempo. Viola la linea guida 32.
+In tutte le schermate il pulsante per tornare indietro in alto a sinistra è troppo piccolo, e quindi difficile da premere. Viola la linea guida 9.
+Nella schermata “orders” e in quella di selezione dei piatti, non c’è la funzione di ricerca, e se si vuole trovare una certa voce, si devono scorrere molte voci prima di trovarla. Viola la linea guida 6.
+Non c’è un’icona per indicare che, dopo aver aggiunto un piatto, il nome del piatto è cliccabile, e si puo’ cliccarlo per aggiungere note e controllare lo stato dell’ordine. Viola le linee guida 8 e 30. Il pulsante di “+” è a sinistra, e quando la cameriera usa questo sistema con la destra mano, deve sforzarsi ad allungare le dita per toccare il pulsante. Viola la linea guida 9.
+Quando si seleziona il tavolo, non si può distinguere quali tavoli sono liberi, quali sono occupati. Viola la linea guida 27. L’area di ”table name” è cliccabile (si può inserire il nome del tavolo direttamente), però questa funzione non è evidente ed è difficile da trovare. Viola la linea guida 30.
+Nella schermata dei dettagli di una ordinazione già creata, quando gli stati dei piatti sono cambiati, non possono più essere riportati agli stati di default. Viola la linea guida 22.
+Dopo che una ordinazione è già creata, non si può eliminarla direttamente nella schermata “orders”: si deve eliminarla in una altra schermata, e l’operazione non è diretta e facile. Viola la linea guida 32.
+
+Analisi inversa
+Infine, esploriamo viceversa le linee guida rispetto alle applicazioni già in commercio.
+Il nome della cameriera che sta usando il dispositivo non è presente. Viola la linea guida 3.
+L’operazione di spostare un conto ad altro tavolo è molto difficile da trovare. Viola le linee guida 4 e 8.
+Le funzioni di cambiare il prezzo, usare listini diversi, ricevere notifiche dalla cassa non sono realizzate. Viola la linea guida 5.
+Nella schermata delle impostazioni del sistema, c’è la possibilità di ricevere suggerimenti sull’uso del sistema, però l’aiuto è scarso e non sufficiente. Viola la linea guida 13.
+A volte non si può accedere all’aiuto. Viola la linea guida 14.
+Ci sono degli elementi visivamente uguali, ma una parte di questi è cliccabile, l’altra parte invece no. Viola le linee guida 18 e 19.
+
+Conclusione
+
+Vantaggi
+La struttura è chiara. Non ci sono tante schermate e tante categorie, la profondità dell’architettura è solo di due. Fa uso di un popup di dialogo, questa modalità è chiara e semplice. Grazie alla logica evidente e ai pochi elementi, l’apprendimento è veloce.
+Si possono completare quasi tutti i task in maniera comoda e veloce, in pochi passi e operazioni.
+Il feedback è immediato: dopo l’ordinazione si può vedere subito il resoconto. Il cambiamento dello stato dei piatti si nota subito. Mentre si fa l’ordinazione, si vedono subito i cambiamenti nel numero dei piatti e i costi.
+Modificare le ordinazioni è flessibile, si possono aggiungere/eliminare i piatti e le note aggiuntive in modo semplice.
+Svantaggi
+Non si può distinguere quali tavoli sono occupati quali sono liberi; meglio usare colori diversi per distinguere lo stato dei tavoli.
+Nonostante alcune funzioni siano implementate, a volte è difficile capire come trovarle: ad esempio, non c’è un’icona visibile che indichi che il nome di un piatto è cliccabile; per selezionare il tavolo si può inserire direttamente il nome del tavolo, però non è subito ovvia questa possibilità.
+Nella schermata “orders” manca la funzione di ricerca, quindi se ci sono molte ordinazioni, non si può trovare velocemente una data ordinazione.
+Mancano le funzioni per personalizzare il prezzo a seconda degli orari e dei clienti, per ricevere le notifiche dalla cassa e dalla cucina.
+
+User testing
+Definizione del protocollo di testing
+Protocollo di testing
+Per il nostro progetto abbiamo deciso di utilizzare la metodologia di test di tipo Discount Usability, il metodo proposto da Jacob Nielsen che viene eseguito con un numero inferiore di partecipanti, e che con osservazioni basate su scenari porta a risultati simili a quelli ottenuti con costosi test per l’usabilità tradizionali. Nel nostro caso, dal testing non ci aspettiamo di ottenere metriche ma solo dei suggerimenti di miglioramento; inoltre questa metodologia è più opportuna per la nostra situazione con ristrette disponibilità economiche e senza nessun professionista.
+Ci baseremo dunque su diverse iterazioni di test di piccole dimensioni e su osservazioni dirette piuttosto che su scoperte fondate statisticamente.
+Task
+Evidentemente i task da testare sono gli stessi task evidenziati nell’analisi dei task; considerando però che quei task sono un po’ astratti e tecnici, espandiamo qui la lista dei task previsti originariamente.
+I task da testare sono dunque:
+Task 1: Un gruppo di tre persone si accomoda ad un tavolino, ordina un caffè, un cappuccino e un succo alla pesca.
+Task 2: Due persone si accomodano per pranzare e ordinano tagliatelle al ragù bolognese e lasagne. Una volta finito il pranzo decidono di aggiungere due caffè e una bottiglia d’acqua rigorosamente a temperatura ambiente.
+Task 3: Una coppia si accomoda al tavolo 3, ordinano due antipasti del giorno. Nel frattempo un signore si accomoda al tavolo 1 e ordina un caffè. Dopo, la coppia al tavolo 3 decide di cambiare tavolo perché troppo vicina all'entrata e fa troppo freddo.
+
+Test e soggetti
+Vengono impiegati ? persone nel test, e ogni persona esegue un test, quindi il numero di test effettuati è ?.
+
+Metodologia di testing
+Durante il test verrà utilizzato il metodo del Thinking aloud: durante i task, noi ?? cerchiamo di tacere il più possibile e chiediamo ai partecipanti di usare il sistema mentre pensano ad alta voce, cioè semplicemente di verbalizzare i loro pensieri mentre si muovono per l’interfaccia.
+
+ 
+I test sono organizzati così: all’inizio viene consegnata una presentazione ai partecipanti per spiegare le fasi di test e le operazioni che devono svolgere. Dopodiché i partecipanti cominciano a completare i task da testare; nel frattempo l’osservatore interagisce con i partecipanti per valutare le loro esperienze. Dopo i test, ai partecipanti viene sottoposto un questionario di valutazione conclusivo per collezionare ulteriori informazioni. Alla fine, analizziamo tutte le informanzioni raccolte dai test.
+
+
+Queste sono le domande poste ai partecipanti durante l’esecuzione del test:
+A che cosa stai pensando?
+Cosa stai cercando di fare?
+Come pensi di dover procedere?
+Che dubbi stai avendo?
+Cosa vedi scritto e come è collegato al tuo compito?
+A che punto che punto pensi di essere?
+Selezioniamo il SUS come il questionario di valutazione conclusivo 
+
+Tabella Questionario Waiterio.pdf 
+Tabella Questionario Waiterio.pdf 
+Tabella Questionario Waiterio.pdf 
+Tabella Questionario Waiterio.pdf 
+Tabella Questionario Waiterio.pdf 
+Tabella Questionario Waiterio.pdf 
+Tabella Questionario Waiterio.pdf 
+Tabella Questionario Waiterio.pdf 
+Tabella Questionario Waiterio.pdf 
+
+
+Con questo questionario generiamo un punteggio di valutazione,che fornisce il valore complessivo di usabilita del sistema.
+
+
+Documento di valutazione conclusiva
+Documento di valutazione conclusiva
+Documento di valutazione conclusiva
+Documento di valutazione conclusiva
+Documento di valutazione conclusiva
+
+Analisi dei dati
+Dopo aver eseguito il testing su Waiterio attraverso il protocollo che abbiamo specificato sopra, riportiamo i dati che abbiamo raccolto dall’osservazione e dall’interazione con i tester.
+
+Task 1
+All’inizio sia l’utente inesperto che quello esperto fanno click sul nome del piatto per aggiungere un piatto. Dopo che viene visualizzato un messaggio di errore, capiscono che devono fare invece click sull’icona “+” per aggiungere una voce, e alla fine riescono ad aggiungere tutti i piatti che i clienti hanno ordinato. Nonostante il messaggio di errore sia presente, però, non è molto visibile, dato che è visualizzato più in basso.
+Dato che nel sistema manca la possibilità di inserire il numero di clienti al tavolo, tutti gli utenti (sia esperti che inesperti) hanno chiesto dove si può inserire o modifcare il numero di clienti.
+Per scegliere il tavolo, all’inizio l’utente inesperto ha esplorato tra le diverse categorie di menu, perché credeva che nella schermata di scelta dei piatti si potesse scegliere anche il piatto direttamente, e non ha capito che bisogna scorrere verso l’alto per giungere nella schermata della scelta del tavolo.
+Alla fine dell’ordinazione, l’utente esperto è riuscito a fare click sul pulsante per inviare l’ordinazione ed è riuscito a consegnarla, invece l’utente inesperto non ha notato l’esistenza di questo pulsante. Dopo l’ordinazione, ha provato direttamente a tornare indietro, e gli si è presentato il messaggio “Do you want to save the changes made to this order?” con due scelte “No” e “Yes”; quando l’utente ha visto questo suggerimento si è accorto che non aveva salvato l’ordinazione. Ha premuto “Yes” e l’ordinazione è stata comunque consegnata.
+
+Task 2
+Tutti gli utenti, sia esperti che inesperti, sono riusciti ad aggiungere manualmente un piatto che non era presente nel menù digitale, però si sono accorti che non avevano specificato un prezzo. Dopo molte esplorazioni l’utente esperto è entrato nella schermata del menu ed è riuscito a specificare un prezzo. L’utente inesperto invece non è riuscito a trovare come inserire un prezzo, e quando poi ha aggiunto quello stesso piatto di nuovo, ha notato che accanto all’area dove si può inserire il nome del piatto ce n’era un’altra per il prezzo. Questo suggerisce che l’area in cui inserire il prezzo di un piatto inserito manualmente non è molto evidente e ben visibile.
+Per specificare il prezzo di un piatto aggiunto in modo manuale, l’utente esperto è entrato nella schermata del menu, e per compilare il prezzo ha fatto click sul nome del piatto direttamente, facendo comparire un popup in cui però non c’è la possibilità di modificare il prezzo. Alla fine l’utente ha trovato che l’area a destra è modificabile, ed è proprio lì che va inserito il prezzo.
+All’inizio l’utente esperto non ha capito come aggiungere delle voci in seguito in un’ordinazione già esistente, non ha capito che si può scorrere verso il basso ed entrare nella schermata del menu). Dopo alcuni tentativi è riuscito a capire come aggiungere la voce.
+L’utente inesperto non ha capito come aggiungere delle voci in più nell’ordinazione già esistente, ha confuso la schermata con le categorie con quella che mostra i dettagli dell’ordinazione. Il test di questa operazione è fallito.
+Per aggiungere le note, tutti gli utenti esperti ed inesperti hanno fatto confusione tra “add extra” e “add note”.
+Per aggiungere la nota “a temperatura ambiente”, l’utente inesperto non sapeva come aggiungerla, si è recato nella schermata “menu” e ha eliminato per sbaglio (e senza conferma o suggerimento prima dell’effettiva eliminazione) la scelta che aveva inserito. Alla fine l’utente non è riuscito a completare questa operazione.
+
+Task 3
+Tutti gli utenti, esperti e inesperti, sono riusciti a completare comodamente questo task.
+
+Task 4
+Per sostituire un cappuccino con un caffè, si deve prima eliminare il cappuccino e poi aggiungere il caffè. All’inizio l’utente esperto ha fatto direttamente click sulla voce del cappuccino, perché pensava che ci fosse un’opzione per sostituire un piatto. Poi ha capito di aver sbagliato, e dopo due tentativi è riuscito a trovare la funzione di cancellazione.
+Dopo che il cappuccino è stato cancellato, l’utente esperto voleva aggiungere un caffè, ma non sapeva come farlo, voleva ritornare alla schermata delle categorie dei piatti quindi ha fatto click sul pulsante “Indietro”, invece si è ritrovato alla schermata “orders”.
+Per cancellare il cappuccino, anche l’utente inesperto ha cliccato sul nome del cappuccino, e poi ha notato che il popup che compariva non includeva l’operazione che gli serviva. Ha provato a premere sull’icona del cappello e questa volta ha trovato l’indicazione giusta ed è riuscito a cancellare il cappuccino.
+
+Una volta eseguiti i task, abbiamo sottoposto i tester al questionario conclusivo, da cui abbiamo estratto delle informazioni qualitative sui giudizi soggettivi riguardo l’interfaccia.
+L’azione che genera più confusione è quella di aggiungere un nuovo piatto ad un’ordinazione già esistente, è difficile per gli utenti trovare la schermata giusta in cui scegliere i diversi piatti.
+Tutti i tester credono che questo sistema non sia difficile da apprendere, e che si possa cominciare ad usarlo senza istruzioni o aiuto dai tecnici.
+Il significato dei pulsanti e delle etichette non è difficile da capire.
+L’organizzazione delle funzioni e l’architettura sono un po’ confuse, in particolare la navigazione da una schermata all’altra.
+Proposta di intervento
+
+
+
+Modello di design
+Adozione giustificata di un modello di design CAO=S
+alt(goal oriented)
+è goal-oriented in progetti economicamente limitati. No budget per analisi sitematica dell’utenza d iriferimento.
+Basato sullo studio di Concetti, cioè tipi di informazioni che l’applicazione manipola per conto degli Attori (i tipi di utenti) messe a disposizione le Operazioni. L’analisi di questi concetti permette di generare le strutture gestite dal modello (Viste, Strutture dati, Navigazione).
+Concetti
+Secondo il modello, i concetti sono il tipo di informazione che viene trattato dall’applicazione; in particolare, sono il modo in cui l’utente percepisce e comprende l’informazione rappresentata dalle strutture dati manipolate dall’applicazione.
+I concetti che gli utenti del nostro progetto si aspettano di vedere rappresentati nell’applicazione sono:
+il tavolo, rappresentato univocamente da un numero o altro identificativo, si trova in una precisa sala nella quale ha una particolare posizione.
+il conto è associato ad un tavolo, tiene traccia delle ordinazioni dei clienti e delle loro caratteristiche. È l’entità più importante nell’interazione.
+il menu, cioè il listino dei piatti disponibili;
+i piatti, corredati di prezzo, eventuali aggiunte, ordine della portata o altre note.
+Operazioni
+Nel modello di design impiegato, le operazioni sono azioni sull’interfaccia a cui corrispondono manipolazioni sui concetti. 
+Vediamo dunque come la cameriera si aspetta di poter operare sui concetti visti sopra.
+
+
+[...]
+
+Requisiti funzionali/non funzionali?
+Persone? strutture?
+
+Architettura dell’informazione
+Dopo aver raccolto i requisiti e analizzato il sistema esistente, adesso iniziamo a presentare il nostro sistema. Il modello di design che abbiamo seguito trutture
+
+Tutti i dispositivi hardware usati sono in seguito:
+Un dispositivo touch per le cameriere, la dimensione è media, ne grande ne piccola, per facilitare le operazioni con sola una mano.
+Un PC per la cassa , in grado di visualizzare i conti creati dalle cameriere e gli cambiamenti degli stati di conti e di voci. 
+Alcune stampanti in cucina, in cassa e in banco o negli altri luoghi dove hanno bisogno di un conto cartaceo.
+
+Come mostra nella figura, dopo i clienti si sono accomodati, tra un certo tempo, le cameriere vanno a fare ordinazione con i clienti usando i dispositivi touch. Non adottiamo la soluzione di utilizzo di pulsante, perché crediamo che questa soluzione abbia degli svantaggi: gli anziani hanno paura di premere il pulsante di ordinazione(non sanno cosa succederrabbia degli svantaggi: gli anziani hanno paura di premere il pulsante di ordiolte per solo un richiamo.
+Dopo le ordinazioni sono finite, le cameriere inviano i conti alla cassa, alla cucina e al banco. Nella cassa, si pun richiamo.cedergn che abbiamo seguito trutture dati manipolate dall’applicazione. di caressono vedere solo le corrispondenti voci di loro propri settori. Oltre alle cameriere, anche le bariste e i cuochi possono modificare gli stati delle voci (per esempio: un piatto o trutture dati manipolate dall’applicazione. di care un prezzo. L’utente inesperto invece non è riuiere, la cassa, la cucina e il banco.
+Dalla cassa, il banco e la cucina, ri. Oltre alle cameriere, anche le bar
+
+
+ 
+Design dell’interazione
+Dividiamo la schermata in 3 parti: due barre , una superiore e una inferiore, la restante parte in mezzo è la principale area dove mostra i contenuti da operare.
+La barra in alto visualizza il contesto in cui si trova, ltrova, l il contesto in cui si trova, lante parte in mezzo è la prihi possono modificare gli stati delle voci (per eseme, c’è anche un pulsante di indietro, lo clicca si pua, l il contesto in cui si trova, lan
+Nella barra in basso, sono disposte delle funzioni principali (e g. creare nuovo conto, aggiungere nuova voce). Di solito, le operazioni qui causano il cambiamento di schermata (entra un’altra schermata ) o d de nuovo conto, aggiungere nuo
+Dipende dalle diverse schermate, la mezza area mostra i tavoli, il menu e il riepilogo. Anche le operazioni su voce individuale sono fatte qui. 
+ 
+
+
+ 
+Prototipo di interfaccia
+Per prima cosa è stato preparato un prototipo dell’interfaccia con Balsamiq, di modo da schematizzare l’interazione con l’applicazione.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Valutazione dell’intervento
+
+
+
+Ispezione del progetto
+All’interno del nostro gruppo eseguiamo un’ispezione interna per valutare, con tutti i limiti della tecnica, l’usabilità della prima interfaccia che abbiamo preparato.
+
+Per prima cosa, cerchiamo di valutare l’interfaccia con il nostro buon senso e le linee guida.
+
+
+Adesso valutiamo l’esecuzione dei task che abbiamo già stabilito, percorrendo passo passo le operazioni mettendoci nei panni di utenti ‘tipo’: una cameriera appena assunta, un cameriere esperto, una cameriera con molta esperienza ma assunta da poco. Alla fine dell’esercizio di immaginazione, vediamo quali problemi emergono e le prestazioni empiriche.
+«La cameriera che è stata appena assunta fa accomodare un gruppo di tre persone al tavolo 1. Nella schermata “Lista tavoli” fa click sul tavolo numero 1. Una volta sulla schermata del tavolo 1, la cameriera preme su “Apri”: compare la schermata in cui si inserisce il numero di clienti per calcolare il coperto. Seleziona “3” e fa click su “Conferma”. In basso, fa click su “Aggiungi” e nel campo “Piatto” scrive “caffè”; seleziona la voce “caffè espresso”, poi scorre e fa click su “Conferma”. Allo stesso modo per “Cappuccino”. Per inserire il succo alla pesca, capisce che per velocizzarsi può iniziare a scrivere solo “pesca” nel campo “Piatto”: compare subito il suggerimento giusto “Succo alla pesca” e lo seleziona». Questa storia non presenta particolari interessanti.
+«Sempre la cameriera assunta da poco fa accomodare due persone al tavolo 2. La prima ordina Tagliatelle al ragù bolognese, e fin qui la cameriera procede come sopra. La seconda persona ordina invece Lasagne: questo piatto non è stato ancora inserito nel sistema digitale, e mentre la cameriera lo digita nel campo “Piatto”, vede sparire tutti i suggerimenti. Non capisce se la ricerca tra i piatti si è bloccata o se il funzionamento è normale, ma una volta digitato il nome, quando fa click su “Conferma”, il piatto è aggiunto comunque correttamente. Alla fine del primo, i clienti decidono che il pasto è terminato e richiamano la cameriera. Quest’ultima, dalla schermata “Lista tavoli” sceglie il tavolo 2, poi fa click su “Aggiungi” in basso e inserisce i due caffè. Inizia con gli stessi passi per inserire l’acqua naturale, e all’ordine del cliente che l’acqua sia assolutamente a temperatura ambiente, la cameriera vede il campo “Nota” in cui pensa di inserire l’indicazione “temperatura ambiente”; infine, fa click su “Conferma”». Questa storia presenta una svolta quando la cameriera, dapprima non è sicura se si possa ‘forzare’ un piatto non presente ad essere inserito, e infine nota che è molto facile e lo ha imparato una volta per tutte. Si potrebbe rendere ancora più chiara l’interazione mettendo tra i suggerimenti, nel momento in cui non ce ne siano di altri dalla storia del sistema, proprio il nome del piatto che la cameriera sta digitando in quel momento, così che nessun input possa sembrare non valido solo perché non suggerito.
+«Il cameriere esperto fa accomodare al tavolo 3 una coppia: fa click sull’icona del tavolo 3a, apre il tavolo, inserisce i due clienti, e prende le ordinazioni come al solito. I clienti desiderano due antipasti. Il cameriere va via. Poco dopo, viene richiamato al tavolo 3a: la signora, tutta nascosta dalla sciarpa, chiede di cambiare tavolo perché fa molto freddo fuori e il tavolo 3a è troppo vicino all’entrata. Il cameriere li fa subito accomodare fisicamente al tavolo 3b; sul sistema informatico, invece, torna alla schermata con la lista dei tavoli, fa click sul tavolo 3a e si ritrova alla schermata di riepilogo del conto. Fa click sul tasto “Sposta”, si trova davanti un popup in cui seleziona, nel campo “Sposta a:”, il tavolo 3b. Si ritrova nella schermata “Lista tavoli”, in cui nota effettivamente che il tavolo 3a è di nuovo vuoto». Anche qui nessun problema; a voler essere pignoli, andrebbe reso un feedback più evidente alla fine dello spostamento ben riuscito di un tavolo.
+«La cameriera, quella molto esperta ma appena arrivata, prende l’ordinazione di un cliente che si è accomodato al tavolo 4 del bar. Il cliente ordina un cappuccino e una brioche, e la cameriera utilizza il sistema nel modo usuale. Poco dopo, la cameriera riceve sul dispositivo una notifica dal tavolo 4: arrivata, il cliente le dice di preferire un caffè al cappuccino, e le chiede di cambiare l’ordine. La cameriera si porta alla schermata di riepilogo del tavolo 4, clicca sui “dettagli” della voce “Cappuccino”, clicca su “Cancella”; poi inserisce il caffè come al solito». Niente di difficile.
+
+User testing
+La prima fase di testing
+Lo user testing effettuato per valutare e migliorare l’interfaccia del nostro sistema segue quello che abbiamo impiegato precedentemente per valutare i sistemi già esistenti.
+A differenza però del testing che abbiamo già effettuato, quello del nostro progetto si svolgerà in fasi reiterate, in modo da correggere i problemi di usabilità che vengono via via rilevati prima di proporre una nuova versione per la valutazione.
+Ogni volta, dopo aggiungere una voce, si deve cliccare il pulsante ”conferma” una volta, non si puo’ aggiungere tutte le voci e poi cliccare “conferma” in solo una volta.
+Dopo un’ordinazione e’ gia’ creata, se aprire l’ordinazione a guardare i dettagli, il numero di persone diventa 0,e anche l’importo e’ 0.
+La parola “chiudere” e’ equivoca, il tester pensa che “chiudere” significa “invia l’ordinazione”.
+Per fare l’ordinazione, si deve inserire il nome della voce a cercare la voce e poi aggiungerla, non c’e’ una lista dove si puo’ scegliere le voci direttamente.
+Il tester ha gia’ aggiunto un nuovo piatto manualmente, la prossima volta quando i clienti vogliono ordinare questo piatto, il tester deve aggiungerlo manualmente di nuovo.
+
+Il tester ha trovato che questo sistema ha delle confusioni degli elementi e un po’ complicato a usarlo. All’inizio non e’ facile a utilizzarlo comodamente, dopo delle esplorazioni il tester puo’ utilizzarlo a completare tutti i compiti. I due maggiori problemi sono l’interfaccia e’ equivoca e il tester deve compilare tante cose, non c’e’ una lista da scegliere direttamente. Infine pensa che dopo apprendere il sistema si puo’ utilizzarlo a completare tutti i compiti .
+
+需要添加yuwei第二次的测试报告
+
+需要添加yuwei第二次的测试报告
+
+Terza fase di testing:
+1. E' un po confuso dell'etichetta "Busy" nella schermata 'Tables'
+2.Per sospetare un'ordinazione ad altro tavolo, non sa come operare ad 
+3.Ha un po' di dubbio della frase 'Number of service fees for table', invece di mettere il numero di tassa servizio essere 0 e' meglio fa un sconto ai clienti.
+4.Le iconi usate ad indicare lo stato dei piatti non sono chiare.
+
+需要添加Yuwei第三次的测试报告
+
+需要添加Yuwei第三次的测试报告
+
+需要添加Yuwei第三次的测试报告
+
+Conclusioni e raccomandazioni
+A causa di pressioni di tempo, abbiamo fatto solo tre volte di testing. Ciascuno faci migliorare il progetto. Dopo la prima volta di testing, ci siamo accorti che avevamo sbagliato la direzione di questo progetto, quindi abbiamo cambiato quasi tutta l’interazione nella seconda versione, pensavamo di come mostrare la interfaccia di menu, come migliorare e facilitare le operazioni di ordinazione di pin, con questa versione si puc completare tutte le operazioni desiderate in modo semplice, ma c’erano ancora delle parti possono essere migliorate. Nella terza versione, pensavamo di come migliorare i particolari di pim, con dei miglioramenti i tester possono completare tutte le operazioni velocemente e comodamente, consideriamo tutti gli obiettivi sono gic soddisfatti, terminiamo il progetto qui.
+Il maggiore miglioramento è la semplificazione della interfaccia, oltra alle schermate delle diverse categorie di menu, usiamo solo un’altra schermata ‘Selected’, nella questa schermata, si pun sia creare una nuova ordinazione sia modificare una ordinazione creata nello stesso modo, questa maniera facilitare notevolmente le operazioni. Un altro miglioramento è abbiamo messo l’aggiunta di un nuovo piatto e la ricerca di piatto esistente insieme. Con la stessa casella di ricerca, si pur sia aggiungere un nuovo piatto sia trovare quello che è gie esistente e aggiungerlo nell’ordinazione. 
+Non adottiamo la soluzione di auricolare, percholuziondo noi, ha pi  svantaggi che vantaggi, per esempio, quando il cameriere sta facendo ordinazione, se c’è voce viene dall’auricolare, invece di una facilitazione è un disturbo; un altro caso è : quando si trova in un ambiente rumoroso, è difficile ascoltare bene la voce viene dall’auricolare.
+Anche se abbiamo fatto dei miglioramenti sul progetto, non abbiamo risolto il problema che come il cameriere pu  soddisfare la richiesta di ordinazione dei clienti mentre tutte le sue due mani sono occupate. Nelle attuali condizioni, tutte le operazioni sono fatte almeno con una mano, se tutte le due mani sono occupate, non si puo fare nessuna operazione, quindi questo problema è ancora irrisolto, quindi questo è un punto bisogna miglioramento nel futuro.

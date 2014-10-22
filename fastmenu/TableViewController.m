@@ -65,7 +65,7 @@
     }
    
     NSArray *arr;
-    if ([item.title isEqualToString:@"Busy"]) {
+    if ([item.title isEqualToString:@"Occupied"]) {
         
         arr = [self filterTablesWithArray:self.tables andState:@"busy"];
         
@@ -147,6 +147,11 @@
         
         button.tag = 2000+tableid;
         
+        //background image of tables
+        [button setBackgroundImage:[UIImage imageNamed:@"tavologb.png"]
+                            forState:UIControlStateNormal];
+        [button setImageEdgeInsets:UIEdgeInsetsMake(1, 10, 20, 1)];
+        
         //make the buttons content appear in the top-left
         [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
         [button setContentVerticalAlignment:UIControlContentVerticalAlignmentTop];
@@ -158,8 +163,8 @@
         button.titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
         
         //button layer
-        [[button layer] setBorderWidth:1.0f];
-        [[button layer] setBorderColor:[UIColor grayColor].CGColor];
+       // [[button layer] setBorderWidth:1.0f];
+       // [[button layer] setBorderColor:[UIColor grayColor].CGColor];
         
         
         //prepare the style

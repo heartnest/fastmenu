@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="bNO-LW-RGv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bNO-LW-RGv">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1808" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller - Tables-->
+        <!--Tables-->
         <scene sceneID="Xam-R0-jom">
             <objects>
                 <viewController storyboardIdentifier="tables-story-id" id="4iK-AU-xF9" customClass="TableViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="5Lq-8z-lmX"/>
-                        <viewControllerLayoutGuide type="bottom" id="qnb-5S-HLB"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vOz-1J-aba">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -28,7 +25,7 @@
                                 <rect key="frame" x="-2" y="517" width="322" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
-                                    <tabBarItem title="Busy" image="tavolo.png" id="Pow-8z-jh8"/>
+                                    <tabBarItem title="Occupied" image="tavolo.png" id="Pow-8z-jh8"/>
                                     <tabBarItem title="Free" image="tavolo.png" id="AAw-U8-wMh"/>
                                     <tabBarItem title="All" image="tavolo.png" id="3Xp-pi-h2N"/>
                                     <tabBarItem title="More" image="points.png" id="raB-Ly-MKS"/>
@@ -72,10 +69,6 @@
         <scene sceneID="8Pa-ge-HdE">
             <objects>
                 <viewController storyboardIdentifier="menu-story-id" useStoryboardIdentifierAsRestorationIdentifier="YES" id="l5A-ZB-Lvy" customClass="MenuViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="m4J-qG-OWA"/>
-                        <viewControllerLayoutGuide type="bottom" id="qnD-YJ-V4V"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9w4-OD-dXJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -131,10 +124,6 @@
         <scene sceneID="Mnd-Rp-VXA">
             <objects>
                 <viewController storyboardIdentifier="PageContentViewController" id="58o-1x-ksy" customClass="PageContentViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="1jp-IK-C05"/>
-                        <viewControllerLayoutGuide type="bottom" id="C8z-vK-k5S"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="etN-xw-qFU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -165,10 +154,6 @@
         <scene sceneID="e5M-ze-IEu">
             <objects>
                 <viewController storyboardIdentifier="Tmpodrvc" id="2hh-ed-AAf" customClass="TempOrderVC" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ZuR-De-Pdr"/>
-                        <viewControllerLayoutGuide type="bottom" id="3tD-3E-k7e"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Pjn-90-1uO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
