@@ -30,6 +30,11 @@
 		2EA6326D19CDA85000C2447A /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA6326C19CDA85000C2447A /* PageContentViewController.m */; };
 		2EA6327119CDF5BC00C2447A /* menu.json in Resources */ = {isa = PBXBuildFile; fileRef = 2EA6327019CDF5BC00C2447A /* menu.json */; };
 		2EA6327619CEEE4800C2447A /* tables.json in Resources */ = {isa = PBXBuildFile; fileRef = 2EA6327519CEEE4800C2447A /* tables.json */; };
+		2EF1910119F7FD2A005F1B2F /* confirmed.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EF190FC19F7FD2A005F1B2F /* confirmed.png */; };
+		2EF1910219F7FD2A005F1B2F /* cooking.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EF190FD19F7FD2A005F1B2F /* cooking.png */; };
+		2EF1910319F7FD2A005F1B2F /* ready.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EF190FE19F7FD2A005F1B2F /* ready.png */; };
+		2EF1910419F7FD2A005F1B2F /* served.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EF190FF19F7FD2A005F1B2F /* served.png */; };
+		2EF1910519F7FD2A005F1B2F /* served2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EF1910019F7FD2A005F1B2F /* served2.png */; };
 		2EFF18E819DACCCE005E738A /* TempOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EFF18E719DACCCE005E738A /* TempOrderVC.m */; };
 		2EFF18EC19DC4A08005E738A /* 58.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EFF18E919DC4A08005E738A /* 58.png */; };
 		2EFF18ED19DC4A08005E738A /* 80.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EFF18EA19DC4A08005E738A /* 80.png */; };
@@ -78,6 +83,11 @@
 		2EA6326C19CDA85000C2447A /* PageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContentViewController.m; sourceTree = "<group>"; };
 		2EA6327019CDF5BC00C2447A /* menu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = menu.json; sourceTree = "<group>"; };
 		2EA6327519CEEE4800C2447A /* tables.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tables.json; sourceTree = "<group>"; };
+		2EF190FC19F7FD2A005F1B2F /* confirmed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = confirmed.png; sourceTree = "<group>"; };
+		2EF190FD19F7FD2A005F1B2F /* cooking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cooking.png; sourceTree = "<group>"; };
+		2EF190FE19F7FD2A005F1B2F /* ready.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ready.png; sourceTree = "<group>"; };
+		2EF190FF19F7FD2A005F1B2F /* served.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = served.png; sourceTree = "<group>"; };
+		2EF1910019F7FD2A005F1B2F /* served2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = served2.png; sourceTree = "<group>"; };
 		2EFF18E619DACCCE005E738A /* TempOrderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempOrderVC.h; sourceTree = "<group>"; };
 		2EFF18E719DACCCE005E738A /* TempOrderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempOrderVC.m; sourceTree = "<group>"; };
 		2EFF18E919DC4A08005E738A /* 58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 58.png; path = img/58.png; sourceTree = "<group>"; };
@@ -180,6 +190,11 @@
 				2EFF18EB19DC4A08005E738A /* 120.png */,
 				2E9DF16519E30DC50096865B /* bell36red.png */,
 				2E9DF16319E308FB0096865B /* bell36.png */,
+				2EF190FC19F7FD2A005F1B2F /* confirmed.png */,
+				2EF190FD19F7FD2A005F1B2F /* cooking.png */,
+				2EF190FE19F7FD2A005F1B2F /* ready.png */,
+				2EF190FF19F7FD2A005F1B2F /* served.png */,
+				2EF1910019F7FD2A005F1B2F /* served2.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -280,18 +295,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EFF18EE19DC4A08005E738A /* 120.png in Resources */,
+				2EF1910319F7FD2A005F1B2F /* ready.png in Resources */,
 				2EA6327119CDF5BC00C2447A /* menu.json in Resources */,
 				2E9DF16219E2E34B0096865B /* points.png in Resources */,
 				2E9DF16619E30DC50096865B /* bell36red.png in Resources */,
 				2E16B90419F556B800C0DC26 /* tavolo.png in Resources */,
 				2E20BC7D19B07BEE00540E78 /* Images.xcassets in Resources */,
+				2EF1910519F7FD2A005F1B2F /* served2.png in Resources */,
 				2EA6327619CEEE4800C2447A /* tables.json in Resources */,
 				2E20BC6F19B07BEE00540E78 /* InfoPlist.strings in Resources */,
 				2E20BC7819B07BEE00540E78 /* Main.storyboard in Resources */,
 				2E16B90619F556CD00C0DC26 /* tavologb.png in Resources */,
+				2EF1910419F7FD2A005F1B2F /* served.png in Resources */,
 				2EFF18EC19DC4A08005E738A /* 58.png in Resources */,
+				2EF1910119F7FD2A005F1B2F /* confirmed.png in Resources */,
 				2EFF18ED19DC4A08005E738A /* 80.png in Resources */,
 				2E9DF16419E308FB0096865B /* bell36.png in Resources */,
+				2EF1910219F7FD2A005F1B2F /* cooking.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,7 +402,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tong Liu (B2UV2638AB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tong Liu (B2UV2638AB)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -420,7 +441,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tong Liu (B2UV2638AB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tong Liu (B2UV2638AB)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

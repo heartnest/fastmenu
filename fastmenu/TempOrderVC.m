@@ -85,7 +85,7 @@
     
     //text field
     
-    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(marginleft+functnWidh+5, 10, 240, boxheight - 1 )];
+    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(marginleft, 10, 250, boxheight - 1 )];
     self.textField.borderStyle = UITextBorderStyleBezel;
     self.textField.font = [UIFont systemFontOfSize:15];
     self.textField.placeholder = @"cuba libre";
@@ -103,7 +103,7 @@
     [addNewPlateBtn addTarget:self
                action:@selector(addNewPlate)
      forControlEvents:UIControlEventTouchUpInside];
-    addNewPlateBtn.frame = CGRectMake(marginleft, 10.0, functnWidh, boxheight);
+    addNewPlateBtn.frame = CGRectMake(marginleft+250+5, 10.0, functnWidh, boxheight);
     
     [self.scrollView addSubview:addNewPlateBtn];
     
@@ -147,9 +147,10 @@
             
         }else if ([state isEqualToString:@"sent"]) {
             platePlusButton = [Tools createPlusBtnComponentWithQnt:x andColor:@"#FFFFF0"];
-            plateMinuesButton = [Tools createPlusBtnComponentWithQnt:@"📌" andColor:@"#FFFFF0"];
+            plateMinuesButton = [Tools createPlusBtnComponentWithQnt:@"" andColor:@"#FFFFF0"];
             plateContentButton = [Tools createMenuBtnComponentWithName:platename price:price color:nil];
             
+            [plateMinuesButton setBackgroundImage:[UIImage imageNamed:@"confirmed.png"] forState:UIControlStateNormal];
 
             UILongPressGestureRecognizer *gr = [[UILongPressGestureRecognizer alloc] init];
             [gr addTarget:self action:@selector(longPressKitAll:)];
@@ -158,16 +159,20 @@
         }else if ([state isEqualToString:@"cooking"]) {
             
             platePlusButton = [Tools createPlusBtnComponentWithQnt:x andColor:@"#FFFFF0"];
-            plateMinuesButton = [Tools createPlusBtnComponentWithQnt:@"♨️" andColor:@"#FFFFF0"];
+            plateMinuesButton = [Tools createPlusBtnComponentWithQnt:@"" andColor:@"#FFFFF0"];
             plateContentButton = [Tools createMenuBtnComponentWithName:platename price:price color:@"#FFFFF0"];
+            
+            [plateMinuesButton setBackgroundImage:[UIImage imageNamed:@"cooking.png"] forState:UIControlStateNormal];
             
             UILongPressGestureRecognizer *gr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressKitPrice:)];
             [plateContentButton addGestureRecognizer:gr];
             
         }else if ([state isEqualToString:@"ready"]) {
             platePlusButton = [Tools createPlusBtnComponentWithQnt:x andColor:@"#FFFFF0"];
-            plateMinuesButton = [Tools createPlusBtnComponentWithQnt:@"🔔" andColor:@"#FFDEAD"];
+            plateMinuesButton = [Tools createPlusBtnComponentWithQnt:@"" andColor:@"#FFDEAD"];
             plateContentButton = [Tools createMenuBtnComponentWithName:platename price:price color:@"#FFFFF0"];
+            
+            [plateMinuesButton setBackgroundImage:[UIImage imageNamed:@"ready.png"] forState:UIControlStateNormal];
             
             UILongPressGestureRecognizer *gr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressKitPrice:)];
             [plateContentButton addGestureRecognizer:gr];
@@ -175,8 +180,10 @@
             
         }else if ([state isEqualToString:@"served"]) {
             platePlusButton = [Tools createPlusBtnComponentWithQnt:x andColor:@"#FFFFF0"];
-            plateMinuesButton = [Tools createPlusBtnComponentWithQnt:@"👍" andColor:@"#FFFFF0"];
+            plateMinuesButton = [Tools createPlusBtnComponentWithQnt:@"" andColor:@"#FFFFF0"];
             plateContentButton = [Tools createMenuBtnComponentWithName:platename price:price color:@"#FFFFF0"];
+            
+            [plateMinuesButton setBackgroundImage:[UIImage imageNamed:@"served2.png"] forState:UIControlStateNormal];
             
             UILongPressGestureRecognizer *gr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressKitPrice:)];
             [plateContentButton addGestureRecognizer:gr];
@@ -186,9 +193,9 @@
 
         
         //set buttons positions
-        plateMinuesButton.frame = CGRectMake(marginleft+functnWidh+boxwidth+10, ypos, functnWidh, boxheight);
+        plateMinuesButton.frame = CGRectMake(marginleft, ypos, functnWidh, boxheight);
         plateContentButton.frame = CGRectMake(marginleft+functnWidh+5, ypos, boxwidth, boxheight );
-        platePlusButton.frame = CGRectMake(marginleft, ypos, functnWidh, boxheight);
+        platePlusButton.frame = CGRectMake(marginleft+functnWidh+boxwidth+10, ypos, functnWidh, boxheight);
         
         //add buttons
         [self.scrollView addSubview:platePlusButton];
@@ -203,7 +210,8 @@
             UIButton *notebtn = [Tools createNoteBtnWithString:note];
             UIButton *noteminus = [Tools createPlusBtnComponentWithQnt:@"➖" andColor:nil];
             notebtn.frame = CGRectMake(marginleft+functnWidh+5, ypos, boxwidth, boxheight );
-            noteminus.frame = CGRectMake(marginleft+functnWidh+boxwidth+10, ypos, functnWidh, boxheight);
+            //noteminus.frame = CGRectMake(marginleft+functnWidh+boxwidth+10, ypos, functnWidh, boxheight);
+            noteminus.frame = CGRectMake(marginleft, ypos, functnWidh, boxheight);
             [self.scrollView addSubview:notebtn];
             [self.scrollView addSubview:noteminus];
             ypos += boxheight + margintop;
@@ -217,7 +225,7 @@
     // Coperto button --- start
     
         UIButton *platePlusButton = [Tools createPlusBtnComponentWithQnt:@"3" andColor:nil];
-        platePlusButton.frame = CGRectMake(marginleft, ypos+topspace, functnWidh, boxheight);
+        platePlusButton.frame = CGRectMake(marginleft+functnWidh+boxwidth+10, ypos+topspace, functnWidh, boxheight);
         [self.scrollView addSubview:platePlusButton];
     
         UIButton *btn = [Tools createCopertoBtnWithNumPeople:2.5];
@@ -225,7 +233,7 @@
         [self.scrollView addSubview:btn];
     
         UIButton *plateMinusButton = [Tools createPlusBtnComponentWithQnt:@"➖" andColor:nil];
-        plateMinusButton.frame = CGRectMake(marginleft+functnWidh+boxwidth+10, ypos+topspace, functnWidh, boxheight);
+        plateMinusButton.frame = CGRectMake(marginleft, ypos+topspace, functnWidh, boxheight);
         [self.scrollView addSubview:plateMinusButton];
     
         [btn addTarget:self

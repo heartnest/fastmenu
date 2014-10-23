@@ -386,8 +386,8 @@
                                initWithTitle:@"Orders have not been sent!"
                                message:@"If you leave, temporal orders will be deleted"
                                delegate:self
-                               cancelButtonTitle:@"Leave"
-                               otherButtonTitles:@"Stay",nil];
+                               cancelButtonTitle:@"Cancel"
+                               otherButtonTitles:@"Send",@"Leave",nil];
         alert.tag = 40;
         [alert show];
     }else{
@@ -459,7 +459,7 @@
     }
     else if (alertView.tag == 40) {
     
-        if (buttonIndex == 0) {
+        if (buttonIndex == 2) {
             [self backToTablesList];
         }else if(buttonIndex == 1) {
             //NSLog(@"11");

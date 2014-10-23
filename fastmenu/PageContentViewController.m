@@ -100,9 +100,9 @@
                               action:@selector(onClickMinusBtn:) forControlEvents:UIControlEventTouchUpInside];
         
         //Fix button postions
-        platePlusButton.frame = CGRectMake(marginleft, ypos, functnWidh, boxheight);
+        platePlusButton.frame = CGRectMake(marginleft+functnWidh+boxwidth+10, ypos, functnWidh, boxheight);
         plateContentButton.frame = CGRectMake(marginleft+functnWidh+5, ypos, boxwidth, boxheight);
-        plateMinuesButton.frame = CGRectMake(marginleft+functnWidh+boxwidth+10, ypos, functnWidh, boxheight);
+        plateMinuesButton.frame = CGRectMake(marginleft, ypos, functnWidh, boxheight);
         
         
         //Attach buttons
